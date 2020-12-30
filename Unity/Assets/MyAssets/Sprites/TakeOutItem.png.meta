@@ -1,0 +1,563 @@
+fileFormatVersion: 2
+guid: e3f82f62f6c188a4bb69815dab431344
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7404074613870504618
+    second: BrokeRichMichael.TakeOutItemAtlas_0
+  - first:
+      213: 7853009219805696465
+    second: BrokeRichMichael.TakeOutItemAtlas_1
+  - first:
+      213: -2288743130189767499
+    second: BrokeRichMichael.TakeOutItemAtlas_2
+  - first:
+      213: 548748186999234387
+    second: BrokeRichMichael.TakeOutItemAtlas_3
+  - first:
+      213: -1743135861960597056
+    second: BrokeRichMichael.TakeOutItemAtlas_4
+  - first:
+      213: 5490623324264056656
+    second: BrokeRichMichael.TakeOutItemAtlas_5
+  - first:
+      213: -8230777125819481189
+    second: BrokeRichMichael.TakeOutItemAtlas_6
+  - first:
+      213: 7025598152908170482
+    second: BrokeRichMichael.TakeOutItemAtlas_7
+  - first:
+      213: 8683135030322825769
+    second: BrokeRichMichael.TakeOutItemAtlas_8
+  - first:
+      213: 2945287682312332223
+    second: BrokeRichMichael.TakeOutItemAtlas_9
+  - first:
+      213: 7137483712139979741
+    second: BrokeRichMichael.TakeOutItemAtlas_10
+  - first:
+      213: -6468533050385623397
+    second: BrokeRichMichael.TakeOutItemAtlas_11
+  - first:
+      213: -2432106108685047195
+    second: BrokeRichMichael.TakeOutItemAtlas_12
+  - first:
+      213: 8077998962851850735
+    second: BrokeRichMichael.TakeOutItemAtlas_13
+  - first:
+      213: 7412894003990672978
+    second: BrokeRichMichael.TakeOutItemAtlas_14
+  - first:
+      213: 8259671064395620746
+    second: BrokeRichMichael.TakeOutItemAtlas_15
+  - first:
+      213: -8539604330710170889
+    second: BrokeRichMichael.TakeOutItemAtlas_16
+  - first:
+      213: -37189448735714433
+    second: TakeOutItem_0
+  - first:
+      213: -3725647210374813275
+    second: TakeOutItem_1
+  - first:
+      213: -8110616789582568597
+    second: TakeOutItem_2
+  - first:
+      213: 2262260637334171130
+    second: TakeOutItem_3
+  - first:
+      213: -853968265798389325
+    second: TakeOutItem_4
+  - first:
+      213: 7762641826316303654
+    second: TakeOutItem_5
+  - first:
+      213: -9044351581600135978
+    second: TakeOutItem_6
+  - first:
+      213: 689312834045591484
+    second: TakeOutItem_7
+  - first:
+      213: 8864101720352389330
+    second: TakeOutItem_8
+  - first:
+      213: 2253916249642321742
+    second: TakeOutItem_9
+  - first:
+      213: 8592450352584524556
+    second: TakeOutItem_10
+  - first:
+      213: -4436181779900450964
+    second: TakeOutItem_11
+  - first:
+      213: -8045569086097217065
+    second: TakeOutItem_12
+  - first:
+      213: 8637930430922203845
+    second: TakeOutItem_13
+  - first:
+      213: 6964880885421323099
+    second: TakeOutItem_14
+  - first:
+      213: 4075852368485688780
+    second: TakeOutItem_15
+  - first:
+      213: 2787827382323893356
+    second: TakeOutItem_16
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TakeOutItem_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 39
+        width: 22
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7317b6b460eb7ff0800000000000000
+      internalID: -37189448735714433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TakeOutItem_1
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 39
+        width: 22
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a92f2bf997db4cc0800000000000000
+      internalID: -3725647210374813275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TakeOutItem_2
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 41
+        width: 22
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b63ac93700d417f80800000000000000
+      internalID: -8110616789582568597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TakeOutItem_3
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 40
+        width: 22
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afde6ad401a256f10800000000000000
+      internalID: 2262260637334171130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TakeOutItem_4
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 41
+        width: 22
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b171a303681624f0800000000000000
+      internalID: -853968265798389325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TakeOutItem_5
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 42
+        width: 22
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62d3c20ec917abb60800000000000000
+      internalID: 7762641826316303654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TakeOutItem_6
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 40
+        width: 22
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d44bf2d7220c7280800000000000000
+      internalID: -9044351581600135978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TakeOutItem_7
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 39
+        width: 14
+        height: 49
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbfb764de5ee09900800000000000000
+      internalID: 689312834045591484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TakeOutItem_8
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 65
+        width: 52
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d87886fc8d930b70800000000000000
+      internalID: 8864101720352389330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TakeOutItem_9
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 46
+        width: 49
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e47496523e4874f10800000000000000
+      internalID: 2253916249642321742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TakeOutItem_10
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 3
+        width: 37
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c030bf722148e3770800000000000000
+      internalID: 8592450352584524556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TakeOutItem_11
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 3
+        width: 37
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6739f1dc248f62c0800000000000000
+      internalID: -4436181779900450964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TakeOutItem_12
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 7
+        width: 37
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d9af4f1b85685090800000000000000
+      internalID: -8045569086097217065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TakeOutItem_13
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 8
+        width: 37
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c2a7a116f710e770800000000000000
+      internalID: 8637930430922203845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TakeOutItem_14
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 7
+        width: 37
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b533276834a38a060800000000000000
+      internalID: 6964880885421323099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TakeOutItem_15
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 7
+        width: 37
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc526846226509830800000000000000
+      internalID: 4075852368485688780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TakeOutItem_16
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 7
+        width: 37
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c64d582db3a50b620800000000000000
+      internalID: 2787827382323893356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
