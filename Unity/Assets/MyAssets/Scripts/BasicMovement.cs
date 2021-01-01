@@ -92,6 +92,7 @@ public class BasicMovement : MonoBehaviour
 
     public bool IsClimbing()
     {
+        Debug.Log(anim.ToString());
         return anim.a.GetBool("Climb");
     }
 

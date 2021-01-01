@@ -23,14 +23,22 @@ public class LandCheck : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D c)
     {
-        if(!ignoreLayer.Contains(c.gameObject.layer))
+        if (!ignoreLayer.Contains(c.gameObject.layer))
+        {
             landed = true;
+            if(this.gameObject.name == "LandChecker")
+            Debug.Log("landed");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D c)
     {
         if (!ignoreLayer.Contains(c.gameObject.layer))
+        {
             landed = false;
+            if (this.gameObject.name == "LandChecker")
+                Debug.Log("flew");
+        }
     }
 
     public bool FirstJumpSuccessfull()
