@@ -6,7 +6,7 @@ public class LandCheck : MonoBehaviour
 {
     public BoxCollider2D landChecker;
 
-    private bool landed;
+    private int landed = 0;
     private List<int> ignoreLayer = new List<int>();
 
     //this script requires a specified land trigger
@@ -19,15 +19,13 @@ public class LandCheck : MonoBehaviour
     }
     public void Res()
     {
-        landed = true;
+        landed = 1;
     }
     private void OnTriggerEnter2D(Collider2D c)
     {
         if (!ignoreLayer.Contains(c.gameObject.layer))
         {
-            landed = true;
-            if(this.gameObject.name == "LandChecker")
-            Debug.Log("landed");
+            landed++;
         }
     }
 
@@ -35,14 +33,14 @@ public class LandCheck : MonoBehaviour
     {
         if (!ignoreLayer.Contains(c.gameObject.layer))
         {
-            landed = false;
-            if (this.gameObject.name == "LandChecker")
-                Debug.Log("flew");
+            landed--;
+            if (landed < 0)
+                landed = 0;
         }
     }
 
     public bool FirstJumpSuccessfull()
     {
-        return !landed;
+        return landed == 0;
     }
 }
