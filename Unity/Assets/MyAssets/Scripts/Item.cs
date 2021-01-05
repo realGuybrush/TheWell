@@ -13,17 +13,17 @@ public class Item : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerControls>() != null)
+        //if (collision.gameObject.GetComponent<PlayerControls>() != null)
         {
-            collision.gameObject.GetComponent<PlayerControls>().IncludePickable(this.gameObject);
+        //    collision.gameObject.GetComponent<PlayerControls>().IncludePickable(this.gameObject);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerControls>() != null)
+        //if (collision.gameObject.GetComponent<PlayerControls>() != null)
         {
-            collision.gameObject.GetComponent<PlayerControls>().ExcludePickable(this.gameObject);
+        //    collision.gameObject.GetComponent<PlayerControls>().ExcludePickable(this.gameObject);
         }
     }
 }

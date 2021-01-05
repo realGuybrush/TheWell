@@ -15,6 +15,7 @@ public partial class PlayerControls : BasicMovement
         wall = new BasicLand(thisObject, jump, climb, 0, false);
         step = new BasicLand(thisObject, jump, climb, 0, false);
         climb.SetThisObject(thisObject);
+        slope.GetColliderSize(fullFriction, normFriction, this.GetComponent<CapsuleCollider2D>());
         InitInventory();
     }
     private void Update()
@@ -24,6 +25,7 @@ public partial class PlayerControls : BasicMovement
             CheckLand();
             BasicCheckMidAir();
             PlayerCheckMove();
+            CheckSlope();
             CheckJumpInput();
             wall.UpdateHold();
             ledge.UpdateHold();
@@ -58,12 +60,12 @@ public partial class PlayerControls : BasicMovement
             }
             else
             {
-                var stopInstantly = 1.0f;
-                move.SlowDown(stopInstantly);
+            //    var stopInstantly = 1.0f;
+            //    move.SlowDown(stopInstantly);
             }
         }
 
-        if (thisObject.velocity.x != 0 || thisObject.velocity.y != 0)
+        if (AroundZero(thisObject.velocity.x) || AroundZero(thisObject.velocity.y))
         {
             anim.SetVar("Moving", true);
         }
@@ -71,6 +73,11 @@ public partial class PlayerControls : BasicMovement
         {
             anim.SetVar("Moving", false);
         }
+    }
+    private bool AroundZero(float spd)
+    {
+        Debug.Log(spd.ToString());
+        return !((spd <= 0.01f) && (spd >= -0.01f));
     }
 
     private void CheckFlip()

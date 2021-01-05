@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class BasicMovement : MonoBehaviour
 {
+    public PhysicsMaterial2D fullFriction;
+    public PhysicsMaterial2D normFriction;
+    public PhysicsMaterial2D noFriction;
+
     public Animations anim = new Animations();
     public BasicClimb climb = new BasicClimb();
     public BasicFlip flip = new BasicFlip();
@@ -20,6 +24,7 @@ public class BasicMovement : MonoBehaviour
     public Rigidbody2D thisObject;
     public BasicLand wall;
     public LandCheck wallChecker;
+    public SlopeChecker slope = new SlopeChecker();
 
     public bool attacking = false;
 
@@ -36,13 +41,41 @@ public class BasicMovement : MonoBehaviour
         var holding = land.holding || ledge.holding || wall.holding || step.holding;
         if (holding)
         {
+            AdjustSlopeFriction();
             anim.SetVar("Grab", holding);
         }
         else
         {
+            AdjustMidAirFriction();
             anim.SetVar("Grab", holding);
         }
         return holding;
+    }
+    public void CheckSlope()
+    {
+        BasicCheckSlope();
+        if (BasicCheckSlope())
+            AdjustSlopeFriction();
+        else
+            AdjustLandFriction();
+    }
+    public bool BasicCheckSlope()
+    {
+        return slope.SlopeCheck(transform);
+    }
+
+    public void AdjustSlopeFriction()
+    {
+        thisObject.sharedMaterial = fullFriction;
+        //thisObject.velocity = thisObject.velocity;//new Vector2(thisObject.velocity.x, 0.0f);//slope.slopeNormalPerp;
+    }
+    public void AdjustLandFriction()
+    {
+        thisObject.sharedMaterial = normFriction;
+    }
+    public void AdjustMidAirFriction()
+    {
+        thisObject.sharedMaterial = fullFriction;
     }
 
     public void CheckLand()
@@ -92,7 +125,6 @@ public class BasicMovement : MonoBehaviour
 
     public bool IsClimbing()
     {
-        Debug.Log(anim.ToString());
         return anim.a.GetBool("Climb");
     }
 
@@ -129,11 +161,13 @@ public class BasicMovement : MonoBehaviour
     {
         if (landChecker.FirstJumpSuccessfull())
         {
+            AdjustMidAirFriction();
             anim.SetVar("MidAir", true);
             return true;
         }
         else
         {
+            AdjustLandFriction();
             anim.SetVar("MidAir", false);
             return false;
         }
