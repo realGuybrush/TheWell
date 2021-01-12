@@ -1,4 +1,5 @@
-﻿public class BasicRun
+using UnityEngine;
+public partial class BasicMovement: MonoBehaviour
 {
     public float runMultiplier = 2.0f;
     public bool running;

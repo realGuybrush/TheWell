@@ -108,7 +108,6 @@ public class Characteristics
             result.hp += buffs[i].hp;
             result.percentHp += buffs[i].percentHp;
         }
-
         return result;
     }
 }

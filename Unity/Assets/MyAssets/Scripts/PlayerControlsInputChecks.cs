@@ -7,12 +7,12 @@ public partial class PlayerControls : BasicMovement
     //ControlKeys keys = new ControlKeys();
     private void CheckMovementDirection()
     {
-        move.movingDirection = Input.GetAxisRaw("Horizontal");
+        movingDirection = Input.GetAxisRaw("Horizontal");
     }
 
     private void CheckSpeedUp()
     {
-        move.movementMultiplier = Input.GetAxis("Horizontal");
+        movementMultiplier = Input.GetAxis("Horizontal");
     }
 
     private void CheckJumpInput()
@@ -21,7 +21,7 @@ public partial class PlayerControls : BasicMovement
         {
             if (!BasicCheckHold() && !IsClimbing())
             {
-                BasicCheckJump();
+                BasicJump();
             }
         }
         else
@@ -42,17 +42,17 @@ public partial class PlayerControls : BasicMovement
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftShift))
         {
-            if (!move.crawl.crawling)
+            if (!crawling)
             {
                 anim.SetVar("Run", true);
-                move.run.Run();
+                Run();
             }
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             anim.SetVar("Run", false);
-            move.run.UnRun();
+            UnRun();
         }
     }
 
@@ -61,6 +61,14 @@ public partial class PlayerControls : BasicMovement
         if (Input.GetKeyDown(KeyCode.E))
         {
             CheckPickUpInput();
+        }
+    }
+
+    public void CheckLadderInput()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            CheckLadderInput();
         }
     }
 
@@ -81,17 +89,17 @@ public partial class PlayerControls : BasicMovement
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-                if (!move.run.running && !BasicCheckHold())
+                if (!running && !BasicCheckHold())
                 {
-                    if (!move.crawl.CheckCrawl())
+                    if (!CheckCrawl())
                     {
                         anim.SetVar("Crawl", true);
-                        move.crawl.Crawl();
+                        Crawl();
                     }
                     else
                     {
                         anim.SetVar("Crawl", false);
-                        move.crawl.UnCrawl();
+                        UnCrawl();
                     }
                 }
                 else

@@ -1,33 +1,31 @@
 using UnityEngine;
 
-public class BasicMovement : MonoBehaviour
+public partial class BasicMovement : MonoBehaviour
 {
-    public PhysicsMaterial2D fullFriction;
-    public PhysicsMaterial2D normFriction;
-    public PhysicsMaterial2D noFriction;
 
     public Animations anim = new Animations();
-    public BasicClimb climb = new BasicClimb();
-    public BasicFlip flip = new BasicFlip();
-    public BasicJump jump = new BasicJump();
-    public BasicLand land;
-
-    public LandCheck landChecker;
-    public BasicLand ledge;
-    public LandCheck ledgeChecker;
-
-    public BasicMove move = new BasicMove();
-    public BasicLand step;
-    public LandCheck stepChecker;
     public Health thisHealth;
-
     public Rigidbody2D thisObject;
-    public BasicLand wall;
-    public LandCheck wallChecker;
-    public SlopeChecker slope = new SlopeChecker();
 
     public bool attacking = false;
 
+    private void Start()
+    {
+        InitValues();
+    }
+
+    virtual public void InitValues()
+    {
+        DefineGroundLayer();
+        thisCollider = gameObject.GetComponent<CapsuleCollider2D>();
+        thisObject = gameObject.GetComponent<Rigidbody2D>();
+        thisHealth = thisObject.GetComponent<Health>();
+        anim.a = GetComponent<Animator>();
+        SetLandChecker();
+        SetStepChecker();
+        SetWallChecker();
+        SetLedgeChecker();
+    }
     public bool BasicCheckHealth()
     {
         if (thisHealth.values.GetHealth() <= 0)
@@ -36,130 +34,10 @@ public class BasicMovement : MonoBehaviour
         }
         return true;
     }
-    public bool BasicCheckHold()
-    {
-        var holding = land.holding || ledge.holding || wall.holding || step.holding;
-        if (holding)
-        {
-            AdjustSlopeFriction();
-            anim.SetVar("Grab", holding);
-        }
-        else
-        {
-            AdjustMidAirFriction();
-            anim.SetVar("Grab", holding);
-        }
-        return holding;
-    }
-    public void CheckSlope()
-    {
-        BasicCheckSlope();
-        if (BasicCheckSlope())
-            AdjustSlopeFriction();
-        else
-            AdjustLandFriction();
-    }
-    public bool BasicCheckSlope()
-    {
-        return slope.SlopeCheck(transform);
-    }
-
-    public void AdjustSlopeFriction()
-    {
-        thisObject.sharedMaterial = fullFriction;
-        //thisObject.velocity = thisObject.velocity;//new Vector2(thisObject.velocity.x, 0.0f);//slope.slopeNormalPerp;
-    }
-    public void AdjustLandFriction()
-    {
-        thisObject.sharedMaterial = normFriction;
-    }
-    public void AdjustMidAirFriction()
-    {
-        thisObject.sharedMaterial = fullFriction;
-    }
-
-    public void CheckLand()
-    {
-        var touchingLand = !landChecker.FirstJumpSuccessfull();
-        var touchingTop = !ledgeChecker.FirstJumpSuccessfull();
-        var touchingMid = !wallChecker.FirstJumpSuccessfull();
-        var touchingBot = !stepChecker.FirstJumpSuccessfull();
-        var onHold = wall.holding || ledge.holding;
-        if (!onHold)
-        {
-            var pressingTowardsWall = move.movingDirection < 0 && !flip.facingRight ||
-                                      move.movingDirection > 0 && flip.facingRight;
-            land.CheckThisLand(touchingLand);
-            if (!land.landed && pressingTowardsWall)
-            {
-                ledge.CheckThisLand(!touchingTop && touchingMid);
-                wall.CheckThisLand(touchingTop && touchingMid && touchingBot);
-                step.CheckThisLand(!touchingTop && !touchingMid && touchingBot);
-            }
-            else
-            {
-                ledge.landed = false;
-                wall.landed = false;
-                step.landed = false;
-            }
-        }
-        else
-        {
-            ledge.CheckThisLand(!touchingTop && touchingMid);
-            wall.CheckThisLand(touchingTop && touchingMid && touchingBot);
-            step.CheckThisLand(!touchingTop && !touchingMid && touchingBot);
-        }
-    }
-
-    public void BasicCheckJump(float movingMultiplierX = 0.0f)
-    {
-        var midAir = !(land.landed || ledge.landed || wall.landed || step.landed);
-        var canJumpFromCurrentLand = land.landed && land.canJump || ledge.landed && ledge.canJump ||
-                                     wall.landed && wall.canJump || step.landed && step.canJump;
-        if (jump.CheckJump(!midAir&&canJumpFromCurrentLand && !move.crawl.crawling, movingMultiplierX))
-        {
-            anim.SetVar("Jump", true);
-            ReleaseHolds();
-        }
-    }
-
-    public bool IsClimbing()
-    {
-        return anim.a.GetBool("Climb");
-    }
-
-    public void BasicCheckClimb()
-    {
-        var holding = land.holding || ledge.holding || wall.holding || step.holding;
-        var canClimb = land.holding && land.canClimb || ledge.holding && ledge.canClimb ||
-                       wall.holding && wall.canClimb || step.holding && step.canClimb;
-        if (holding)
-        {
-            if (climb.CheckClimb(canClimb))
-            {
-                anim.SetVar("Climb", true);
-                ReleaseHolds();
-            }
-            else
-            {
-                anim.SetVar("Climb", false);
-            }
-        }
-        else
-        {
-            anim.SetVar("Climb", false);
-        }
-    }
-
-    public void BasicAtk(bool atk, string attackType, Buff buff)
-    {
-        anim.SetVar(attackType, atk);
-        thisHealth.values.attacking = true;
-    }
 
     public bool BasicCheckMidAir()
     {
-        if (landChecker.FirstJumpSuccessfull())
+        if (IsMidAir())
         {
             AdjustMidAirFriction();
             anim.SetVar("MidAir", true);
@@ -172,6 +50,22 @@ public class BasicMovement : MonoBehaviour
             return false;
         }
     }
+    public bool IsMidAir()
+    {
+        return !(land.landed || ledge.landed || wall.landed || step.landed);
+    }
+
+    public bool IsClimbing()
+    {
+        return anim.a.GetBool("Climb");
+    }
+
+    public void BasicAtk(bool atk, string attackType, Buff buff)
+    {
+        anim.SetVar(attackType, atk);
+        thisHealth.values.attacking = true;
+    }
+
 
     public void BasicSetUp(bool value)
     {
@@ -193,14 +87,6 @@ public class BasicMovement : MonoBehaviour
         anim.SetVar("Left", value);
     }
 
-    public void ReleaseHolds()
-    {
-        land.Unhold();
-        ledge.Unhold();
-        wall.Unhold();
-        step.Unhold();
-    }
-
     public void BasicLoadData(SVector3 position, SVector3 rotation, SVector3 speed, Characteristics newCharacteristics)
     {
         gameObject.transform.position = position.ToV3();
@@ -209,7 +95,7 @@ public class BasicMovement : MonoBehaviour
         thisHealth.values = newCharacteristics;
         if (transform.eulerAngles.y != 0)
         {
-            flip.facingRight = false;
+            facingRight = false;
         }
     }
 }

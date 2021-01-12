@@ -2,20 +2,9 @@ using UnityEngine;
 
 public partial class PlayerControls : BasicMovement
 {
-    private void Start()
+    public override void InitValues()
     {
-        thisObject = gameObject.GetComponent<Rigidbody2D>();
-        thisHealth = thisObject.GetComponent<Health>();
-        anim.a = GetComponent<Animator>();
-        move.SetThisObject(thisObject);
-        flip.SetThisObject(thisObject);
-        jump.SetThisObject(thisObject);
-        land = new BasicLand(thisObject, jump, climb);
-        ledge = new BasicLand(thisObject, jump, climb, 100000, false, true);
-        wall = new BasicLand(thisObject, jump, climb, 0, false);
-        step = new BasicLand(thisObject, jump, climb, 0, false);
-        climb.SetThisObject(thisObject);
-        slope.GetColliderSize(fullFriction, normFriction, this.GetComponent<CapsuleCollider2D>());
+        base.InitValues();
         InitInventory();
     }
     private void Update()
@@ -25,15 +14,15 @@ public partial class PlayerControls : BasicMovement
             CheckLand();
             BasicCheckMidAir();
             PlayerCheckMove();
-            CheckSlope();
+            ReactOnSlope();
             CheckJumpInput();
             wall.UpdateHold();
             ledge.UpdateHold();
             CheckFlip();
+            BasicCheckHold();
             CheckClimbInput();
             CheckAtkInput();
             CheckActionInput();
-            BasicCheckHold();
         }
         BasicCheckHealth();
         CheckEsc();
@@ -45,18 +34,18 @@ public partial class PlayerControls : BasicMovement
         CheckSpeedUp();
         CheckRunInput();
         CheckCrawlInput();
-        if (move.movingDirection != 0)
+        if (movingDirection != 0)
         {
             if (!BasicCheckHold())
             {
-                move.Move();
+                Move();
             }
         }
         else
         {
             if (!land.landed)
             {
-                move.SlowDown();
+                SlowDown();
             }
             else
             {
@@ -65,7 +54,7 @@ public partial class PlayerControls : BasicMovement
             }
         }
 
-        if (AroundZero(thisObject.velocity.x) || AroundZero(thisObject.velocity.y))
+        if (!GlobalFuncs.AroundZero(thisObject.velocity.x) || !GlobalFuncs.AroundZero(thisObject.velocity.y))
         {
             anim.SetVar("Moving", true);
         }
@@ -74,25 +63,12 @@ public partial class PlayerControls : BasicMovement
             anim.SetVar("Moving", false);
         }
     }
-    private bool AroundZero(float spd)
-    {
-        Debug.Log(spd.ToString());
-        return !((spd <= 0.01f) && (spd >= -0.01f));
-    }
 
     private void CheckFlip()
     {
         if (!BasicCheckHold())
         {
-            flip.CheckFlip(move.movingDirection);
+            BasicCheckFlip(movingDirection);
         }
-    }
-
-    public void Res()
-    {
-        landChecker.Res();
-        wallChecker.Res();
-        stepChecker.Res();
-        ledgeChecker.Res();
     }
 }

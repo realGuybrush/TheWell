@@ -1,16 +1,10 @@
 using UnityEngine;
 
-public class BasicFlip
+public partial class BasicMovement:MonoBehaviour
 {
     public bool facingRight = true;
-    private Rigidbody2D thisObject;
 
-    public void SetThisObject(Rigidbody2D newObject)
-    {
-        thisObject = newObject;
-    }
-
-    public void CheckFlip(float movingDirection)
+    public void BasicCheckFlip(float movingDirection)
     {
         if (facingRight && movingDirection < 0)
         {
@@ -21,7 +15,7 @@ public class BasicFlip
             Flip();
         }
     }
-    public void CheckFlip()
+    public void BasicCheckFlip()
     {
         if (facingRight && (FacingDirection() > 0))
         {
@@ -43,8 +37,8 @@ public class BasicFlip
     public float FacingDirection()
     {
         if (thisObject.name == "Player")
-            return (thisObject.transform.eulerAngles.y == 0.0f ? 1.0f : -1.0f);
+            return (GlobalFuncs.AroundZero(thisObject.transform.eulerAngles.y) ? 1.0f : -1.0f);
         else
-            return (thisObject.transform.eulerAngles.y == 0.0f ? -1.0f : 1.0f);
+            return (GlobalFuncs.AroundZero(thisObject.transform.eulerAngles.y) ? -1.0f : 1.0f);
     }
 }
