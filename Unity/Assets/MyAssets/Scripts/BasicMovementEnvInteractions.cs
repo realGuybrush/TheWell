@@ -17,14 +17,12 @@ public partial class BasicMovement : MonoBehaviour
     public EnvironmentChecker step;
     public EnvironmentChecker wall;
 
-
     private void DefineGroundLayer()
     {
         whatIsGround = landLayer + platformLayer;
     }
     public bool BasicCheckHold()
     {
-        var holding = land.holding || ledge.holding || wall.holding || step.holding;
         if (holding)
         {
             AdjustSlopeFriction();
@@ -58,23 +56,57 @@ public partial class BasicMovement : MonoBehaviour
         thisObject.sharedMaterial = fullFriction;
     }
 
-    public void CheckLand()
+    public void ProcessEnvCheckersCollisions()
     {
         var touchingLand = land.IsLanded();
         var touchingTop = ledge.IsLanded();
         var touchingMid = wall.IsLanded();
         var touchingBot = step.IsLanded();
-        var onHold = wall.holding || ledge.holding;
-        if (!onHold)
+        Debug.Log(touchingLand.ToString() + touchingTop.ToString() + touchingMid.ToString() + touchingBot.ToString());
+        if (!holding)
         {
             var pressingTowardsWall = movingDirection < 0 && !facingRight ||
                                       movingDirection > 0 && facingRight;
-            land.CheckThisLand(touchingLand);
+            if (touchingLand)
+            {
+                land.Land();
+            }
+            else
+            {
+                land.landed = false;
+            }
             if (!land.landed && pressingTowardsWall)
             {
-                ledge.CheckThisLand(!touchingTop && touchingMid);
-                wall.CheckThisLand(touchingTop && touchingMid && touchingBot);
-                step.CheckThisLand(!touchingTop && !touchingMid && touchingBot);
+                if (!touchingTop && touchingMid)
+                {
+                    if (!holding)
+                    {
+                        if (canHold)
+                        {
+                            Hold();
+                        }
+                    }
+                }
+                else
+                {
+                    ledge.landed = false;
+                }
+                if (touchingTop && touchingMid && touchingBot)
+                {
+                    wall.Land();
+                }
+                else
+                {
+                    wall.landed = false;
+                }
+                if (!touchingTop && !touchingMid && touchingBot)
+                {
+                    step.Land();
+                }
+                else
+                {
+                    step.landed = false;
+                }
             }
             else
             {
@@ -82,12 +114,6 @@ public partial class BasicMovement : MonoBehaviour
                 wall.landed = false;
                 step.landed = false;
             }
-        }
-        else
-        {
-            ledge.CheckThisLand(!touchingTop && touchingMid);
-            wall.CheckThisLand(touchingTop && touchingMid && touchingBot);
-            step.CheckThisLand(!touchingTop && !touchingMid && touchingBot);
         }
     }
 }

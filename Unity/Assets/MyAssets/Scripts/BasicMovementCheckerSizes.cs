@@ -4,28 +4,29 @@ using UnityEngine;
 
 public partial class BasicMovement : MonoBehaviour
 {
+    public Vector3 ledgeStart, ledgeSize, wallStart, wallSize, stepStart, stepSize, landStart, landSize;
     public void SetLandChecker()
     {
-        Vector2 bottom = new Vector2(thisCollider.bounds.center.x, thisCollider.bounds.center.y - thisCollider.bounds.extents.y);
-        Vector2 size = new Vector2(thisCollider.bounds.size.x, thisCollider.bounds.size.y*0.1f);
-        land = new EnvironmentChecker(thisObject, bottom, size, size.y, Vector2.down, whatIsGround);
+        landSize = new Vector2(thisCollider.bounds.size.x, thisCollider.bounds.size.y * 0.1f);
+        landStart = new Vector2(thisCollider.bounds.center.x, thisCollider.bounds.center.y - thisCollider.bounds.extents.y);
+        land = new EnvironmentChecker(thisObject, landStart, landSize, thisCollider.bounds.size.y * 0.1f, Vector2.down, whatIsGround);
     }
     public void SetStepChecker()
     {
-        Vector2 bottom = new Vector2(thisCollider.bounds.center.x, thisCollider.bounds.center.y - thisCollider.bounds.extents.y*0.8f);
-        Vector2 size = new Vector2(thisCollider.bounds.size.y / 10.0f, thisCollider.bounds.size.y*0.2f );
-        step = new EnvironmentChecker(thisObject, bottom, size, thisCollider.bounds.extents.x+size.x, facingRight? Vector2.right: Vector2.left, landLayer, 0, false);
+        stepSize = new Vector2(thisCollider.bounds.size.y / 10.0f, thisCollider.bounds.size.y*0.2f );
+        stepStart = new Vector2(thisCollider.bounds.center.x + thisCollider.bounds.extents.x + stepSize.x / 2, thisCollider.bounds.center.y - thisCollider.bounds.extents.y * 0.8f);
+        step = new EnvironmentChecker(thisObject, stepStart, stepSize, thisCollider.bounds.size.y * 0.1f, facingRight? Vector2.right: Vector2.left, landLayer);
     }
     public void SetWallChecker()
     {
-        Vector2 middle = new Vector2(thisCollider.bounds.center.x, thisCollider.bounds.center.y+ thisCollider.bounds.extents.y * 0.1f);
-        Vector2 size = new Vector2(thisCollider.bounds.size.y / 10.0f, thisCollider.bounds.size.y*0.6f);
-        wall = new EnvironmentChecker(thisObject, middle, size, thisCollider.bounds.extents.x + size.x, facingRight ? Vector2.right : Vector2.left, landLayer, 0, false);
+        wallSize = new Vector2(thisCollider.bounds.size.y / 10.0f, thisCollider.bounds.size.y*0.4f);
+        wallStart = new Vector2(thisCollider.bounds.center.x + thisCollider.bounds.extents.x + wallSize.x / 2, thisCollider.bounds.center.y + thisCollider.bounds.extents.y * 0.1f);
+        wall = new EnvironmentChecker(thisObject, wallStart, wallSize, thisCollider.bounds.size.y * 0.1f, facingRight ? Vector2.right : Vector2.left, landLayer);
     }
     public void SetLedgeChecker()
     {
-        Vector2 top = new Vector2(thisCollider.bounds.center.x, thisCollider.bounds.center.y + thisCollider.bounds.extents.y * 1.2f);
-        Vector2 size = new Vector2(thisCollider.bounds.size.y / 10.0f, thisCollider.bounds.size.y*0.4f);
-        ledge = new EnvironmentChecker(thisObject, top, size, thisCollider.bounds.extents.x + size.x, facingRight ? Vector2.right : Vector2.left, landLayer, 100000, false, true);
+        ledgeSize = new Vector2(thisCollider.bounds.size.y / 10.0f, thisCollider.bounds.size.y*0.4f);
+        ledgeStart = new Vector2(thisCollider.bounds.center.x + thisCollider.bounds.extents.x + ledgeSize.x / 2, thisCollider.bounds.center.y + thisCollider.bounds.extents.y * 0.9f);
+        ledge = new EnvironmentChecker(thisObject, ledgeStart, ledgeSize, thisCollider.bounds.size.y * 0.1f, facingRight ? Vector2.right : Vector2.left, landLayer);
     }
 }

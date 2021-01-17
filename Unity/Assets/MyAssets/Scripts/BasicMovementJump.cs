@@ -13,7 +13,7 @@ public partial class BasicMovement:MonoBehaviour
         {
             Jump(movingMultiplierX);
             anim.SetVar("Jump", true);
-            ReleaseHolds();
+            Unhold();
         }
     }
 

@@ -72,14 +72,45 @@ MonoBehaviour:
   thisHealth: {fileID: 16105353795857683}
   thisObject: {fileID: 16105353795857681}
   attacking: 0
+  ledgeStart: {x: 0, y: 0, z: 0}
+  ledgeSize: {x: 0, y: 0, z: 0}
+  wallStart: {x: 0, y: 0, z: 0}
+  wallSize: {x: 0, y: 0, z: 0}
+  stepStart: {x: 0, y: 0, z: 0}
+  stepSize: {x: 0, y: 0, z: 0}
+  landStart: {x: 0, y: 0, z: 0}
+  landSize: {x: 0, y: 0, z: 0}
+  canClimb: 1
+  holding: 0
+  holdingMaximumTime: 10000
+  crawling: 0
+  crawlingMultiplier: 0.5
+  rollSpeedX: 10
+  rollSpeedY: 0
   fullFriction: {fileID: 6200000, guid: f7e295c1388aa4a449a2edfa1c3536be, type: 2}
   normFriction: {fileID: 6200000, guid: fe9cbe2bac7aa6546a1e2fdd1da5aacf, type: 2}
   noFriction: {fileID: 0}
   landLayer:
     serializedVersion: 2
     m_Bits: 0
+  platformLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  facingRight: 1
   jumpSpeedX: 7
   jumpSpeedY: 5
+  movementMultiplier: 0
+  movingDirection: 0
+  walkSpeed: 3
+  baseWalkSpeed: 3
+  runMultiplier: 2
+  running: 0
+  colliderSize: {x: 0, y: 0, z: 0}
+  colliderOffset: {x: 0, y: 0, z: 0}
+  slopeNormalPerp: {x: 0, y: 0}
+  slopeCheckDistance: 0.1
+  maxSlopeAngle: 60
+  canWalkOnSlope: 0
   pickableItem: []
   items: 
 --- !u!114 &16105353795857683

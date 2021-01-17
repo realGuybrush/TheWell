@@ -106,7 +106,7 @@ public partial class PlayerControls : BasicMovement
                 {
                     if (BasicCheckHold())
                     {
-                        ReleaseHolds();
+                        Unhold();
                         anim.SetVar("Grab", false);
                     }
                 }

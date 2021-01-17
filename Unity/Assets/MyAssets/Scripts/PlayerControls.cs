@@ -11,13 +11,12 @@ public partial class PlayerControls : BasicMovement
     {
         if (!IsClimbing())
         {
-            CheckLand();
+            ProcessEnvCheckersCollisions();
             BasicCheckMidAir();
             PlayerCheckMove();
             ReactOnSlope();
             CheckJumpInput();
-            wall.UpdateHold();
-            ledge.UpdateHold();
+            UpdateHold();
             CheckFlip();
             BasicCheckHold();
             CheckClimbInput();

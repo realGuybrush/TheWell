@@ -4,11 +4,14 @@ public partial class BasicMovement: MonoBehaviour
 {
     private readonly float climbXChange = 0.0f;
     private readonly float climbYChange = 0.0f;
+    public bool canClimb = true;
+    private readonly bool canHold = true;
+    public bool holding;
+    public int holdingMaximumTime = 10000;
+    private int landTimer;
+    private Vector3 PosPreHold;
     public void BasicCheckClimb()
     {
-        var holding = land.holding || ledge.holding || wall.holding || step.holding;
-        var canClimb = land.holding && land.canClimb || ledge.holding && ledge.canClimb ||
-                       wall.holding && wall.canClimb || step.holding && step.canClimb;
         if (holding)
         {
             if (canClimb&&anim.a.GetBool("Grab"))
@@ -18,7 +21,7 @@ public partial class BasicMovement: MonoBehaviour
                 var newPosition = new Vector2(newPositionX, newPositionY);
                 thisObject.transform.position = newPosition;
                 anim.SetVar("Climb", true);
-                ReleaseHolds();
+                Unhold();
             }
             else
             {
@@ -30,11 +33,59 @@ public partial class BasicMovement: MonoBehaviour
             anim.SetVar("Climb", false);
         }
     }
-    public void ReleaseHolds()
+
+    public bool IsClimbing()
     {
-        land.Unhold();
-        ledge.Unhold();
-        wall.Unhold();
-        step.Unhold();
+        return anim.a.GetBool("Climb");
+    }
+
+    public bool UpdateHold()
+    {
+        if (holding)
+        {
+            if (landTimer == 0)
+            {
+                Unhold();
+                return false;
+            }
+            landTimer--;
+            thisObject.transform.position = PosPreHold;
+        }
+        else
+        {
+            Unhold();
+            return false;
+        }
+
+        return true;
+    }
+
+    public void Hold()
+    {
+        landTimer = holdingMaximumTime;
+        holding = true;
+        SetKinematic(true);
+        SetHangPosition();
+        PosPreHold = thisObject.transform.position;
+        thisObject.velocity = new Vector2(0.0f, 0.0f);
+    }
+    public void SetHangPosition()
+    {
+        while (!ledge.IsLanded() && wall.IsLanded())
+        {
+            thisObject.transform.position -= new Vector3(0.0f, 0.01f);
+        }
+        thisObject.transform.position += new Vector3(0.0f, 0.01f);
+    }
+
+    public void SetKinematic(bool val)
+    {
+        thisObject.isKinematic = val;
+    }
+
+    public void Unhold()
+    {
+        landTimer = 0;
+        holding = false;
     }
 }

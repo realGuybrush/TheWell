@@ -44,6 +44,7 @@ public partial class PlayerControls : BasicMovement
         if (I == null)
             return false;
         items[I.number] = true;
-        return false;
+        GameObject.Destroy(item[0]);
+        return true;
     }
 }

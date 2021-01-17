@@ -55,10 +55,6 @@ public partial class BasicMovement : MonoBehaviour
         return !(land.landed || ledge.landed || wall.landed || step.landed);
     }
 
-    public bool IsClimbing()
-    {
-        return anim.a.GetBool("Climb");
-    }
 
     public void BasicAtk(bool atk, string attackType, Buff buff)
     {
