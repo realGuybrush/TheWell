@@ -78,10 +78,12 @@ public partial class PlayerControls : BasicMovement
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                anim.SetVar("PickUp", true);
                 PickUp(pickableItem);
                 return true;
             }
         }
+        anim.SetVar("PickUp", false);
         return false;
     }
 

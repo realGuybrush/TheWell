@@ -15,7 +15,7 @@ public class PlayerClimb : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.transform.gameObject.GetComponent<Rigidbody2D>().transform.position += new Vector3(0.7f, 0.5f);
+        animator.transform.gameObject.GetComponent<Rigidbody2D>().transform.position += new Vector3(0.5f, 0.5f);
         animator.transform.gameObject.GetComponent<BasicMovement>().SetKinematic(false);
         animator.SetBool("Climb", false);
     }
