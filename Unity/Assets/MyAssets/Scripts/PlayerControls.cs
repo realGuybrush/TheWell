@@ -14,6 +14,7 @@ public partial class PlayerControls : BasicMovement
             ProcessEnvCheckersCollisions();
             BasicCheckMidAir();
             PlayerCheckMove();
+            CheckClimbLadder();
             ReactOnSlope();
             CheckJumpInput();
             UpdateHold();

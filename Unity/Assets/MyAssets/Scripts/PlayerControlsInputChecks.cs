@@ -133,6 +133,22 @@ public partial class PlayerControls : BasicMovement
         anim.SetVar("Moving", false);
     }
 
+    public void CheckClimbLadder()
+    {
+        if (onLadder)
+        {
+            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) ||
+                Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+            {
+                ClimbLadder();
+            }
+            else
+            {
+                UndoFalling();
+            }
+        }
+    }
+
     public void CheckDirections()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
@@ -173,6 +189,26 @@ public partial class PlayerControls : BasicMovement
         if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A))
         {
             BasicSetLeft(false);
+        }
+    }
+
+    void CheckNumbersInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            chosenSlot = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            chosenSlot = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            chosenSlot = 2;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            chosenSlot = 3;
         }
     }
     void CheckEsc()
