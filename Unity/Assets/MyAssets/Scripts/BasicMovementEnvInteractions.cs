@@ -62,7 +62,6 @@ public partial class BasicMovement : MonoBehaviour
         var touchingTop = ledge.IsLanded();
         var touchingMid = wall.IsLanded();
         var touchingBot = step.IsLanded();
-        Debug.Log(touchingLand.ToString() + touchingTop.ToString() + touchingMid.ToString() + touchingBot.ToString());
         if (!holding)
         {
             var pressingTowardsWall = movingDirection < 0 && !facingRight ||

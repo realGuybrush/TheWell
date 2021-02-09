@@ -9,6 +9,8 @@ public partial class PlayerControls : BasicMovement
     }
     private void Update()
     {
+        UpdatePlacingObject();
+        CheckNumbersInput();
         if (!IsClimbing())
         {
             ProcessEnvCheckersCollisions();
@@ -16,13 +18,15 @@ public partial class PlayerControls : BasicMovement
             PlayerCheckMove();
             CheckClimbLadder();
             ReactOnSlope();
-            CheckJumpInput();
+            if (!CheckFallPlatformInput()&&!fallingFromPlatform)
+                CheckJumpInput();
             UpdateHold();
             CheckFlip();
             BasicCheckHold();
             CheckClimbInput();
             CheckAtkInput();
-            CheckActionInput();
+            if(!CheckPickUpInput())
+                CheckActionInput();
         }
         BasicCheckHealth();
         CheckEsc();

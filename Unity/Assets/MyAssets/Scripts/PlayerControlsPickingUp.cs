@@ -4,6 +4,7 @@ using UnityEngine;
 enum AllItems { Pickaxe, Gun, Ladder, Lamp };
 public partial class PlayerControls : BasicMovement
 {
+    float pickingDistance = 0.5f;
     public List<GameObject> pickableItem;
     public List<bool> items;
     public void InitInventory()

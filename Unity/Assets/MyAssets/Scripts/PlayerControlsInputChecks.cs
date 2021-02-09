@@ -14,6 +14,17 @@ public partial class PlayerControls : BasicMovement
     {
         movementMultiplier = Input.GetAxis("Horizontal");
     }
+    public bool CheckFallPlatformInput()
+    {
+        if ((Input.GetButtonDown("Jump") && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)))||
+            ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))&&onLadder))
+        {
+            bool b = Physics2D.GetIgnoreLayerCollision(0, 11);
+            StartCoroutine("FallFromPlatform");
+            return true;
+        }
+        return false;
+    }
 
     private void CheckJumpInput()
     {
@@ -58,9 +69,9 @@ public partial class PlayerControls : BasicMovement
 
     public void CheckActionInput()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.Mouse0))
         {
-            CheckPickUpInput();
+            ActWithChosenItem();
         }
     }
 
@@ -76,7 +87,7 @@ public partial class PlayerControls : BasicMovement
     {
         if (pickableItem.Count != 0)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0))
             {
                 anim.SetVar("PickUp", true);
                 PickUp(pickableItem);
