@@ -30,6 +30,12 @@ public partial class PlayerControls : BasicMovement
             }
         }
     }
+
+    public void StopActing()
+    {
+        GameObject.Destroy(placedObject);
+        placing = false;
+    }
     public void SwingPickaxe()
     {
     }
@@ -56,11 +62,13 @@ public partial class PlayerControls : BasicMovement
         {
             placedObject = GameObject.Instantiate((GameObject)Resources.Load("Prefabs\\Ladder"), GetMousePositionInRange(pickingDistance), Quaternion.identity);
             placedObject.GetComponent<BoxCollider2D>().enabled = false;
+            GlobalFuncs.SetTransparency(placedObject, 0.5f);
             placing = true;
         }
         else
         {
             placedObject.GetComponent<BoxCollider2D>().enabled = true;
+            GlobalFuncs.SetTransparency(placedObject, 1.0f);
             items[2] = false;
             placing = false;
         }

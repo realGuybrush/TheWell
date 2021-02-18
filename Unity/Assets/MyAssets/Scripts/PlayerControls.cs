@@ -13,6 +13,8 @@ public partial class PlayerControls : BasicMovement
         CheckNumbersInput();
         if (!IsClimbing())
         {
+            MovePicker();
+            CheckRotateInput();
             ProcessEnvCheckersCollisions();
             BasicCheckMidAir();
             PlayerCheckMove();

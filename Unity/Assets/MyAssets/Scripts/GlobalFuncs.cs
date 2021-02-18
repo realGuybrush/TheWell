@@ -29,4 +29,29 @@ public static class GlobalFuncs
     {
         return Mathf.Sqrt((pos1.x-pos2.x)* (pos1.x - pos2.x)+ (pos1.y - pos2.y) * (pos1.y - pos2.y) + (pos1.z - pos2.z) * (pos1.z - pos2.z));
     }
+
+    public static void SetTransparency(GameObject obj, float transp)
+    {//transp = 0.0f-1.0f
+        if (obj.GetComponent<SpriteRenderer>() != null)
+        {
+            Color c = obj.GetComponent<SpriteRenderer>().color;
+            obj.GetComponent<SpriteRenderer>().color = new Color(c.r, c.g, c.b, transp);
+        }
+    }
+    public static void SetColor(GameObject obj, float r, float g, float b)
+    {//transp = 0.0f-1.0f
+        if (obj.GetComponent<SpriteRenderer>() != null)
+        {
+            Color c = obj.GetComponent<SpriteRenderer>().color;
+            obj.GetComponent<SpriteRenderer>().color = new Color(r, g, b, c.a);
+        }
+    }
+    public static void SetColor(GameObject obj, Color c)
+    {//transp = 0.0f-1.0f
+        if (obj.GetComponent<SpriteRenderer>() != null)
+        {
+            float a = obj.GetComponent<SpriteRenderer>().color.a;
+            obj.GetComponent<SpriteRenderer>().color = new Color(c.r, c.g, c.b, a);
+        }
+    }
 }

@@ -73,6 +73,13 @@ public partial class PlayerControls : BasicMovement
         {
             ActWithChosenItem();
         }
+        if (placing)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                StopActing();
+            }
+        }
     }
 
     public void CheckLadderInput()
@@ -87,15 +94,35 @@ public partial class PlayerControls : BasicMovement
     {
         if (pickableItem.Count != 0)
         {
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 anim.SetVar("PickUp", true);
-                PickUp(pickableItem);
+                PickUp(pickableItem, pickableItemCursor);
+                return true;
+            }
+        }
+        if (pickableItemCursor.Count != 0)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                anim.SetVar("PickUp", true);
+                PickUp(pickableItemCursor, pickableItem);
                 return true;
             }
         }
         anim.SetVar("PickUp", false);
         return false;
+    }
+
+    public void CheckRotateInput()
+    {
+        if (placing)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                placedObject.transform.localEulerAngles += new Vector3(0.0f, 0.0f, 90.0f);
+            }
+        }
     }
 
     public void CheckCrawlInput()
