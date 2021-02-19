@@ -52,8 +52,46 @@ public partial class PlayerControls : BasicMovement
     {
         if (placing)
         {
+            CanPlaceLadder();
             placedObject.transform.position = GetMousePositionInRange(pickingDistance);
         }
+    }
+
+    public bool CanPlaceLadder()
+    {
+        Vector2 colliderSize = placedObject.GetComponent<BoxCollider2D>().size;
+        Vector2 pos1 = new Vector2(placedObject.transform.position.x, placedObject.transform.position.y + colliderSize.y / 2) * placedObject.transform.up;
+        Vector2 pos2 = new Vector2(placedObject.transform.position.x, placedObject.transform.position.y - colliderSize.y / 2) * placedObject.transform.up;
+        Vector2 size = new Vector2(colliderSize.x, 0.01f);
+        RaycastHit2D[] rayCastUp = Physics2D.BoxCastAll(pos1, size, 0.0f, placedObject.transform.up, 0.05f, landLayer + platformLayer);
+        RaycastHit2D[] rayCastDown = Physics2D.BoxCastAll(pos2, size, 0.0f, placedObject.transform.up * -1.0f, 0.05f, landLayer + platformLayer);
+        RaycastHit2D[] rayCastMiddle = Physics2D.BoxCastAll(placedObject.transform.position, colliderSize, 0.0f, placedObject.transform.up, 0.0f, landLayer + platformLayer);
+        for (int i = 0; i < rayCastMiddle.Length; i++)
+        {
+            if (!rayCastMiddle[i].collider.gameObject.name.Contains("Ladder"))
+            {
+                GlobalFuncs.SetColor(placedObject, Color.red);
+                return false;
+            }
+        }
+        for (int i = 0; i < rayCastUp.Length; i++)
+        {
+            if (!rayCastUp[i].collider.gameObject.name.Contains("Ladder"))
+            {
+                GlobalFuncs.SetColor(placedObject, Color.green);
+                return true;
+            }
+        }
+        for (int i = 0; i < rayCastDown.Length; i++)
+        {
+            if (!rayCastDown[i].collider.gameObject.name.Contains("Ladder"))
+            {
+                GlobalFuncs.SetColor(placedObject, Color.green);
+                return true;
+            }
+        }
+        GlobalFuncs.SetColor(placedObject, Color.white);
+        return true;
     }
 
     public void PlaceLadder()
@@ -67,10 +105,14 @@ public partial class PlayerControls : BasicMovement
         }
         else
         {
-            placedObject.GetComponent<BoxCollider2D>().enabled = true;
-            GlobalFuncs.SetTransparency(placedObject, 1.0f);
-            items[2] = false;
-            placing = false;
+            if (CanPlaceLadder())
+            {
+                placedObject.GetComponent<BoxCollider2D>().enabled = true;
+                GlobalFuncs.SetColor(placedObject, Color.white);
+                GlobalFuncs.SetTransparency(placedObject, 1.0f);
+                items[2] = false;
+                placing = false;
+            }
         }
     }
 }
