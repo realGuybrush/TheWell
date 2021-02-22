@@ -10,7 +10,21 @@ public partial class BasicMovement: MonoBehaviour
     public int holdingMaximumTime = 10000;
     private int landTimer;
     private Vector3 PosPreHold;
-    public void BasicCheckClimb()
+    public bool BasicHandleHold()
+    {
+        if (holding)
+        {
+            AdjustSlopeFriction();
+            anim.SetVar("Grab", holding);
+        }
+        else
+        {
+            AdjustMidAirFriction();
+            anim.SetVar("Grab", holding);
+        }
+        return holding;
+    }
+    public void BasicHandleClimb()
     {
         if (holding)
         {

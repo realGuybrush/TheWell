@@ -21,23 +21,9 @@ public partial class BasicMovement : MonoBehaviour
     {
         whatIsGround = landLayer + platformLayer;
     }
-    public bool BasicCheckHold()
-    {
-        if (holding)
-        {
-            AdjustSlopeFriction();
-            anim.SetVar("Grab", holding);
-        }
-        else
-        {
-            AdjustMidAirFriction();
-            anim.SetVar("Grab", holding);
-        }
-        return holding;
-    }
     public void ReactOnSlope()
     {
-        if (BasicCheckSlope())
+        if (BasicHandleSlope())
             AdjustSlopeFriction();
         else
             AdjustLandFriction();

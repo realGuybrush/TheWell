@@ -16,7 +16,7 @@ public partial class PlayerControls : BasicMovement
             MovePicker();
             CheckRotateInput();
             ProcessEnvCheckersCollisions();
-            BasicCheckMidAir();
+            BasicHandleMidAir();
             PlayerCheckMove();
             CheckClimbLadder();
             ReactOnSlope();
@@ -24,7 +24,7 @@ public partial class PlayerControls : BasicMovement
                 CheckJumpInput();
             UpdateHold();
             CheckFlip();
-            BasicCheckHold();
+            BasicHandleHold();
             CheckClimbInput();
             CheckAtkInput();
             if(!CheckPickUpInput())
@@ -42,9 +42,9 @@ public partial class PlayerControls : BasicMovement
         CheckCrawlInput();
         if (movingDirection != 0)
         {
-            if (!BasicCheckHold())
+            if (!BasicHandleHold())
             {
-                Move();
+                BasicHandleMove();
             }
         }
         else
@@ -57,6 +57,10 @@ public partial class PlayerControls : BasicMovement
             {
             //    var stopInstantly = 1.0f;
             //    move.SlowDown(stopInstantly);
+            }
+            if (onLadder)
+            {
+                SlowDown();
             }
         }
 
@@ -72,9 +76,9 @@ public partial class PlayerControls : BasicMovement
 
     private void CheckFlip()
     {
-        if (!BasicCheckHold())
+        if (!BasicHandleHold())
         {
-            BasicCheckFlip(movingDirection);
+            BasicHandleFlip(movingDirection);
         }
     }
 }

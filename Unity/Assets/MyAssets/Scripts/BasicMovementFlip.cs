@@ -4,7 +4,7 @@ public partial class BasicMovement:MonoBehaviour
 {
     public bool facingRight = true;
 
-    public void BasicCheckFlip(float movingDirection)
+    public void BasicHandleFlip(float movingDirection)
     {
         if (facingRight && movingDirection < 0)
         {
@@ -15,7 +15,7 @@ public partial class BasicMovement:MonoBehaviour
             Flip();
         }
     }
-    public void BasicCheckFlip()
+    public void BasicHandleFlip()
     {
         if (facingRight && (FacingDirection() > 0))
         {
@@ -36,9 +36,6 @@ public partial class BasicMovement:MonoBehaviour
 
     public float FacingDirection()
     {
-        if (thisObject.name == "Player")
-            return (GlobalFuncs.AroundZero(thisObject.transform.eulerAngles.y) ? 1.0f : -1.0f);
-        else
-            return (GlobalFuncs.AroundZero(thisObject.transform.eulerAngles.y) ? -1.0f : 1.0f);
+        return (GlobalFuncs.AroundZero(thisObject.transform.eulerAngles.y) ? 1.0f : -1.0f);
     }
 }

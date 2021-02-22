@@ -18,10 +18,10 @@ public partial class BasicMovement:MonoBehaviour
     {
         return isOnSlope;
     }
-    public bool BasicCheckSlope()
+    public bool BasicHandleSlope()
     {
         Vector2 checkPos = transform.position - new Vector3(0.0f, thisCollider.size.y/2.0f-thisCollider.offset.y);
-        return (SlopeCheckVertical(checkPos));//||SlopeCheckHorizontal(transf.right, checkPos)
+        return (SlopeCheckVertical(checkPos));
     }
     private bool SlopeCheckVertical(Vector2 checkPos)
     {

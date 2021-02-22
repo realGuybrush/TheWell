@@ -31,7 +31,7 @@ public static class GlobalFuncs
     }
 
     public static void SetTransparency(GameObject obj, float transp)
-    {//transp = 0.0f-1.0f
+    {
         if (obj.GetComponent<SpriteRenderer>() != null)
         {
             Color c = obj.GetComponent<SpriteRenderer>().color;
@@ -39,7 +39,7 @@ public static class GlobalFuncs
         }
     }
     public static void SetColor(GameObject obj, float r, float g, float b)
-    {//transp = 0.0f-1.0f
+    {
         if (obj.GetComponent<SpriteRenderer>() != null)
         {
             Color c = obj.GetComponent<SpriteRenderer>().color;
@@ -47,7 +47,7 @@ public static class GlobalFuncs
         }
     }
     public static void SetColor(GameObject obj, Color c)
-    {//transp = 0.0f-1.0f
+    {
         if (obj.GetComponent<SpriteRenderer>() != null)
         {
             float a = obj.GetComponent<SpriteRenderer>().color.a;

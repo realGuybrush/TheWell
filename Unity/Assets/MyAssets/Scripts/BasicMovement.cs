@@ -35,7 +35,7 @@ public partial class BasicMovement : MonoBehaviour
         return true;
     }
 
-    public bool BasicCheckMidAir()
+    public bool BasicHandleMidAir()
     {
         if (IsMidAir())
         {
@@ -56,7 +56,7 @@ public partial class BasicMovement : MonoBehaviour
     }
 
 
-    public void BasicAtk(bool atk, string attackType, Buff buff)
+    public void BasicAtk(bool atk, string attackType)
     {
         anim.SetVar(attackType, atk);
         thisHealth.values.attacking = true;

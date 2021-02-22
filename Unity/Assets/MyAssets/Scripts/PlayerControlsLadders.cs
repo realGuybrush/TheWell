@@ -5,11 +5,10 @@ using UnityEngine;
 public partial class PlayerControls : BasicMovement
 {
     bool onLadder = false;
-    Vector3 prePos;
     public void GetOnLadder()
     {
         onLadder = true;
-        prePos = thisObject.transform.position;
+        ClimbLadder();
     }
     public void GetOffLadder()
     {
@@ -23,7 +22,6 @@ public partial class PlayerControls : BasicMovement
         {
             SetKinematic(false);
             Vector3 climbVelocity = new Vector3(thisObject.velocity.x/2, Input.GetAxis("Vertical"), 0.0f);
-            prePos = thisObject.transform.position;
             thisObject.velocity = climbVelocity;
         }
     }

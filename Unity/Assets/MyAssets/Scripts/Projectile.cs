@@ -7,7 +7,6 @@ public class Projectile : MonoBehaviour
     public GameObject ignore;
     public int lifeTime = 100;
     public int atk = 5;
-    public Buff debuff;
     public int specialRod = -1;
 
     void Start()
@@ -33,15 +32,10 @@ public class Projectile : MonoBehaviour
             {
                 i1 = collision.gameObject.GetComponent<Health>().HealthAmount();
                 collision.gameObject.GetComponent<Health>().Substract(atk);
-                if (debuff != null)
-                {
-                    collision.gameObject.GetComponent<Health>().AddBuff(debuff);
-                }
             }
             if (collision.gameObject.GetComponent<BasicMovement>() != null)
             {
                 collision.gameObject.GetComponent<BasicMovement>().thisHealth.Substract(atk);
-                collision.gameObject.GetComponent<BasicMovement>().thisHealth.AddBuff(debuff);
             }
             atk -= i1;
             if (atk <= 0)

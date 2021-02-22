@@ -30,9 +30,9 @@ public partial class PlayerControls : BasicMovement
     {
         if (Input.GetButton("Jump"))
         {
-            if (!BasicCheckHold() && !IsClimbing())
+            if (!BasicHandleHold() && !IsClimbing())
             {
-                BasicJump();
+                BasicHandleJump();
             }
         }
         else
@@ -43,9 +43,9 @@ public partial class PlayerControls : BasicMovement
 
     private void CheckClimbInput()
     {
-        if (BasicCheckHold() && Input.GetButton("Jump"))
+        if (BasicHandleHold() && Input.GetButton("Jump"))
         {
-            BasicCheckClimb();
+            BasicHandleClimb();
         }
     }
 
@@ -129,7 +129,7 @@ public partial class PlayerControls : BasicMovement
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-                if (!running && !BasicCheckHold())
+                if (!running && !BasicHandleHold())
                 {
                     if (!CheckCrawl())
                     {
@@ -144,7 +144,7 @@ public partial class PlayerControls : BasicMovement
                 }
                 else
                 {
-                    if (BasicCheckHold())
+                    if (BasicHandleHold())
                     {
                         Unhold();
                         anim.SetVar("Grab", false);

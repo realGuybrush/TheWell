@@ -4,7 +4,7 @@ public partial class BasicMovement:MonoBehaviour
 {
     public float jumpSpeedX = 7.0f;
     public float jumpSpeedY = 5.0f;
-    public void BasicJump(float movingMultiplierX = 0.0f)
+    public void BasicHandleJump(float movingMultiplierX = 0.0f)
     {
         var midAir = IsMidAir();
         var canJumpFromCurrentLand = land.landed && land.canJump || ledge.landed && ledge.canJump ||
@@ -16,7 +16,6 @@ public partial class BasicMovement:MonoBehaviour
             Unhold();
         }
     }
-
     public void Jump(float localMovingDirection, float jumpSpeedX = 0.0f)
     {
         var jumpVector = new Vector2(jumpSpeedX * localMovingDirection, jumpSpeedY);
