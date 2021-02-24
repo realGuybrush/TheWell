@@ -8,7 +8,6 @@ He returns to the ruins of his family house to encounter the only possible sourc
 The Misterious Well in the basement.
 
 ![Screenshot](TheWell.PNG)
-
 The young Michael stands in front of a seemingly bottomless pit and stares at the wall for reasons known only to him.
 Boredom? Justice? Because we made him to do so? We can but speculate.
 
