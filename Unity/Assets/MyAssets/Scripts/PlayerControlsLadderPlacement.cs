@@ -19,17 +19,22 @@ public partial class PlayerControls : BasicMovement
 
     public bool CanPlaceLadder()
     {
-        Vector2 colliderSize = placedObject.transform.GetChild(0).gameObject.GetComponent<BoxCollider2D>().size;
         Vector2 colliderPosition = placedObject.transform.GetChild(0).position;
+        Vector2 colliderPosition2 = placedObject.transform.GetChild(placedObject.transform.childCount - 1).position;
+        Vector2 colliderSize = placedObject.transform.GetChild(0).gameObject.GetComponent<BoxCollider2D>().size;
 
         Vector2 size = new Vector2(Mathf.Min(colliderSize.x, colliderSize.y), 0.01f);
-        Vector2 pos1 = new Vector2(colliderPosition.x + (colliderSize.y / 2 + 1.5f * size.y) * placedObject.transform.up.x, colliderPosition.y + (colliderSize.y / 2 + 1.5f * size.y) * placedObject.transform.up.y);
+        Vector2 pos1 = new Vector2(colliderPosition2.x + (colliderSize.y / 2 + 1.5f * size.y) * placedObject.transform.up.x, colliderPosition2.y + (colliderSize.y / 2 + 1.5f * size.y) * placedObject.transform.up.y);
         Vector2 pos2 = new Vector2(colliderPosition.x + (-colliderSize.y / 2 + 1.5f * size.y) * placedObject.transform.up.x, colliderPosition.y + (-colliderSize.y / 2 + 1.5f * size.y) * placedObject.transform.up.y);
+        colliderSize = new Vector2(Mathf.Abs(colliderPosition2.x + colliderSize.x - colliderPosition.x), Mathf.Abs(colliderPosition2.y + colliderSize.y - colliderPosition.y));
         colliderSize = new Vector2(colliderSize.x * Mathf.Abs(placedObject.transform.up.y) + colliderSize.y * Mathf.Abs(placedObject.transform.up.x), colliderSize.y * Mathf.Abs(placedObject.transform.up.y) + colliderSize.x * Mathf.Abs(placedObject.transform.up.x));
         size = new Vector2(size.x * Mathf.Abs(placedObject.transform.up.y) + 0.01f, size.x * Mathf.Abs(placedObject.transform.up.x) + 0.01f);
+        colliderPosition = new Vector2(colliderPosition.x+Mathf.Abs(colliderPosition.x-colliderPosition2.x)/2, colliderPosition.y + Mathf.Abs(colliderPosition.y - colliderPosition2.y) / 2);
         RaycastHit2D[] rayCastUp = Physics2D.BoxCastAll(pos1, size, 0.0f, placedObject.transform.up, 0.05f, landLayer + platformLayer);
         RaycastHit2D[] rayCastDown = Physics2D.BoxCastAll(pos2, size, 0.0f, placedObject.transform.up * -1.0f, 0.05f, landLayer + platformLayer);
         RaycastHit2D[] rayCastMiddle = Physics2D.BoxCastAll(colliderPosition, colliderSize, 0.0f, placedObject.transform.up, 0.0f, landLayer + platformLayer);
+        Debug.Log("1"+pos1.ToString());
+        Debug.Log("2"+pos2.ToString());
         for (int i = 0; i < rayCastMiddle.Length; i++)
         {
             if (!rayCastMiddle[i].collider.gameObject.name.Contains("Ladder"))
@@ -66,6 +71,7 @@ public partial class PlayerControls : BasicMovement
             if (CanPlaceLadder())
             {
                 EnableAllLadderCollidersAndTransp();
+                ladderProtrudedness = 7;
                 amountOfLadders -= laddersMidPlacement;
                 if (amountOfLadders == 0)
                 {
