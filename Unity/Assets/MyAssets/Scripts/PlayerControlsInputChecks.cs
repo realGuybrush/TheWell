@@ -120,7 +120,7 @@ public partial class PlayerControls : BasicMovement
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                placedObject.transform.localEulerAngles += new Vector3(0.0f, 0.0f, 90.0f);
+                placedObject.transform.localEulerAngles += new Vector3(0.0f, 0.0f, -90.0f);
             }
         }
     }
@@ -184,6 +184,18 @@ public partial class PlayerControls : BasicMovement
             {
                 UndoFalling();
             }
+        }
+    }
+
+    public void CheckScrollInput()
+    {
+        if (Input.mouseScrollDelta.y > 0.0f)
+        {
+            ProtrudeLadder();
+        }
+        if (Input.mouseScrollDelta.y < 0.0f)
+        {
+            RetrudeLadder();
         }
     }
 

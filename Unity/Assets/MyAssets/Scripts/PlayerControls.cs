@@ -15,6 +15,7 @@ public partial class PlayerControls : BasicMovement
         {
             MovePicker();
             CheckRotateInput();
+            CheckScrollInput();
             ProcessEnvCheckersCollisions();
             BasicHandleMidAir();
             PlayerCheckMove();

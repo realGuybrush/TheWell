@@ -7,7 +7,7 @@ public partial class PlayerControls : BasicMovement
     float pickingDistance = 1f;
     public List<GameObject> pickableItem;
     public List<GameObject> pickableItemCursor;
-    public List<bool> items;
+    public bool[] items;
     public GameObject Picker;
     public void MovePicker()
     {
@@ -15,11 +15,7 @@ public partial class PlayerControls : BasicMovement
     }
     public void InitInventory()
     {
-        items = new List<bool>();
-        for (int i = 0; i < 4; i++)
-        {
-            items.Add(false);
-        }
+        items = new bool[4] { false, false, false, false };
     }
 
     public void IncludePickable(GameObject newP)
@@ -68,7 +64,26 @@ public partial class PlayerControls : BasicMovement
         if (item2.Count != 0)
             if (item2.Contains(item[0]))
                 item2.Remove(item[0]);
-        GameObject.Destroy(item[0]);
+        if (item[0].name.Contains("Ladder"))
+            PickUpLadder(item[0]);
+        else
+            GameObject.Destroy(item[0]);
         return true;
+    }
+    void PickUpLadder(GameObject lad)
+    {
+        if (lad.transform.parent != null)
+        {
+            if (lad.transform.parent.name.Contains("MultiLadder"))
+            {
+                amountOfLadders += lad.transform.parent.childCount;
+                Destroy(lad.transform.parent.gameObject);
+            }
+        }
+        else
+        {
+            amountOfLadders++;
+            Destroy(lad);
+        }
     }
 }
