@@ -12,6 +12,7 @@ public partial class BasicMovement : MonoBehaviour
     private void Start()
     {
         InitValues();
+        Physics2D.IgnoreLayerCollision(0, 13);
     }
 
     virtual public void InitValues()

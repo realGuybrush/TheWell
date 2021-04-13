@@ -62,6 +62,7 @@ public partial class PlayerControls : BasicMovement
         if (!placing)
         {
             placedObject = Instantiate((GameObject)Resources.Load("Prefabs\\MultiLadder"), GetMousePositionInRange(pickingDistance), Quaternion.identity);
+            placedObject.GetComponent<BoxCollider2D>().enabled = false;
             DisableLadderCollidersAndTransp(placedObject.transform.GetChild(0).gameObject);
             laddersMidPlacement = 1;
             placing = true;
@@ -134,6 +135,7 @@ public partial class PlayerControls : BasicMovement
     }
     void EnableAllLadderCollidersAndTransp()
     {
+        placedObject.GetComponent<BoxCollider2D>().enabled = true;
         for (int i = 0; i < placedObject.transform.childCount; i++)
         {
             placedObject.transform.GetChild(i).gameObject.GetComponent<BoxCollider2D>().enabled = true;
