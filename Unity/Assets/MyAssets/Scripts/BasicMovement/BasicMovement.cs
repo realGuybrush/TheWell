@@ -2,7 +2,7 @@ using UnityEngine;
 
 public partial class BasicMovement : MonoBehaviour
 {
-
+    public WorldManager WM;
     public Animations anim = new Animations();
     public Health thisHealth;
     public Rigidbody2D thisObject;
@@ -26,6 +26,10 @@ public partial class BasicMovement : MonoBehaviour
         SetStepChecker();
         SetWallChecker();
         SetLedgeChecker();
+    }
+    public void SetWorldManager(WorldManager newWM)
+    {
+        WM = newWM;
     }
     public bool BasicCheckHealth()
     {

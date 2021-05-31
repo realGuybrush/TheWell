@@ -7,12 +7,15 @@ public class Projectile : MonoBehaviour
     public GameObject ignore;
     public int lifeTime = 100;
     public int atk = 5;
-    public int specialRod = -1;
+    public float velocity = 5f;
+    public Rigidbody2D thisBody;
 
     void Start()
     {
-        Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), GameObject.Find(ignore.name).GetComponent<Collider2D>(), true);
+        Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), ignore.GetComponent<Collider2D>(), true);
+        thisBody.velocity = this.transform.right * velocity;
     }
+
     void Update()
     {
         lifeTime--;
@@ -21,6 +24,13 @@ public class Projectile : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    public void Init(GameObject newIgnore, Vector3 movingDirection)
+    {
+        ignore = newIgnore;
+        transform.right = movingDirection;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         int i1=0;

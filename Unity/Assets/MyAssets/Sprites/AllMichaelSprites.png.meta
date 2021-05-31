@@ -1,0 +1,2244 @@
+fileFormatVersion: 2
+guid: 258b5a59dcd7d0448aee0bb69c58b924
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5131494688626707742
+    second: MichaelScratch0
+  - first:
+      213: -8220861024668292489
+    second: MichaelScratch1
+  - first:
+      213: 2451390070063191030
+    second: MichaelScratch2
+  - first:
+      213: -3954430326533454648
+    second: MichaelScratch3
+  - first:
+      213: 2555365102473558522
+    second: MichaelScratch4
+  - first:
+      213: -3357189912129783514
+    second: MichaelScratch5
+  - first:
+      213: -4604447588784323794
+    second: MichaelClimb1
+  - first:
+      213: 4292684735840244521
+    second: MichaelClimb2
+  - first:
+      213: 6876755542000695766
+    second: MichaelClimb3
+  - first:
+      213: 1530578662915163359
+    second: MichaelJump0
+  - first:
+      213: 3696990487055706023
+    second: MichaelJump1
+  - first:
+      213: 1435015652641377916
+    second: MichaelJump2
+  - first:
+      213: -8026458129839009573
+    second: MichaelWalk0
+  - first:
+      213: 8694931431525460053
+    second: MichaelWalk1
+  - first:
+      213: -8107797157907789900
+    second: MichaelWalk2
+  - first:
+      213: 1110350889369052872
+    second: MichaelWalk3
+  - first:
+      213: 7064498279003061446
+    second: MichaelWalkItem0
+  - first:
+      213: 1371565780910609960
+    second: MichaelWalkItem1
+  - first:
+      213: 1531436276303950779
+    second: MichaelWalkItem2
+  - first:
+      213: -6323171204464830657
+    second: MichaelWalkItem3
+  - first:
+      213: -7912489373990958924
+    second: MichaelClimb0
+  - first:
+      213: -3399985215915008822
+    second: MichaelWalkShoot0
+  - first:
+      213: -8206155419850559438
+    second: MichaelWalkShoot1
+  - first:
+      213: 2046004984865980952
+    second: MichaelWalkShoot2
+  - first:
+      213: 8061754624792617984
+    second: MichaelWalkShoot3
+  - first:
+      213: 4035499821553955605
+    second: AllMichaelSprites_25
+  - first:
+      213: 6450207942959144853
+    second: AllMichaelSprites_26
+  - first:
+      213: -4944469807011764935
+    second: AllMichaelSprites_27
+  - first:
+      213: -6394435202450468046
+    second: AllMichaelSprites_28
+  - first:
+      213: -1080069191633211467
+    second: MichaelAimHead3h
+  - first:
+      213: 5168231258456720625
+    second: MichaelAimHead4h
+  - first:
+      213: -6489315475588807334
+    second: MichaelAimHead5h
+  - first:
+      213: -6296123135898667011
+    second: MichaelAimHead9h
+  - first:
+      213: 6119208578817406473
+    second: MichaelAimHead10h
+  - first:
+      213: -6292182248593972832
+    second: MichaelAimHead11h
+  - first:
+      213: -777924838462131065
+    second: MichaelHangShoot
+  - first:
+      213: 3982776976313220389
+    second: MichaelIdleShoot
+  - first:
+      213: -8860028110919303793
+    second: MichaelAimHead6h
+  - first:
+      213: -9142906595004880318
+    second: MichaelAimHead7h
+  - first:
+      213: 2956621153005533661
+    second: MichaelAimHead8h
+  - first:
+      213: 6875638439599892263
+    second: MichaelAimHead12h
+  - first:
+      213: 3702467895007411532
+    second: MichaelAimHead1h
+  - first:
+      213: 5380922667915821373
+    second: MichaelAimHead2h
+  - first:
+      213: 5909578556394341431
+    second: AllMichaelSprites_43
+  - first:
+      213: 8250371665050989999
+    second: AllMichaelSprites_44
+  - first:
+      213: 2087095623341620158
+    second: AllMichaelSprites_45
+  - first:
+      213: -8659129708625101107
+    second: AllMichaelSprites_46
+  - first:
+      213: 3232294297531335155
+    second: MichaelAimArm3h
+  - first:
+      213: -6121484023573676996
+    second: MichaelAimArm4h
+  - first:
+      213: -9180372381236432754
+    second: MichaelAimArm5h
+  - first:
+      213: 854910252261019122
+    second: AllMichaelSprites_50
+  - first:
+      213: 2205329558929372940
+    second: AllMichaelSprites_51
+  - first:
+      213: 5890847450673259726
+    second: MichaelAimArm6h
+  - first:
+      213: -7755003695234759772
+    second: MichaelAimArm7h
+  - first:
+      213: -7361668238992152506
+    second: MichaelAimArm8h
+  - first:
+      213: -4386543751102358160
+    second: AllMichaelSprites_55
+  - first:
+      213: -8044352865775254100
+    second: AllMichaelSprites_56
+  - first:
+      213: 2015154840293982425
+    second: AllMichaelSprites_57
+  - first:
+      213: 1083227556491856991
+    second: AllMichaelSprites_58
+  - first:
+      213: -2326498423447172872
+    second: AllMichaelSprites_59
+  - first:
+      213: -7937838628172824697
+    second: AllMichaelSprites_60
+  - first:
+      213: -936253430444588520
+    second: AllMichaelSprites_61
+  - first:
+      213: -1991218532585726881
+    second: AllMichaelSprites_62
+  - first:
+      213: -2042466164106254821
+    second: AllMichaelSprites_63
+  - first:
+      213: -8413392697090172966
+    second: AllMichaelSprites_64
+  - first:
+      213: 7258846067992154453
+    second: AllMichaelSprites_65
+  - first:
+      213: -5617662318976337607
+    second: MichaelAimArm9h
+  - first:
+      213: 3896088113800449888
+    second: MichaelAimArm10h
+  - first:
+      213: 3423251586109049295
+    second: MichaelAimArm11h
+  - first:
+      213: 159383469874278986
+    second: AllMichaelSprites_69
+  - first:
+      213: 7789154259368718344
+    second: MichaelAimArm12h
+  - first:
+      213: -3402020143760478061
+    second: MichaelAimArm1h
+  - first:
+      213: -1424068974085035286
+    second: MichaelAimArm2h
+  - first:
+      213: -8293347759438464487
+    second: AllMichaelSprites_73
+  - first:
+      213: 6747626597904314945
+    second: AllMichaelSprites_74
+  - first:
+      213: 8422704775235677167
+    second: AllMichaelSprites_75
+  - first:
+      213: 741235693737648811
+    second: AllMichaelSprites_76
+  - first:
+      213: 8856146525930138664
+    second: AllMichaelSprites_77
+  - first:
+      213: 5798077635645532158
+    second: AllMichaelSprites_78
+  - first:
+      213: -6003644705029260830
+    second: AllMichaelSprites_79
+  - first:
+      213: -6373840660273553772
+    second: MichaelCrawlShoot
+  - first:
+      213: -2289057817811157266
+    second: MichaelAimHeadC3h
+  - first:
+      213: 5474016914646930907
+    second: MichaelAimHeadC4h
+  - first:
+      213: -7313384278205737018
+    second: MichaelAimHeadC5h
+  - first:
+      213: -943215753693116378
+    second: MichaelAimHeadC6h
+  - first:
+      213: 5251585208156834929
+    second: MichaelAimHeadC7h
+  - first:
+      213: 2913583980722795885
+    second: MichaelAimHeadC8h
+  - first:
+      213: 5711216224056908860
+    second: MichaelAimHeadC9h
+  - first:
+      213: -4687548694137293308
+    second: AGun
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 50
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MichaelScratch0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 219
+        width: 16
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1d06624b3bb63740800000000000000
+      internalID: 5131494688626707742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelScratch1
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 219
+        width: 16
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77aeacc3472a9ed80800000000000000
+      internalID: -8220861024668292489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelScratch2
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 219
+        width: 16
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f3590cd746150220800000000000000
+      internalID: 2451390070063191030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelScratch3
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 219
+        width: 16
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c401f9c19a0f19c0800000000000000
+      internalID: -3954430326533454648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelScratch4
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 219
+        width: 16
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af9bd54950b767320800000000000000
+      internalID: 2555365102473558522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelScratch5
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 219
+        width: 16
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 629baf3ef8dd861d0800000000000000
+      internalID: -3357189912129783514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelClimb1
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 181
+        width: 23
+        height: 53
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e234b9b3057b910c0800000000000000
+      internalID: -4604447588784323794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelClimb2
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 181
+        width: 28
+        height: 74
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 923df7c060ea29b30800000000000000
+      internalID: 4292684735840244521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelClimb3
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 181
+        width: 26
+        height: 86
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d976281bb42f6f50800000000000000
+      internalID: 6876755542000695766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelJump0
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 219
+        width: 22
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd4c9df3f25bd3510800000000000000
+      internalID: 1530578662915163359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelJump1
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 219
+        width: 25
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a724fea2495e4330800000000000000
+      internalID: 3696990487055706023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelJump2
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 226
+        width: 23
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7e80de02233ae310800000000000000
+      internalID: 1435015652641377916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelWalk0
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 219
+        width: 18
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd0566e5bda4c9090800000000000000
+      internalID: -8026458129839009573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelWalk1
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 219
+        width: 19
+        height: 47
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 558247ab11a9aa870800000000000000
+      internalID: 8694931431525460053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelWalk2
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 219
+        width: 16
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b70cfb11715b7f80800000000000000
+      internalID: -8107797157907789900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelWalk3
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 219
+        width: 21
+        height: 47
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c6a1e04042c86f00800000000000000
+      internalID: 1110350889369052872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelWalkItem0
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 219
+        width: 16
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ccf55461c32a0260800000000000000
+      internalID: 7064498279003061446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelWalkItem1
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 219
+        width: 21
+        height: 47
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82612459fc7c80310800000000000000
+      internalID: 1371565780910609960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelWalkItem2
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 218
+        width: 16
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb37e3ded21c04510800000000000000
+      internalID: 1531436276303950779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelWalkItem3
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 219
+        width: 21
+        height: 47
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3715e78a459f38a0800000000000000
+      internalID: -6323171204464830657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelClimb0
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 181
+        width: 23
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b8473626d0313290800000000000000
+      internalID: -7912489373990958924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelWalkShoot0
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 150
+        width: 17
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acc5ec3c573d0d0d0800000000000000
+      internalID: -3399985215915008822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelWalkShoot1
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 150
+        width: 19
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 230392caf11ed1e80800000000000000
+      internalID: -8206155419850559438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelWalkShoot2
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 150
+        width: 15
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8128d9b81bed46c10800000000000000
+      internalID: 2046004984865980952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelWalkShoot3
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 150
+        width: 21
+        height: 37
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00460254e1b11ef60800000000000000
+      internalID: 8061754624792617984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_25
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 132
+        width: 19
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51330eae4b9f00830800000000000000
+      internalID: 4035499821553955605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_26
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 132
+        width: 26
+        height: 41
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59f9b7f03fdb38950800000000000000
+      internalID: 6450207942959144853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_27
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 132
+        width: 33
+        height: 29
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9356b6e48e6b16bb0800000000000000
+      internalID: -4944469807011764935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_28
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 132
+        width: 36
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 233dfa200176247a0800000000000000
+      internalID: -6394435202450468046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHead3h
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 130
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bfebdbeac2d201f0800000000000000
+      internalID: -1080069191633211467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHead4h
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 130
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f4026572fe39b740800000000000000
+      internalID: 5168231258456720625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHead5h
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 130
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a558512f4f151f5a0800000000000000
+      internalID: -6489315475588807334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHead9h
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 130
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df734aebd5daf98a0800000000000000
+      internalID: -6296123135898667011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHead10h
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 130
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9063fee08cbcbe450800000000000000
+      internalID: 6119208578817406473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHead11h
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 130
+        width: 10
+        height: 11
+      alignment: 9
+      pivot: {x: 0.50526583, y: 0.4665014}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a1a982159dada8a0800000000000000
+      internalID: -6292182248593972832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelHangShoot
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 108
+        width: 23
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 784f2852b714435f0800000000000000
+      internalID: -777924838462131065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelIdleShoot
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 112
+        width: 16
+        height: 38
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52df0ccee8aa54730800000000000000
+      internalID: 3982776976313220389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHead6h
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 117
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8dfda4206bda0580800000000000000
+      internalID: -8860028110919303793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHead7h
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 117
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24a682e94eedd1180800000000000000
+      internalID: -9142906595004880318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHead8h
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 117
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd9fc481647080920800000000000000
+      internalID: 2956621153005533661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHead12h
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 117
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7276f5c6bbc2b6f50800000000000000
+      internalID: 6875638439599892263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHead1h
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 117
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4d743a1feec16330800000000000000
+      internalID: 3702467895007411532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHead2h
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 117
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3148f838a0ecaa40800000000000000
+      internalID: 5380922667915821373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_43
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 91
+        width: 39
+        height: 23
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7348622036a030250800000000000000
+      internalID: 5909578556394341431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_44
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 91
+        width: 37
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa5ff4821553f7270800000000000000
+      internalID: 8250371665050989999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_45
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 91
+        width: 40
+        height: 22
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebbbc89596ad6fc10800000000000000
+      internalID: 2087095623341620158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_46
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 91
+        width: 37
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dce7e55786794d780800000000000000
+      internalID: -8659129708625101107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimArm3h
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 102
+        width: 18
+        height: 7
+      alignment: 9
+      pivot: {x: 0.11333381, y: 0.71143013}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f140e5c98a6bdc20800000000000000
+      internalID: 3232294297531335155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimArm4h
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 97
+        width: 18
+        height: 12
+      alignment: 9
+      pivot: {x: 0.11, y: 0.83}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3c79aca6be1c0ba0800000000000000
+      internalID: -6121484023573676996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimArm5h
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 91
+        width: 14
+        height: 18
+      alignment: 9
+      pivot: {x: 0.14, y: 0.895}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e80789e75f3c89080800000000000000
+      internalID: -9180372381236432754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_50
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 51
+        width: 37
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fd8bdc48504ddb00800000000000000
+      internalID: 854910252261019122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_51
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 52
+        width: 37
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0777acac87ea9e10800000000000000
+      internalID: 2205329558929372940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimArm6h
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 69
+        width: 9
+        height: 23
+      alignment: 9
+      pivot: {x: 0.32, y: 0.91}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec4256b9b8e70c150800000000000000
+      internalID: 5890847450673259726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimArm7h
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 72
+        width: 14
+        height: 18
+      alignment: 9
+      pivot: {x: 0.7767225, y: 0.9100143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a3c0b91a31b06490800000000000000
+      internalID: -7755003695234759772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimArm8h
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 74
+        width: 18
+        height: 12
+      alignment: 9
+      pivot: {x: 0.8288066, y: 0.8705451}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 648e89c8db916d990800000000000000
+      internalID: -7361668238992152506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_55
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 40
+        width: 22
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07d95d303bddf13c0800000000000000
+      internalID: -4386543751102358160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_56
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 40
+        width: 22
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca5029b70b7bc5090800000000000000
+      internalID: -8044352865775254100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_57
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 42
+        width: 22
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d0c12786a447fb10800000000000000
+      internalID: 2015154840293982425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_58
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 41
+        width: 22
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5c8c9339b5680f00800000000000000
+      internalID: 1083227556491856991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_59
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 42
+        width: 22
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f8cceb920e96bfd0800000000000000
+      internalID: -2326498423447172872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_60
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 43
+        width: 22
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78f726bf2d127d190800000000000000
+      internalID: -7937838628172824697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_61
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 41
+        width: 22
+        height: 48
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8120c9a2772c103f0800000000000000
+      internalID: -936253430444588520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_62
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 40
+        width: 14
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5c9d076b45cd54e0800000000000000
+      internalID: -1991218532585726881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_63
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 66
+        width: 52
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1621be58d3b7a3e0800000000000000
+      internalID: -2042466164106254821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_64
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 50
+        width: 39
+        height: 23
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad713160bef9d3b80800000000000000
+      internalID: -8413392697090172966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_65
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 52
+        width: 40
+        height: 22
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 551d9e13a0a9cb460800000000000000
+      internalID: 7258846067992154453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimArm9h
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 55
+        width: 19
+        height: 8
+      alignment: 9
+      pivot: {x: 0.84431857, y: 0.79388046}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 939715172ed0a02b0800000000000000
+      internalID: -5617662318976337607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimArm10h
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 52
+        width: 17
+        height: 13
+      alignment: 9
+      pivot: {x: 0.8138742, y: 0.22321907}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06f82b44f7fa11630800000000000000
+      internalID: 3896088113800449888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimArm11h
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 52
+        width: 14
+        height: 18
+      alignment: 9
+      pivot: {x: 0.7792729, y: 0.16516325}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc982de2e25d18f20800000000000000
+      internalID: 3423251586109049295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_69
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 47
+        width: 49
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a42fce0eb6e363200800000000000000
+      internalID: 159383469874278986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimArm12h
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 32
+        width: 8
+        height: 20
+      alignment: 9
+      pivot: {x: 0.25083733, y: 0.20765229}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 800b46ab782a81c60800000000000000
+      internalID: 7789154259368718344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimArm1h
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 32
+        width: 12
+        height: 19
+      alignment: 9
+      pivot: {x: 0.15671031, y: 0.22024195}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 390fe6434b899c0d0800000000000000
+      internalID: -3402020143760478061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimArm2h
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 33
+        width: 19
+        height: 11
+      alignment: 9
+      pivot: {x: 0.122325696, y: 0.35503423}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aeaa10820d0bc3ce0800000000000000
+      internalID: -1424068974085035286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_73
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 4
+        width: 37
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91a73ef172c18ec80800000000000000
+      internalID: -8293347759438464487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_74
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 4
+        width: 37
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 142701de3a264ad50800000000000000
+      internalID: 6747626597904314945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_75
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 8
+        width: 37
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: feba8ef1e5573e470800000000000000
+      internalID: 8422704775235677167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_76
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 9
+        width: 37
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba2a21cafe5694a00800000000000000
+      internalID: 741235693737648811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_77
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 8
+        width: 37
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82c20ece75a57ea70800000000000000
+      internalID: 8856146525930138664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_78
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 8
+        width: 37
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef7e9ccd3e8e67050800000000000000
+      internalID: 5798077635645532158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AllMichaelSprites_79
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 8
+        width: 37
+        height: 24
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e9731f03f4ceaca0800000000000000
+      internalID: -6003644705029260830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelCrawlShoot
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 10
+        width: 39
+        height: 19
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49e147580b19b87a0800000000000000
+      internalID: -6373840660273553772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHeadC3h
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 23
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeef80bea02ab30e0800000000000000
+      internalID: -2289057817811157266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHeadC4h
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 23
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd5920c916d97fb40800000000000000
+      internalID: 5474016914646930907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHeadC5h
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 23
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c7de973fb3a18a90800000000000000
+      internalID: -7313384278205737018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHeadC6h
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 23
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 628c196f44609e2f0800000000000000
+      internalID: -943215753693116378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHeadC7h
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 10
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17c42e73ce061e840800000000000000
+      internalID: 5251585208156834929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHeadC8h
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 10
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d65304291312f6820800000000000000
+      internalID: 2913583980722795885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelAimHeadC9h
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 10
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3c1c5e75e0524f40800000000000000
+      internalID: 5711216224056908860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AGun
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 21
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 406b9926c4b72feb0800000000000000
+      internalID: -4687548694137293308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

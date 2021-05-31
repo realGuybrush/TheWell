@@ -8,7 +8,7 @@ public partial class BasicMovement:MonoBehaviour
     public Vector3 colliderOffset;
     public Vector2 slopeNormalPerp;
     private float slopeDownAngle;
-    private float slopeSideAngle;
+    private float slopeSideAngle = 0f;
     private float lastSlopeAngle;
     public float slopeCheckDistance = 0.1f;
     public float maxSlopeAngle = 60.0f;

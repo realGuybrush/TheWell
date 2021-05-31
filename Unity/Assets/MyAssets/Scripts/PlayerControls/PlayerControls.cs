@@ -4,13 +4,16 @@ public partial class PlayerControls : BasicMovement
 {
     public override void InitValues()
     {
+        SetWorldManager(GameObject.Find("WorldManager")?.GetComponent<WorldManager>());
         base.InitValues();
         InitInventory();
+        SetProjectileIndex(0);
     }
     private void Update()
     {
         UpdatePlacingObject();
         CheckNumbersInput();
+        CheckCursorAngle();
         if (!IsClimbing())
         {
             MovePicker();
@@ -27,7 +30,7 @@ public partial class PlayerControls : BasicMovement
             CheckFlip();
             BasicHandleHold();
             CheckClimbInput();
-            CheckAtkInput();
+            //CheckAtkInput();
             if(!CheckPickUpInput())
                 CheckActionInput();
         }

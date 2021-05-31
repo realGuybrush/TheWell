@@ -156,7 +156,7 @@ public partial class PlayerControls : BasicMovement
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            //BasicAtk1(true, GetAttackType(1), GetBuff(1));
+            Shoot();
         }
 
         if (Input.GetButtonUp("Fire1"))
