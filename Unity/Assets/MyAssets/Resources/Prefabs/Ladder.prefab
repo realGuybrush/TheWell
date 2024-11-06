@@ -100,7 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InventoryImage: {fileID: 0}
-  number: 2
+  type: 2
+  itemHash: 0
+  maxStack: 2
+  amount: 1
 --- !u!114 &5864171616903891209
 MonoBehaviour:
   m_ObjectHideFlags: 0

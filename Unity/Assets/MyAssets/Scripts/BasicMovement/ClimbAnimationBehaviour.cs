@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
-public class PlayerClimb : StateMachineBehaviour
+public class ClimbAnimationBehaviour : StateMachineBehaviour
 {
+    public event Action endClimbing;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
@@ -15,9 +18,8 @@ public class PlayerClimb : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.transform.gameObject.GetComponent<Rigidbody2D>().transform.position += new Vector3(0.5f, 0.5f);
-        animator.transform.gameObject.GetComponent<BasicMovement>().SetKinematic(false);
         animator.SetBool("Climb", false);
+        endClimbing?.Invoke();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here

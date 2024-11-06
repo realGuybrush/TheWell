@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Player
   - 
   - Items
   - LandCheckers
@@ -19,7 +19,7 @@ TagManager:
   - Platforms
   - Picker
   - FallingItem
-  - 
+  - Projectile
   - 
   - 
   - 

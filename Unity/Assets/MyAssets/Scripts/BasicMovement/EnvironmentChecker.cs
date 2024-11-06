@@ -4,54 +4,55 @@ public class EnvironmentChecker
 {
     private LayerMask landLayer;
     public bool landed = true;
-    public bool canJump;
-    private readonly Rigidbody2D thisObject;
-
+    private readonly Transform transform;
     private float lookDir = 1.0f;
     private Vector2 direction;
-    private float distance;
     private Vector3 startPos;
     private Vector3 boxSize;
 
-    public EnvironmentChecker(Rigidbody2D newThisObject, Vector3 StartPos, Vector3 BoxSize, float Distance, Vector2 Direction, LayerMask LandLayer, bool newCanJump = true)
-    {
-        SetCheckerValues(StartPos, BoxSize, Distance, Direction, LandLayer);
-        thisObject = newThisObject;
-        canJump = newCanJump;
-    }
-
-    public void SetCheckerValues(Vector3 StartPos, Vector3 BoxSize, float Distance, Vector2 Direction, LayerMask LandLayer)
+    public EnvironmentChecker(Transform newTransform, Vector3 StartPos, Vector3 BoxSize, Vector2 Direction, LayerMask LandLayer)
     {
         startPos = StartPos;
         boxSize = BoxSize;
-        distance = Distance;
         direction = Direction;
         landLayer = LandLayer;
+        transform = newTransform;
     }
     public bool IsLanded()
     {
+        return landed;
+    }
+    public void CheckForCollision()
+    {
         AdjustLookDir();
         Visualize();
-        var rot = GlobalFuncs.AroundZero(thisObject.transform.eulerAngles.y) ? 1.0f:-1.0f;
-        Vector2 startWithRotation = new Vector2(thisObject.transform.position.x + startPos.x*rot*direction.x, thisObject.transform.position.y + startPos.y);
-        return Physics2D.BoxCast(startWithRotation, boxSize, 0.0f, direction, 0.01f, landLayer);
-    }
-    public void Land()
-    {
-        landed = true;
+        float rot = GlobalFuncs.AroundZero(transform.eulerAngles.y) ? 1.0f:-1.0f;
+        Vector2 startWithRotation = new Vector2(transform.position.x + startPos.x*rot*direction.x, transform.position.y + startPos.y);
+        landed =  Physics2D.BoxCast(startWithRotation, boxSize, 0.0f, direction, 0.01f, landLayer);
     }
 
-    public void AdjustLookDir()
+    private void AdjustLookDir()
     {
-        lookDir = (GlobalFuncs.AroundZero(thisObject.transform.eulerAngles.y) ? 1.0f : -1.0f);
+        lookDir = (GlobalFuncs.AroundZero(transform.transform.eulerAngles.y) ? 1.0f : -1.0f);
     }
-    public void Visualize()
+    private void Visualize()
     {
-        var rot = GlobalFuncs.AroundZero(thisObject.transform.eulerAngles.y) ? 1.0f : -1.0f;
+        float rot = GlobalFuncs.AroundZero(transform.transform.eulerAngles.y) ? 1.0f : -1.0f;
         Vector3 startWithRotation = new Vector2(startPos.x * rot, startPos.y);
-        Debug.DrawRay(thisObject.transform.position + startWithRotation - new Vector3(lookDir * boxSize.x / 2, -boxSize.y/2), lookDir * Vector2.right*boxSize.x, Color.green);
-        Debug.DrawRay(thisObject.transform.position + startWithRotation - new Vector3(lookDir * boxSize.x / 2, -boxSize.y/2), Vector2.down*boxSize.y, Color.green);
-        Debug.DrawRay(thisObject.transform.position + startWithRotation + new Vector3(lookDir * boxSize.x / 2, -boxSize.y/2), lookDir * Vector2.left*boxSize.x, Color.green);
-        Debug.DrawRay(thisObject.transform.position + startWithRotation + new Vector3(lookDir * boxSize.x / 2, -boxSize.y/2), Vector2.up*boxSize.y, Color.green);
+        Debug.DrawRay(transform.position + startWithRotation - new Vector3(lookDir * boxSize.x / 2, -boxSize.y/2), lookDir * Vector2.right*boxSize.x, Color.green);
+        Debug.DrawRay(transform.position + startWithRotation - new Vector3(lookDir * boxSize.x / 2, -boxSize.y/2), Vector2.down*boxSize.y, Color.green);
+        Debug.DrawRay(transform.position + startWithRotation + new Vector3(lookDir * boxSize.x / 2, -boxSize.y/2), lookDir * Vector2.left*boxSize.x, Color.green);
+        Debug.DrawRay(transform.position + startWithRotation + new Vector3(lookDir * boxSize.x / 2, -boxSize.y/2), Vector2.up*boxSize.y, Color.green);
+    }
+
+    public void MoveYStart(float deltaY)
+    {
+        startPos = new Vector3(startPos.x, startPos.y + deltaY, startPos.z);
+    }
+
+    public float YStart
+    {
+        get => startPos.y;
+        set { startPos = new Vector3(startPos.x, value, startPos.z); }
     }
 }

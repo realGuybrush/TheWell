@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6437444786357513466}
   - component: {fileID: 6489123743060216396}
   - component: {fileID: 3619528202415652728}
-  m_Layer: 0
+  - component: {fileID: 4660879745497675481}
+  m_Layer: 8
   m_Name: AGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,5 +124,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a35515f200e9049b79c0d7a984ba46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InventoryImage: {fileID: 0}
-  number: 1
+  InventoryImage: {fileID: -4687548694137293308, guid: 258b5a59dcd7d0448aee0bb69c58b924,
+    type: 3}
+  type: 1
+  itemHash: 1
+  maxStack: 100
+  amount: 1
+--- !u!114 &4660879745497675481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379888686890199791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe4d12f879d432cbec0333bd8093700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 5248389076071066054, guid: d48d1e7c1e1f29845b7159d3ecc39bc8,
+    type: 3}

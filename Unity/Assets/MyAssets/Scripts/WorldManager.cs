@@ -1,28 +1,31 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WorldManager : MonoBehaviour
 {
-    public Camera mainCamera;
-    public List<GameObject> projectilePrefabs;
-    // Start is called before the first frame update
-    void Start()
-    {
+    public static WorldManager Instance;
 
+    [SerializeField]
+    private Camera mainCamera;
+
+    [SerializeField]
+    private ControlKeys controlKeys = new ControlKeys();
+
+    [SerializeField]
+    private List<Item> GiantItemList = new List<Item>();
+
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        GlobalFuncs.InitCamera();
     }
 
-    // Update is called once per frame
-    void Update()
+    public Item GetItemByHash(int hash)
     {
-        mainCamera = Camera.main;
+        return Instantiate(GiantItemList[hash]);
     }
 
-    public void Shoot(GameObject ignore, Vector3 projectileStartPos, Vector3 projectileDirection, int projectileIndex)
-    {
-        if (projectileIndex < projectilePrefabs.Count)
-        {
-            GameObject.Instantiate(projectilePrefabs[projectileIndex], projectileStartPos, new Quaternion()).GetComponent<Projectile>().Init(ignore, projectileDirection);;
-        }
-    }
+    public ControlKeys AllControlKeys => controlKeys;
 }

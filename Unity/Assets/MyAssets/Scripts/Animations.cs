@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class Animations
 {
-    public Animator a;
+    private Animator a;
+
+    public void InitAnimator(Animator animator)
+    {
+        a = animator;
+    }
 
     public void SetVar(string name, bool value)
     {
