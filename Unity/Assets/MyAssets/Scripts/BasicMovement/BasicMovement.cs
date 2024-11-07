@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MyAssets.Scripts.Inventory_Items;
 using UnityEngine;
 
 [Serializable]
@@ -85,6 +86,19 @@ public class BasicMovement : EnvInteractor {
 
     private List<Item> pickableItems = new List<Item>();
 
+    [SerializeField]
+    private Transform weaponHolder;
+    private Weapon spawnedWeapon;
+    [SerializeField]
+    private float weaponDespawnTime = 5f;
+    private float weaponDespawnTimer;
+    protected Vector3 targetPoint;
+    [SerializeField]
+    private Transform defaultTargetPoint;
+
+    [SerializeField]
+    private Transform shoulderJointPoint;
+
     protected override void Awaking()
     {
         base.Awaking();
@@ -104,6 +118,7 @@ public class BasicMovement : EnvInteractor {
             StayOnSlope();
         UpdateHold();
         SlowDown();
+        UpdateWeaponTimer();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -418,12 +433,6 @@ public class BasicMovement : EnvInteractor {
 
     public bool IsFallingFromPlatform => fallingFromPlatform;
 
-    ///////ACTIONS///////
-
-    public void ActWithChosenItem()
-    {
-    }
-
     ///////PICKING UP///////
 
     public void IncludePickable(Item newP)
@@ -475,23 +484,115 @@ public class BasicMovement : EnvInteractor {
         return -1;
     }
 
+    ///////ACTIONS AND ATTACKS///////
 
-//even less refactored code ahead
-
-    public bool IsAlive()
+    public void ActWithChosenItem()
     {
-        return health.health > 0;
     }
 
-    public float GetDamaged(float incomingDamage) {
+    public void AttackWithWhateverType(Vector2 center, Vector2 target)
+    {
+        if(inventory.SelectedRanged.Hash != -1)
+            RangedAtk(center, target);
+        else
+            if(inventory.SelectedMelee.Hash != -1)
+                MeleeAtk(center, target);
+    }
+
+    public void MeleeAtk(Vector2 center, Vector2 target)
+    {
+        if (spawnedWeapon == null || spawnedWeapon.itemType == ItemType.rangedWeapon)
+        {
+            Item trySpawnWeapon = inventory.SelectedMelee;
+            if (trySpawnWeapon == null) return;
+            spawnedWeapon = trySpawnWeapon.GetComponent<Weapon>();
+            spawnedWeapon.transform.parent = weaponHolder;
+            spawnedWeapon.transform.localPosition = Vector3.zero;
+        }
+        weaponDespawnTimer = weaponDespawnTime;
+        spawnedWeapon.Attack(gameObject, spawnedWeapon.transform.position, GetAttackingDirection(center, target));
+        animations.SetVar("Melee", true);
+    }
+
+    public void RangedAtk(Vector2 center, Vector2 target)
+    {
+        if (spawnedWeapon == null || spawnedWeapon.itemType == ItemType.meleeWeapon)
+        {
+            Item trySpawnWeapon = inventory.SelectedRanged;
+            if (trySpawnWeapon == null) return;
+            spawnedWeapon = trySpawnWeapon.GetComponent<Weapon>();
+        }
+        //bullets in this game are in weapon amount, change for other games, if you like
+        if (spawnedWeapon.Amount > 0)
+        {
+            animations.SetVar("Ranged", true);
+            animations.SetVar("Aim", GetMouseAngleWithFlip(shoulderJointPoint.position));
+            weaponDespawnTimer = weaponDespawnTime;
+            spawnedWeapon.transform.parent = weaponHolder;
+            spawnedWeapon.transform.localPosition = Vector3.zero;
+            if(!FacingRight)
+                spawnedWeapon.transform.Rotate(rotateAroundY);
+            StartCoroutine("ShootingCoroutine", GetAttackingDirection(center, target));
+            inventory.RemoveOneBullet();
+        }
+    }
+
+    private IEnumerator ShootingCoroutine(Vector3 attackingDirection)
+    {
+        yield return new WaitForSeconds(0.05f);
+        spawnedWeapon.Attack(gameObject, spawnedWeapon.transform.position, attackingDirection);
+    }
+
+    private Vector3 GetAttackingDirection(Vector2 centerPos, Vector2 targetPos)
+    {
+        return new Vector3(targetPos.x - centerPos.x, targetPos.y - centerPos.y);
+    }
+
+    private void UpdateWeaponTimer()
+    {
+        if (weaponDespawnTimer > 0)
+        {
+            weaponDespawnTimer -= Time.deltaTime;
+            animations.SetVar("Aim", GetMouseAngleWithFlip(shoulderJointPoint.position));
+            if (weaponDespawnTimer <= 0)
+            {
+                Destroy(spawnedWeapon.gameObject);
+                spawnedWeapon = null;
+                animations.SetVar("Melee", false);
+                animations.SetVar("Ranged", false);
+            }
+        }
+    }
+
+    public float GetMouseAngleWithFlip(Vector2 center)
+    {
+        float returnAngle = GetMouseAngleRespToCenter(center);
+        if (FacingRightFloat == -1)
+            returnAngle = 180.0f - returnAngle;
+        if (returnAngle < 0)
+            returnAngle += 360.0f;
+        return returnAngle;
+    }
+
+    public float GetMouseAngleRespToCenter(Vector2 center)
+    {
+        float distance = GlobalFuncs.Distance2D(center, targetPoint);
+        float lowerPart = (targetPoint.y - center.y) < 0.0f?1.0f:0.0f;
+        float arccos = Mathf.Rad2Deg* Mathf.Acos((targetPoint.x - center.x) / distance);
+        Debug.Log(arccos);
+        return (targetPoint.y - center.y) < 0.0f ? 180.0f + (180.0f - arccos):arccos;
+    }
+
+    ///////HEALTH///////
+
+    public float GetDamaged(float incomingDamage)
+    {
         return health.GetDamage(incomingDamage);
     }
 
+    public bool IsAlive => health.health > 0;
 
-    public void BasicAtk(bool atk, string attackType)
-    {
-        animations.SetVar(attackType, atk);
-    }
+//even less refactored code ahead
 
     public void BasicSetUp(bool value)
     {

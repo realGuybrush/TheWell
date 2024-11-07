@@ -34,11 +34,11 @@ public static class GlobalFuncs
         return Mathf.Abs(a - b);
     }
 
-    public static float Distance(Vector3 pos1, Vector3 pos2)
+    public static float Distance2D(Vector2 pos1, Vector2 pos2)
     {
         return Mathf.Sqrt((pos1.x - pos2.x) * (pos1.x - pos2.x) +
-                          (pos1.y - pos2.y) * (pos1.y - pos2.y) +
-                          (pos1.z - pos2.z) * (pos1.z - pos2.z));
+                          (pos1.y - pos2.y) * (pos1.y - pos2.y));// +
+                          //(pos1.z - pos2.z) * (pos1.z - pos2.z)
     }
 
     ///////COLOR STUFF///////
@@ -86,31 +86,10 @@ public static class GlobalFuncs
         if (camera == null)
             return new Vector2();
         Vector2 pos = camera.ScreenToWorldPoint(Input.mousePosition);
-        float distance = Distance(center, pos);
+        float distance = Distance2D(center, pos);
         if (distance < range)
             return pos;
         Vector2 newPos = new Vector2(center.x - (center.x - pos.x) / (distance / range), center.y - (center.y - pos.y) / (distance / range));
         return newPos;
-    }
-
-    public static float GetMouseAngleRespToCenter(Vector2 center)
-    {
-        if (camera == null)
-            return 0;
-        Vector2 pos = camera.ScreenToWorldPoint(Input.mousePosition);
-        float distance = Distance(center, pos);
-        float lowerPart = (pos.y - center.y) < 0.0f?1.0f:0.0f;
-        float arccos = Mathf.Rad2Deg* Mathf.Acos((pos.x - center.x) / distance);
-        return (pos.y - center.y) < 0.0f ? 180.0f + (180.0f - arccos):arccos;
-    }
-
-    public static float GetMouseAngleWithFlip(Vector2 center)
-    {
-        float returnAngle = GetMouseAngleRespToCenter(center);
-        //if (!facingRight)
-        //    returnAngle = 180.0f - returnAngle;
-        if (returnAngle < 0)
-            returnAngle += 360.0f;
-        return returnAngle;
     }
 }

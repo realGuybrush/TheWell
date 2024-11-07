@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 
-public class ShootingWeapon : MonoBehaviour {
+public class Weapon : Item {
 
     [SerializeField]
     private Projectile projectilePrefab;
 
-    public void Shoot(GameObject ignore, Vector3 projectileStartPos, Vector3 projectileDirection)
+    public virtual void Attack(GameObject ignore, Vector3 projectileStartPos, Vector3 projectileDirection)
     {
         Projectile projectile = Instantiate(projectilePrefab,
             projectileStartPos, Quaternion.identity);
         projectile.Init(ignore, projectileDirection);
-        Destroy(projectile, projectile.lifeTime);
+        Amount--;
+        Destroy(projectile, projectile.LifeTime);
     }
 }

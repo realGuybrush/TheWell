@@ -21,19 +21,18 @@ public class PlayerControls : BasicMovement
     protected override void Updating()
     {
         base.Updating();
+        FollowCursor();
         //UpdatePlacingObject();
         CheckNumbersInput();
-        CheckCursorAngle();
         PlayerCheckMove();
         //if (!IsClimbing())
         {
             CheckRotateInput();
             CheckScrollInput();
-            PlayerCheckMove();
             CheckFallPlatformInput();
             if (!IsFallingFromPlatform && !IsClimbing)
                 CheckJumpInput();
-            //CheckAtkInput();
+            CheckAtkInput();
             CheckActionInput();
         }
         CheckEsc();
@@ -86,6 +85,11 @@ public class PlayerControls : BasicMovement
         }
     }
 
+    private void FollowCursor()
+    {
+        targetPoint = myCamera.ScreenToWorldPoint(Input.mousePosition);
+    }
+
 
     private void CheckRotateInput()
     {
@@ -121,19 +125,13 @@ public class PlayerControls : BasicMovement
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+            MeleeAtk(transform.position, targetPoint);
         }
 
-        if (Input.GetButtonUp("Fire1"))
+        if (Input.GetButtonUp("Fire2"))
         {
-            //BasicAtk1(false, GetAttackType(1), GetBuff(1));
+            RangedAtk(transform.position, targetPoint);
         }
-    }
-
-    public void StopAttacking()
-    {
-        //BasicAtk1(false, GetAttackType(1), GetBuff(1));
-        /*fix anim.SetVar("Moving", false);*/
     }
 
     public void CheckDirections()
@@ -204,11 +202,6 @@ public class PlayerControls : BasicMovement
         {
 
         }
-    }
-
-    public void CheckCursorAngle()
-    {
-        //anim.SetVar("Aim", GetMouseAngleWithFlip(GetCenterOfShootPartRotation()));
     }
 
     protected void Shoot()

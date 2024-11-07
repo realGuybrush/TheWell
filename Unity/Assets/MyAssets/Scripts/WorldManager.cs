@@ -6,9 +6,6 @@ public class WorldManager : MonoBehaviour
     public static WorldManager Instance;
 
     [SerializeField]
-    private Camera mainCamera;
-
-    [SerializeField]
     private ControlKeys controlKeys = new ControlKeys();
 
     [SerializeField]
@@ -24,6 +21,7 @@ public class WorldManager : MonoBehaviour
 
     public Item GetItemByHash(int hash)
     {
+        if (hash == -1) return null;
         return Instantiate(GiantItemList[hash]);
     }
 

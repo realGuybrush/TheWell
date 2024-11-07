@@ -6,6 +6,9 @@ public class CameraMovement : MonoBehaviour
     private float smoothXOffset, smoothYOffset, smoothTimer, smoothTimerDelay, smoothMovementTime;
 
     [SerializeField]
+    private Camera myCamera;
+
+    [SerializeField]
     private Transform player;
 
     private void Start()
@@ -37,5 +40,10 @@ public class CameraMovement : MonoBehaviour
         smoothTimerDelay = delay;
         smoothMovementTime = time - delay;
         smoothTimer = smoothMovementTime;
+    }
+
+    public Vector3 ScreenToWorldPoint(Vector3 position)
+    {
+        return myCamera.ScreenToWorldPoint(position);
     }
 }

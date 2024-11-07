@@ -102,7 +102,7 @@ MonoBehaviour:
   InventoryImage: {fileID: 0}
   type: 2
   itemHash: 0
-  maxStack: 2
+  maxStack: 100
   amount: 1
 --- !u!114 &5864171616903891209
 MonoBehaviour:

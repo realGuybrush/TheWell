@@ -13,7 +13,7 @@ public class EnvInteractor : MonoBehaviour
     private LayerMask whatIsGround;
 
     private Vector3 ledgeStart, ledgeSize, wallStart, wallSize, stepStart, stepSize, landStart, landSize;
-    private Vector3 rotateAroundY = new Vector3(0.0f, 180.0f, 0.0f);
+    protected Vector3 rotateAroundY = new Vector3(0.0f, 180.0f, 0.0f);
 
     [SerializeField]
     private bool facingRight = true;
@@ -153,8 +153,8 @@ public class EnvInteractor : MonoBehaviour
 
     public bool DirectionMatchesFacing(float movingDirection)
     {
-        return !facingRight && movingDirection < 0 ||
-               facingRight && movingDirection > 0;
+        return !facingRight && movingDirection <= 0 ||
+               facingRight && movingDirection >= 0;
     }
 
     public Vector3 CalculateHangingPosY()
@@ -169,6 +169,8 @@ public class EnvInteractor : MonoBehaviour
         ledge.YStart = defaultY;
         return new Vector3(0f, deltaY, 0f);
     }
+    public bool FacingRight => facingRight;
+
     public float FacingRightFloat => facingRight?1f:-1f;
 
     public bool IsAirborne => isAirborne;
