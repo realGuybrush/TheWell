@@ -501,6 +501,7 @@ public class BasicMovement : EnvInteractor {
 
     public void MeleeAtk(Vector2 center, Vector2 target)
     {
+        if (crawling || holding || climbing || !IsLanded()) return;
         if (spawnedWeapon == null || spawnedWeapon.itemType == ItemType.rangedWeapon)
         {
             Item trySpawnWeapon = inventory.SelectedMelee;
@@ -516,11 +517,14 @@ public class BasicMovement : EnvInteractor {
 
     public void RangedAtk(Vector2 center, Vector2 target)
     {
+        if (crawling || holding || climbing || !IsLanded()) return;
         if (spawnedWeapon == null || spawnedWeapon.itemType == ItemType.meleeWeapon)
         {
             Item trySpawnWeapon = inventory.SelectedRanged;
             if (trySpawnWeapon == null) return;
             spawnedWeapon = trySpawnWeapon.GetComponent<Weapon>();
+            if(!FacingRight)
+                spawnedWeapon.transform.Rotate(rotateAroundY);
         }
         //bullets in this game are in weapon amount, change for other games, if you like
         if (spawnedWeapon.Amount > 0)
@@ -530,8 +534,6 @@ public class BasicMovement : EnvInteractor {
             weaponDespawnTimer = weaponDespawnTime;
             spawnedWeapon.transform.parent = weaponHolder;
             spawnedWeapon.transform.localPosition = Vector3.zero;
-            if(!FacingRight)
-                spawnedWeapon.transform.Rotate(rotateAroundY);
             StartCoroutine("ShootingCoroutine", GetAttackingDirection(center, target));
             inventory.RemoveOneBullet();
         }
@@ -554,8 +556,9 @@ public class BasicMovement : EnvInteractor {
         {
             weaponDespawnTimer -= Time.deltaTime;
             animations.SetVar("Aim", GetMouseAngleWithFlip(shoulderJointPoint.position));
-            if (weaponDespawnTimer <= 0)
+            if (weaponDespawnTimer <= 0 || crawling || holding || climbing || !IsLanded())
             {
+                weaponDespawnTimer = 0;
                 Destroy(spawnedWeapon.gameObject);
                 spawnedWeapon = null;
                 animations.SetVar("Melee", false);
@@ -592,27 +595,8 @@ public class BasicMovement : EnvInteractor {
 
     public bool IsAlive => health.health > 0;
 
-//even less refactored code ahead
 
-    public void BasicSetUp(bool value)
-    {
-        animations.SetVar("Up", value);
-    }
-
-    public void BasicSetDown(bool value)
-    {
-        animations.SetVar("Down", value);
-    }
-
-    public void BasicSetRight(bool value)
-    {
-        animations.SetVar("Right", value);
-    }
-
-    public void BasicSetLeft(bool value)
-    {
-        animations.SetVar("Left", value);
-    }
+    ///////SAVE&LOAD///////
 
     public void BasicLoadData(SaveData saveData)
     {
