@@ -1,0 +1,1353 @@
+fileFormatVersion: 2
+guid: 76f40da2b372c58409c137688b37a0a3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4173853745989109217
+    second: GlobalTiles_0
+  - first:
+      213: -6361197842979138439
+    second: GlobalTiles_1
+  - first:
+      213: -3433810675534002784
+    second: GlobalTiles_2
+  - first:
+      213: -2657529041163725226
+    second: GlobalTiles_3
+  - first:
+      213: -1511927791366359344
+    second: GlobalTiles_4
+  - first:
+      213: 8886420918657824877
+    second: GlobalTiles_5
+  - first:
+      213: -8084766845712796468
+    second: GlobalTiles_6
+  - first:
+      213: 6562576742330267065
+    second: GlobalTiles_7
+  - first:
+      213: 8538766669928095125
+    second: GlobalTiles_8
+  - first:
+      213: -4743495288735074290
+    second: GlobalTiles_9
+  - first:
+      213: -5545728386351779212
+    second: GlobalTiles_10
+  - first:
+      213: -2361889931466813878
+    second: GlobalTiles_11
+  - first:
+      213: 333692575386524015
+    second: GlobalTiles_12
+  - first:
+      213: 7045861541565987714
+    second: GlobalTiles_13
+  - first:
+      213: -3470602292773593178
+    second: GlobalTiles_14
+  - first:
+      213: 5439304634128687105
+    second: GlobalTiles_15
+  - first:
+      213: 9151391057229883447
+    second: GlobalTiles_16
+  - first:
+      213: -832389699079886997
+    second: GlobalTiles_17
+  - first:
+      213: -1610273009453389545
+    second: GlobalTiles_18
+  - first:
+      213: 2755784427512575021
+    second: GlobalTiles_19
+  - first:
+      213: 455034607506476855
+    second: GlobalTiles_20
+  - first:
+      213: -6199144510532855269
+    second: GlobalTiles_21
+  - first:
+      213: -5105456604380150726
+    second: GlobalTiles_22
+  - first:
+      213: -4940249763208647701
+    second: GlobalTiles_23
+  - first:
+      213: -1237839717856033566
+    second: GlobalTiles_24
+  - first:
+      213: 1381094448924768817
+    second: GlobalTiles_25
+  - first:
+      213: -1059021169937040621
+    second: GlobalTiles_26
+  - first:
+      213: -5631197647028909103
+    second: GlobalTiles_27
+  - first:
+      213: -1472776288679681302
+    second: GlobalTiles_28
+  - first:
+      213: -7338443545561118969
+    second: GlobalTiles_29
+  - first:
+      213: -5050507127129897437
+    second: GlobalTiles_30
+  - first:
+      213: -8511098353035216940
+    second: GlobalTiles_31
+  - first:
+      213: -7662393179548334910
+    second: GlobalTiles_32
+  - first:
+      213: -2979914460304721855
+    second: GlobalTiles_33
+  - first:
+      213: -2143107306993470123
+    second: GlobalTiles_34
+  - first:
+      213: 7740038167719712805
+    second: GlobalTiles_35
+  - first:
+      213: -915599801142210655
+    second: GlobalTiles_36
+  - first:
+      213: 1007111445059190502
+    second: GlobalTiles_37
+  - first:
+      213: 3288855280423934282
+    second: GlobalTiles_38
+  - first:
+      213: 3610317211892865601
+    second: GlobalTiles_39
+  - first:
+      213: 1802504758928047526
+    second: GlobalTiles_40
+  - first:
+      213: 194278828576635335
+    second: GlobalTiles_41
+  - first:
+      213: -2931695629989054854
+    second: GlobalTiles_42
+  - first:
+      213: 4837025246414548198
+    second: GlobalTiles_43
+  - first:
+      213: 5654928484831914709
+    second: GlobalTiles_44
+  - first:
+      213: 6982918454463527618
+    second: GlobalTiles_45
+  - first:
+      213: -492947143951455392
+    second: GlobalTiles_46
+  - first:
+      213: 260771875054360657
+    second: GlobalTiles_47
+  - first:
+      213: -9091045352020739136
+    second: GlobalTiles_48
+  - first:
+      213: -7944261802720971749
+    second: GlobalTiles_49
+  - first:
+      213: 6551135355743509041
+    second: GlobalTiles_50
+  - first:
+      213: -1009057224416910606
+    second: GlobalTiles_51
+  - first:
+      213: 4570443016844610907
+    second: GlobalTiles_52
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 200
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GlobalTiles_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 848
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1ab2edc12e7316c0800000000000000
+      internalID: -4173853745989109217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_1
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 848
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9745f3fc34c78b7a0800000000000000
+      internalID: -6361197842979138439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_2
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 848
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a50ada3267a850d0800000000000000
+      internalID: -3433810675534002784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_3
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 848
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 656d621da6f8e1bd0800000000000000
+      internalID: -2657529041163725226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_4
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 848
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d6319d2fad840be0800000000000000
+      internalID: -1511927791366359344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_5
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 848
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6833354eb8e25b70800000000000000
+      internalID: 8886420918657824877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_6
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 848
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc4fe6583632dcf80800000000000000
+      internalID: -8084766845712796468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_7
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 848
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b5f5d1f6c4f21b50800000000000000
+      internalID: 6562576742330267065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_8
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 848
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59d5205cb0bcf7670800000000000000
+      internalID: 8538766669928095125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_9
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 848
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e08f431ca28bb2eb0800000000000000
+      internalID: -4743495288735074290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_10
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 848
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 472b3b64a6d9903b0800000000000000
+      internalID: -5545728386351779212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_11
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 848
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4e49540f91e83fd0800000000000000
+      internalID: -2361889931466813878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_12
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 848
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f69591c11a381a400800000000000000
+      internalID: 333692575386524015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_13
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 848
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28b70a1ddbde7c160800000000000000
+      internalID: 7045861541565987714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 798
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6afd29e4a91f5dfc0800000000000000
+      internalID: -3470602292773593178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_15
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 798
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 100606efeba4c7b40800000000000000
+      internalID: 5439304634128687105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_17
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 798
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6726a79af1c274f0800000000000000
+      internalID: -832389699079886997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_18
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 798
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 719a120ca3927a9e0800000000000000
+      internalID: -1610273009453389545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_19
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 798
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d24b07706538e3620800000000000000
+      internalID: 2755784427512575021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_20
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 798
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73fceec809b905600800000000000000
+      internalID: 455034607506476855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_21
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 798
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1a506289e638f9a0800000000000000
+      internalID: -6199144510532855269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_22
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 798
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a34cfb7a446c529b0800000000000000
+      internalID: -5105456604380150726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_23
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 798
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bebad32d305b07bb0800000000000000
+      internalID: -4940249763208647701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_24
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 798
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e44250c55f42dee0800000000000000
+      internalID: -1237839717856033566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_25
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 798
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13abc6d7512aa2310800000000000000
+      internalID: 1381094448924768817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_26
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 798
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31bb84c5bd99d41f0800000000000000
+      internalID: -1059021169937040621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_27
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 798
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1db83dc4397f9d1b0800000000000000
+      internalID: -5631197647028909103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 748
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae221afb4c5af8be0800000000000000
+      internalID: -1472776288679681302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_29
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 748
+        width: 100
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 707429ed97c982a90800000000000000
+      internalID: -7338443545561118969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_31
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 748
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d77ce2442182e980800000000000000
+      internalID: -8511098353035216940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_32
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 748
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c445a31006b9a590800000000000000
+      internalID: -7662393179548334910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_33
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 748
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 148bc7c269735a6d0800000000000000
+      internalID: -2979914460304721855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_34
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 748
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5553c1b42472242e0800000000000000
+      internalID: -2143107306993470123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_35
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 748
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52816ee74b32a6b60800000000000000
+      internalID: 7740038167719712805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_36
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 748
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1af0088f4d22b43f0800000000000000
+      internalID: -915599801142210655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_37
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 748
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6eebbfbf58af9fd00800000000000000
+      internalID: 1007111445059190502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_38
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 748
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a491653d37c54ad20800000000000000
+      internalID: 3288855280423934282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_39
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 748
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14a5a5d306c6a1230800000000000000
+      internalID: 3610317211892865601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_40
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 748
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ad7bd53788c30910800000000000000
+      internalID: 1802504758928047526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_41
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 748
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c970b4b09732b200800000000000000
+      internalID: 194278828576635335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 698
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a76ffe87b568057d0800000000000000
+      internalID: -2931695629989054854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_43
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 698
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6eca22e75d0902340800000000000000
+      internalID: 4837025246414548198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_44
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 698
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dae4a0fe775a7e40800000000000000
+      internalID: 5654928484831914709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_45
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 698
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ca71d5565f48e060800000000000000
+      internalID: 6982918454463527618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_46
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 698
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06beabf2f23b829f0800000000000000
+      internalID: -492947143951455392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_47
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 698
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 158170483a27e9300800000000000000
+      internalID: 260771875054360657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_48
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 698
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cb76d33b6e16d180800000000000000
+      internalID: -9091045352020739136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_49
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 698
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b14bc1e1bff40c190800000000000000
+      internalID: -7944261802720971749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_50
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 698
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13a189a85ee4aea50800000000000000
+      internalID: 6551135355743509041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GlobalTiles_51
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 698
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f2a694fccb1ff1f0800000000000000
+      internalID: -1009057224416910606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
