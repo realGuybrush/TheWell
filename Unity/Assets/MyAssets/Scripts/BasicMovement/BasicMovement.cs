@@ -232,9 +232,13 @@ public class BasicMovement : EnvInteractor {
             if(slowDownTimer <= 0)
             {
                 animations.SetVar("Moving", false);
-                if(onThisManyClimbableObjects > 0 || IsAirborne)
+                //if(onThisManyClimbableObjects > 0 || IsAirborne)
                     thisObject.velocity = Vector2.zero;
             }
+        }
+        else{
+            if(IsLanded())
+                thisObject.velocity = Vector2.zero;
         }
     }
 
