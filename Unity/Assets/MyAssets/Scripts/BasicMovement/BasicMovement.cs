@@ -82,7 +82,7 @@ public class BasicMovement : EnvInteractor {
 
     private bool fallingFromPlatform;
     [SerializeField]
-    private float fallingTime = 1f;
+    private float fallingTime = 0.5f;
 
     private List<Item> pickableItems = new List<Item>();
 

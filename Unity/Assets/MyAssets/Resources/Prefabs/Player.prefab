@@ -197,7 +197,7 @@ MonoBehaviour:
   climbingAnimationDelay: 0.6
   holdingMaximumTime: 10000
   climbableClimbingYModifier: 0.2
-  fallingTime: 1
+  fallingTime: 0.5
   weaponHolder: {fileID: 3169668752744956039}
   weaponDespawnTime: 5
   defaultTargetPoint: {fileID: 5527556751628298475}
