@@ -33,6 +33,14 @@ public static class GlobalFuncs
     {
         return Mathf.Abs(a - b);
     }
+    public static int Sign(int a)
+    {
+        return a < 0 ? -1 : 1;
+    }
+    public static float Sign(float a)
+    {
+        return a < 0.0f ? -1.0f : 1.0f;
+    }
 
     public static float Distance2D(Vector2 pos1, Vector2 pos2)
     {
