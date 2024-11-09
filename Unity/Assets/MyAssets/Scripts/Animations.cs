@@ -52,4 +52,16 @@ public class Animations
         {
         }
     }
+
+    public bool GetVar(string name)
+    {
+        try
+        {
+            return a.GetBool(name);
+        }
+        catch
+        {
+            return false;
+        }
+    }
 }

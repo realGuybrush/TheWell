@@ -269,6 +269,12 @@ TextureImporter:
   - first:
       213: -4687548694137293308
     second: AGun
+  - first:
+      213: 118071614978748947
+    second: MichaelClimbCrawl
+  - first:
+      213: 9039775156361510924
+    second: MichaelClimbCrawl1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -2222,6 +2228,48 @@ TextureImporter:
       bones: []
       spriteID: 406b9926c4b72feb0800000000000000
       internalID: -4687548694137293308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelClimbCrawl
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 145
+        width: 33
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3127ddc128973a100800000000000000
+      internalID: 118071614978748947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MichaelClimbCrawl1
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 137
+        width: 36
+        height: 64
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0044542c9bb37d70800000000000000
+      internalID: 9039775156361510924
       vertices: []
       indices: 
       edges: []

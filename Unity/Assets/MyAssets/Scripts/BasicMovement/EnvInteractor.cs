@@ -12,7 +12,8 @@ public class EnvInteractor : MonoBehaviour
     [SerializeField]
     private LayerMask whatIsGround;
 
-    private Vector3 ledgeStart, ledgeSize, wallStart, wallSize, stepStart, stepSize, landStart, landSize;
+    private Vector3 ledgeStart, ledgeSize, wallStart, wallSize, stepStart, stepSize, landStart, landSize, upperStart, upperSize;
+    public float magicNumber1 = 10f, magicNumber2 = 0.2f, magicNumber3 = 1.3f;
     protected Vector3 rotateAroundY = new Vector3(0.0f, 180.0f, 0.0f);
 
     [SerializeField]
@@ -28,7 +29,7 @@ public class EnvInteractor : MonoBehaviour
 
     public event Action OnLanding = delegate { };
 
-    private EnvironmentChecker land, ledge, step, wall;
+    private EnvironmentChecker land, ledge, step, wall, upperPassage;
 
     private void Awake() {
         Awaking();
@@ -64,6 +65,7 @@ public class EnvInteractor : MonoBehaviour
         SetStepChecker(size, center, extents);
         SetWallChecker(size, center, extents);
         SetLedgeChecker(size, center, extents);
+        SetUpperPassageChecker(size, center, extents);
     }
 
     //todo: get rid of magic numbers
@@ -91,13 +93,20 @@ public class EnvInteractor : MonoBehaviour
         ledgeStart = new Vector2(center.x + extents.x + ledgeSize.x / 2, center.y + extents.y * 0.9f);
         ledge = new EnvironmentChecker(thisObject.transform, ledgeStart, ledgeSize, facingRight ? Vector2.right : Vector2.left, landLayer);
     }
+    private void SetUpperPassageChecker(Vector2 size, Vector2 center, Vector2 extents)
+    {
+        upperSize = new Vector2(size.y / 5.0f, size.y*0.2f);
+        upperStart = new Vector2(center.x + extents.x + upperSize.x / 2, center.y + extents.y * 0.3f);
+        upperPassage = new EnvironmentChecker(thisObject.transform, upperStart, upperSize, facingRight ? Vector2.right : Vector2.left, landLayer);
+    }
 
-    public void ProcessEnvCheckersCollisions()
+    protected void ProcessEnvCheckersCollisions()
     {
         land.CheckForCollision();
         ledge.CheckForCollision();
         wall.CheckForCollision();
         step.CheckForCollision();
+        upperPassage.CheckForCollision();
         if (land.landed && isAirborne)
         {
             isAirborne = false;
@@ -106,43 +115,62 @@ public class EnvInteractor : MonoBehaviour
         }
     }
 
-    public void SetKinematic(bool val)
+    protected void SetKinematic(bool val)
     {
         thisObject.isKinematic = val;
     }
 
-    public bool IsItPlatform(Collision2D collider)
+    protected bool IsItPlatform(Collision2D collider)
     {
         return (platformLayer & (1 << collider.gameObject.layer)) != 0 ;
     }
 
-    public bool IsAgainstLedge()
+    protected bool IsAgainstLedge()
     {
         return !ledge.IsLanded() && wall.IsLanded();
     }
 
-    public bool IsOnLedge()
+    protected bool IsOnLedge()
     {
         return ledge.IsLanded() && wall.IsLanded();
     }
 
-    public bool IsAgainstStep()
+    protected bool CanClimbInStanding()
+    {
+        upperPassage.YStart += thisCollider.bounds.size.y;
+        upperPassage.CheckForCollision();
+        bool canQue = !upperPassage.landed;
+        upperPassage.YStart -= thisCollider.bounds.size.y;
+        return canQue;
+    }
+
+    protected bool CanClimbInCrawling()
+    {
+        float deltaY = thisCollider.bounds.size.y / 2;
+        upperPassage.YStart += deltaY;
+        upperPassage.CheckForCollision();
+        bool canQue = !upperPassage.landed;
+        upperPassage.YStart -= deltaY;
+        return canQue;
+    }
+
+    protected bool IsAgainstStep()
     {
         return !ledge.IsLanded() && !wall.IsLanded() && step.IsLanded();
     }
 
-    public bool IsLanded()
+    protected bool IsLanded()
     {
         return land.IsLanded();
     }
 
-    public void LiftOff()
+    protected void LiftOff()
     {
         isAirborne = true;
         thisObject.gravityScale = 0;
     }
 
-    public void HandleFlip(float movingDirection)
+    protected void HandleFlip(float movingDirection)
     {
         if (!DirectionMatchesFacing(movingDirection))
         {
@@ -151,13 +179,13 @@ public class EnvInteractor : MonoBehaviour
         }
     }
 
-    public bool DirectionMatchesFacing(float movingDirection)
+    protected bool DirectionMatchesFacing(float movingDirection)
     {
         return !facingRight && movingDirection <= 0 ||
                facingRight && movingDirection >= 0;
     }
 
-    public Vector3 CalculateHangingPosY()
+    protected Vector3 CalculateHangingPosY()
     {
         float defaultY = ledge.YStart, deltaY = 0f;
         while (!ledge.IsLanded() && deltaY > -thisCollider.bounds.size.y)
@@ -169,11 +197,11 @@ public class EnvInteractor : MonoBehaviour
         ledge.YStart = defaultY;
         return new Vector3(0f, deltaY, 0f);
     }
-    public bool FacingRight => facingRight;
+    protected bool FacingRight => facingRight;
 
-    public float FacingRightFloat => facingRight?1f:-1f;
+    protected float FacingRightFloat => facingRight?1f:-1f;
 
-    public bool IsAirborne => isAirborne;
+    protected bool IsAirborne => isAirborne;
 
-    public LayerMask WhatIsGround  => whatIsGround;
+    protected LayerMask WhatIsGround  => whatIsGround;
 }

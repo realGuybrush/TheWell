@@ -104,6 +104,7 @@ public class BasicMovement : EnvInteractor {
         base.Awaking();
         animations.InitAnimator(animator);
         animator.GetBehaviour<ClimbAnimationBehaviour>().endClimbing += EndClimbing;
+        animator.GetBehaviour<ClimbToCrawlAnimationBehaviour>().endClimbing += EndClimbing;
         OnLanding += StopFlying;
         inventory.InitInventory();
 
@@ -135,7 +136,14 @@ public class BasicMovement : EnvInteractor {
     }
 
     private void BasicHandleMidAir() {
-        animations.SetVar("MidAir", !(IsLanded() || holding || IsAirborne));
+        if (!(IsLanded() || holding || IsAirborne))
+        {
+            animations.SetVar("MidAir", true);
+            UnCrawl();
+        } else
+        {
+            animations.SetVar("MidAir", false);
+        }
     }
 
     ///////MOVE///////
@@ -299,6 +307,12 @@ public class BasicMovement : EnvInteractor {
             UnHold();
     }
 
+    private void LedgeCrawl()
+    {
+        animations.SetVar("Crawl", true);
+        crawling = true;
+    }
+
     private void UnCrawl()
     {
         if (switchingCrawlStance) return;
@@ -362,6 +376,15 @@ public class BasicMovement : EnvInteractor {
     {
         if(DirectionMatchesFacing(directionX))
         {
+            if(!CanClimbInStanding())
+            {
+                if (CanClimbInCrawling())
+                {
+                    LedgeCrawl();
+                }
+                else
+                    return;
+            }
             climbing = true;
             animations.SetVar("Climb", true);
             Climbing?.Invoke(climbXChange * FacingRightFloat, climbYChange, climbingTime, climbingAnimationDelay);
