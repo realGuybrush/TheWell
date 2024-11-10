@@ -9,8 +9,8 @@ public class LevelMap
     private int width, height;
     private List<List<Biome>> backgroundTiles;
     private List<List<TileType>> tiles;
-    private List<Tunnel> tunnels;
-    private List<Cave> caves;
+    private List<Tunnel> tunnels = new List<Tunnel>();
+    private List<Cave> caves = new List<Cave>();
 
     public void GenerateEmptyLevel(Biome Biome, int Width, int Height)
     {
@@ -71,6 +71,32 @@ public class LevelMap
         }
     }
 
+    public void GenerateCaveSystem()
+    {
+        int halfWidth = width / 2;
+        int caveWidth, caveHeight;
+        float distanceToPreviousCaves;
+        //todo: maybe include player's size somewhere? player.size.x == 2, player.size.y == 4
+        for(int i = 2; i < width-2; i++)
+            for (int j = 4; j < height; j++)
+            {
+                    caveWidth = Random.Range(2, i < halfWidth ? i : width - i);
+                    caveHeight = Random.Range(4, j < caveWidth? j : caveWidth);
+                    distanceToPreviousCaves = GetShortestDistanceToPreviousCaves(i, j);
+                    if(Random.Range(0, 10000) < (100 * distanceToPreviousCaves/(caveWidth*5000f)))
+                        DigCave(new Vector2Int(i, j), caveWidth, caveHeight, 0);
+            }
+    }
+
+    private float GetShortestDistanceToPreviousCaves(int x, int y)
+    {
+        if (caves.Count == 0) return width;
+        float distance = width;
+        for (int i = 0; i < caves.Count; i++)
+            distance = Math.Min(GlobalFuncs.Distance2D(new Vector2(x, y), caves[i].center), distance);
+        return distance;
+    }
+
     private void DigCaveFromTunnelExit(Vector2Int start, Vector2Int direction, int ellipseWidthHalf, int ellipseHeightHalf, int centerWidthHalf)
     {
         Vector2Int center = start;
@@ -81,8 +107,9 @@ public class LevelMap
         DigCave(center, ellipseWidthHalf, ellipseHeightHalf, centerWidthHalf);
     }
 
-    public void DigCave(Vector2Int center, int ellipseWidthHalf, int ellipseHeightHalf, int centerWidthHalf)
+    private void DigCave(Vector2Int center, int ellipseWidthHalf, int ellipseHeightHalf, int centerWidthHalf)
     {
+        caves.Add(new Cave(center, ellipseWidthHalf, ellipseHeightHalf, centerWidthHalf));
         int minY = center.y - ellipseHeightHalf;
         Vector2Int pointB = new Vector2Int(center.x - centerWidthHalf, center.y);
         for (int i = pointB.x - ellipseWidthHalf; i <= pointB.x; i++)
