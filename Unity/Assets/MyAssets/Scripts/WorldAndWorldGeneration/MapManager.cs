@@ -36,13 +36,22 @@ public class MapManager
     {
         width = Width;
         height = Height;
+        GenerateEmptyMap();
+        GenerateBiomes();
+        levelMap.GenerateEmptyLevel(Biome.Cave, LevelWidth, LevelHeight);
+        levelMap.DigCave(new Vector2Int(LevelWidth / 2, LevelHeight / 2), 100, 50, 100);
+        //levelMap.InsertRandomDirectionTunnel(new Vector2Int(LevelWidth/2, 0), new Vector2Int(LevelWidth/2, LevelHeight), TunnelWidth, AmountOfTurns);
+    }
+
+    private void GenerateEmptyMap()
+    {
         levels = new List<List<Biome>>();
         levels.Add(new List<Biome>());
         for (int j = 0; j < width; j++)
         {
             levels[0].Add(Biome.None);
         }
-        levels[0][0] = Biome.Surface;
+        levels[0][width / 2] = Biome.Surface;
         for (int i = 1; i < height; i++)
         {
             levels.Add(new List<Biome>());
@@ -51,8 +60,11 @@ public class MapManager
                 levels[i].Add(Biome.Cave);
             }
         }
-        levelMap.GenerateLevel(Biome.Cave, LevelWidth, LevelHeight);
-        levelMap.InsertTunnel(new Vector2Int(LevelWidth/2, 0), new Vector2Int(LevelWidth/2, LevelHeight), TunnelWidth, AmountOfTurns);
+    }
+
+    private void GenerateBiomes()
+    {
+
     }
 
     public void VisualizeLevelMap()
