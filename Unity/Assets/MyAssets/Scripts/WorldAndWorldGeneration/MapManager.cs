@@ -39,7 +39,7 @@ public class MapManager
         GenerateEmptyMap();
         GenerateBiomes();
 
-        levelMap.GenerateEmptyLevel(Biome.Cave, LevelWidth, LevelHeight);
+        levelMap.GenerateEmptyLevel(Biome.Cave, LevelWidth, LevelHeight, new Vector2Int(LevelWidth/2, 0));
         levelMap.GenerateCaveSystem();
         //levelMap.DigCave(new Vector2Int(LevelWidth / 2, LevelHeight / 2), 100, 50, 100);
         //levelMap.InsertRandomDirectionTunnel(new Vector2Int(LevelWidth/2, 0), new Vector2Int(LevelWidth/2, LevelHeight), TunnelWidth, AmountOfTurns);

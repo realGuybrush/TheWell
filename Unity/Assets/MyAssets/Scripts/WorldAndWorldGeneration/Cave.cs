@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Cave
 {
-    public Vector2Int center;
-    public int ellipseWidthHalf;
-    public int ellipseHeightHalf;
-    public int centerWidth;
+    private Vector2Int center;
+    private int ellipseWidthHalf;
+    private int ellipseHeightHalf;
+    private int centerWidth;
+    private int nextCaveIndex = -1;
 
     public Cave(Vector2Int Center, int EllipseWidthHalf, int EllipseHeightHalf, int CenterWidth, List<List<TileType>> tiles)
     {
@@ -66,6 +67,17 @@ public class Cave
         float x = center.x - X;
         int y = (int)Math.Sqrt((1 - (x * x) / (ellipseWidthHalf * ellipseWidthHalf)) * ellipseHeightHalf * ellipseHeightHalf);
         return GlobalFuncs.Distance2D(center, new Vector2(X, center.y + y));
+    }
+
+    public Vector2Int Center => center;
+    public int EllipseWidthHalf => ellipseWidthHalf;
+    public int EllipseHeightHalf => ellipseHeightHalf;
+    public int CenterWidth => centerWidth;
+
+    public int NextCaveIndex
+    {
+        set { nextCaveIndex = value;}
+        get => nextCaveIndex;
     }
 
 }
