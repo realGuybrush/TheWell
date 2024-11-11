@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -44,107 +43,71 @@ public class LevelMap
         DigTunnelFromAToB(points[points.Count-2], points[points.Count-1], tunnelWidth);
     }
 
-    private void DigTunnelFromAToB(Vector2 start, Vector2 end, int tunnelWidth)
+    private void DigTunnelFromAToB(Vector2 start, Vector2 end, int tunnelWidth, bool getNarrower = false)
     {
-        int distance = (int) GlobalFuncs.Distance2D(start, end);
-        if (distance == 0) return;
-        int indexX, indexY;
-        float stepX = (end.x-start.x) / distance;
-        float stepY = (end.y-start.y) / distance;
-        float currentStepX = -stepX;
-        float currentStepY = -stepY;
-        int halfWidth = tunnelWidth / 2;
-        for (int i = 0; i < distance; i++)
-        {
-            currentStepX += stepX;
-            currentStepY += stepY;
-            for(int digX = -halfWidth; digX < halfWidth; digX++)
-                for(int digY = -halfWidth; digY < halfWidth; digY++)
-                {
-                    indexX = (int)(start.x + currentStepX + digX);
-                    indexY = (int)(start.y + currentStepY + digY);
-                    if (GlobalFuncs.Distance2D(new Vector2Int(indexX, indexY),
-                            new Vector2(start.x + currentStepX, start.y + currentStepY)) < halfWidth)
-                        if(indexY >= 0 && indexY < height && indexX >= 0 && indexX < width)
-                            tiles[indexY][indexX] = TileType.Empty;
-                }
-        }
+        tunnels.Add(new Tunnel(start, end, tunnelWidth, tiles, getNarrower));
     }
 
     public void GenerateCaveSystem()
     {
-        int halfWidth = width / 2;
-        int caveWidth, caveHeight;
-        float distanceToPreviousCaves;
+        GenerateCaves();
+        foreach (var cave in caves)
+            GenerateRadProtrusions(cave);
+    }
+
+    private void GenerateCaves()
+    {
         //todo: maybe include player's size somewhere? player.size.x == 2, player.size.y == 4
-        for(int i = 2; i < width-2; i++)
+        for(int i = 2; i < width - 2; i++)
             for (int j = 4; j < height; j++)
             {
-                    caveWidth = Random.Range(2, i < halfWidth ? i : width - i);
-                    caveHeight = Random.Range(4, j < caveWidth? j : caveWidth);
-                    distanceToPreviousCaves = GetShortestDistanceToPreviousCaves(i, j);
-                    if(Random.Range(0, 10000) < (100 * distanceToPreviousCaves/(caveWidth*5000f)))
-                        DigCave(new Vector2Int(i, j), caveWidth, caveHeight, 0);
+                if (Random.Range(0, 8000) == 0)
+                {
+                    GenerateCave(new Vector2Int(i, j));
+                }
             }
     }
 
-    private float GetShortestDistanceToPreviousCaves(int x, int y)
+    private void GenerateCave(Vector2Int center)
     {
-        if (caves.Count == 0) return width;
-        float distance = width;
-        for (int i = 0; i < caves.Count; i++)
-            distance = Math.Min(GlobalFuncs.Distance2D(new Vector2(x, y), caves[i].center), distance);
-        return distance;
+        int halfWidth = width / 2;
+        int caveWidth = Random.Range(2, center.x < halfWidth ? center.x : width - center.x);
+        int fifthOfCaveWidth = caveWidth / 5;
+        int caveHeight = Random.Range(center.y < fifthOfCaveWidth ? center.y : fifthOfCaveWidth,
+            center.y < caveWidth ? center.y : caveWidth);
+        if (NoCavesAround(center, caveWidth))
+            caves.Add(new Cave(new Vector2Int(center.x, center.y), caveWidth, caveHeight, 0, tiles));
     }
 
-    private void DigCaveFromTunnelExit(Vector2Int start, Vector2Int direction, int ellipseWidthHalf, int ellipseHeightHalf, int centerWidthHalf)
+    private bool NoCavesAround(Vector2Int center, int caveWidth)
     {
-        Vector2Int center = start;
-        if(direction == Vector2Int.down)
-            center += new Vector2Int (0, -ellipseHeightHalf);
-        if (direction == Vector2Int.left || direction == Vector2Int.right)
-            center += new Vector2Int((ellipseWidthHalf + centerWidthHalf) * direction.x, 0);
-        DigCave(center, ellipseWidthHalf, ellipseHeightHalf, centerWidthHalf);
-    }
-
-    private void DigCave(Vector2Int center, int ellipseWidthHalf, int ellipseHeightHalf, int centerWidthHalf)
-    {
-        caves.Add(new Cave(center, ellipseWidthHalf, ellipseHeightHalf, centerWidthHalf));
-        int minY = center.y - ellipseHeightHalf;
-        Vector2Int pointB = new Vector2Int(center.x - centerWidthHalf, center.y);
-        for (int i = pointB.x - ellipseWidthHalf; i <= pointB.x; i++)
+        foreach (var cave in caves)
         {
-            for(int j = center.y; j > minY; j--)
-            {
-                if(GlobalFuncs.Distance2D(pointB, new Vector2(i, j)) <=
-                   CalculateDistanceToEllipseByX(i, pointB, ellipseWidthHalf, ellipseHeightHalf, centerWidthHalf))
-                    tiles[j][i] = TileType.Empty;
-            }
+            float distance = GlobalFuncs.Distance2D(center, cave.center);
+            if (distance < caveWidth || distance < cave.ellipseWidthHalf)
+                return false;
         }
-        pointB = new Vector2Int(center.x + centerWidthHalf, center.y);
-        for (int i = center.x - centerWidthHalf; i <= pointB.x; i++)
+        return true;
+    }
+
+    private void GenerateRadProtrusions(Cave cave)
+    {
+        int amountOfProtrusions = Random.Range(0, cave.ellipseWidthHalf / 5);
+        for (int j = 0; j < amountOfProtrusions; j++)
         {
-            for(int j = center.y; j > minY; j--)
-            {
-                tiles[j][i] = TileType.Empty;
-            }
-        }
-        for (int i = center.x + centerWidthHalf + ellipseWidthHalf; i >= pointB.x; i--)
-        {
-            for(int j = center.y; j > minY; j--)
-            {
-                if(GlobalFuncs.Distance2D(pointB, new Vector2(i, j)) <=
-                   CalculateDistanceToEllipseByX(i, pointB, ellipseWidthHalf, ellipseHeightHalf, centerWidthHalf))
-                    tiles[j][i] = TileType.Empty;
-            }
+            GenerateOneProtrusion(cave.ellipseWidthHalf + cave.centerWidth / 2,
+                cave.center, cave.ellipseHeightHalf);
         }
     }
 
-    private float CalculateDistanceToEllipseByX(int X, Vector2Int center, int ellipseWidthHalf, int ellipseHeightHalf, int centerWidthHalf)
+    private void GenerateOneProtrusion(int actualCaveWidth, Vector2 center, int ellipseHeightHalf)
     {
-        float x = center.x - X;
-        int y = (int)Math.Sqrt((1 - (x * x) / (ellipseWidthHalf * ellipseWidthHalf)) * ellipseHeightHalf * ellipseHeightHalf);
-        return GlobalFuncs.Distance2D(center, new Vector2(X, center.y + y));
+        int tunnelWidth = actualCaveWidth / 10;
+        Vector2 start = new Vector2(Random.Range(center.x - actualCaveWidth, center.x + actualCaveWidth), center.y);
+        Vector2 end = new Vector2(start.x + Random.Range(0, tunnelWidth),
+            center.y + Random.Range(-ellipseHeightHalf, ellipseHeightHalf));
+        if (tunnelWidth == 0) tunnelWidth = Random.Range(1, 4);
+        DigTunnelFromAToB(start, end, tunnelWidth, true);
     }
 
 
