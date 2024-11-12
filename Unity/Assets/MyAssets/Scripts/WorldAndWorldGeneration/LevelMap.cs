@@ -10,16 +10,21 @@ public class LevelMap
     private List<List<Biome>> backgroundTiles;
     private List<List<TileType>> tiles;
     private List<Tunnel> tunnels = new List<Tunnel>();
-    private int amountOfProtrusions = 0;
     private List<Cave> caves = new List<Cave>();
     private Vector2Int mainEntrance, mainExit;
 
-    public void GenerateEmptyLevel(Biome Biome, int Width, int Height, Vector2Int MainEntrance)
+    public void GenerateLevel(Biome Biome, int Width, int Height, Vector2Int MainEntrance)
     {
         biome = Biome;
         width = Width;
         height = Height;
         mainEntrance = MainEntrance;
+        GenerateEmptyLevel();
+        GenerateCaveSystem();
+    }
+
+    private void GenerateEmptyLevel()
+    {
         backgroundTiles = new List<List<Biome>>();
         tiles = new List<List<TileType>>();
         for (int i = 0; i < height; i++)
@@ -34,7 +39,7 @@ public class LevelMap
         }
     }
 
-    public void GenerateCaveSystem()
+    private void GenerateCaveSystem()
     {
         GenerateCaves();
         foreach (var cave in caves)
@@ -50,9 +55,13 @@ public class LevelMap
         }
         //todo: add ladders in first and last tunnels
         int indexOfNearestCave = FindIndexOfNearestCaveBelow(mainEntrance);
-        DigTunnelFromAToB(mainEntrance, caves[indexOfNearestCave].Center, 6);
-        Vector2 centerOfLowestCave = FindCenterOfLowestCave(indexOfNearestCave);
-        DigTunnelFromAToB(centerOfLowestCave, new Vector2(centerOfLowestCave.x, height - 1), 6);
+        if (indexOfNearestCave != -1)
+        {
+            DigTunnelFromAToB(mainEntrance, caves[indexOfNearestCave].Center, 6);
+            Vector2 centerOfLowestCave = FindCenterOfLowestCave(indexOfNearestCave);
+            DigTunnelFromAToB(centerOfLowestCave, new Vector2(centerOfLowestCave.x, height - 1), 6);
+        } else
+            DigTunnelFromAToB(mainEntrance, new Vector2(Random.Range(0, width), height - 1), 6);
     }
 
     private void GenerateCaves()
@@ -61,7 +70,7 @@ public class LevelMap
         for(int i = 2; i < width - 2; i++)
             for (int j = 4; j < height; j++)
             {
-                if (Random.Range(0, 8000) == 0)
+                if (Random.Range(0, 200) == 0)
                 {
                     GenerateCave(new Vector2Int(i, j));
                 }
@@ -107,7 +116,6 @@ public class LevelMap
         Vector2 end = new Vector2(start.x + Random.Range(0, tunnelWidth),
             center.y + Random.Range(-ellipseHeightHalf, ellipseHeightHalf));
         if (tunnelWidth == 0) tunnelWidth = Random.Range(1, 4);
-        amountOfProtrusions++;
         DigTunnelFromAToB(start, end, tunnelWidth, true);
     }
 

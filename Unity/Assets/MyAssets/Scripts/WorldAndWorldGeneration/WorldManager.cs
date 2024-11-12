@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.Tilemaps;
 
 public class WorldManager : MonoBehaviour
@@ -18,6 +16,11 @@ public class WorldManager : MonoBehaviour
     private int mapWidth = 10, mapHeight = 10;
 
     [SerializeField]
+    private int playerWidth = 2;
+
+    [SerializeField]
+    private int levelToPlayerWidth = 100;
+
     private int levelWidth = 500, levelHeight = 500;
 
     [SerializeField]
@@ -62,6 +65,8 @@ public class WorldManager : MonoBehaviour
 
     public void GenerateMap()
     {
+        levelWidth = levelToPlayerWidth * playerWidth;
+        levelHeight = levelWidth;
         mapManager.GenerateMap(mapWidth, mapHeight, levelWidth, levelHeight, tunnelWidth, amountOfTunnelTurns);
     }
 
