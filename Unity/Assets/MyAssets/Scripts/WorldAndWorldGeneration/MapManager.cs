@@ -3,22 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+[Serializable]
 public class MapManager
 {
-    private Tilemap mapGrid;
-    private List<Tile> tilesByBiomes;
-    private int width = 10, height = 10;
-    private float tileSide = 0.25f;
-    private List<List<Biome>> levels;
-    private int biomeAmount = Enum.GetValues(typeof(Biome)).Length;
-    private LevelMap levelMap = new LevelMap();
+    [SerializeField]
+    private LevelPrefab startLevelprefab;
 
-    public void InitVisualisationParameters(Tilemap MapGrid, List<Tile> TilesByBiomes, float Side)
-    {
-        mapGrid = MapGrid;
-        tileSide = Side;
-        tilesByBiomes = TilesByBiomes;
-    }
+    [SerializeField]
+    private Tilemap mapGrid, levelCollidersGrid, levelBackGround;
+
+    [SerializeField]
+    private List<Tile> tilesByBiomes;
+
+    [SerializeField]
+    private float tileSide = 0.25f;
+
+    [SerializeField]
+    private int width = 10, height = 10;
+
+    [SerializeField]
+    private int levelToPlayerWidth = 100;
+
+    private int currentLevelX, currentLevelY;
+    private int levelWidth, levelHeight;
+    private List<List<LevelMap>> levels;
+    private int biomeAmount = Enum.GetValues(typeof(Biome)).Length;
+    private LevelMap levelMap;
 
     public void VisualizeMap()
     {
@@ -28,37 +38,38 @@ public class MapManager
         mapGrid.ResizeBounds();
         for(int i=0; i< width; i++)
             for(int j=0; j<height; j++)
-                mapGrid.SetTile(new Vector3Int (i,j,1), tilesByBiomes[(int)levels[i][j]]);
+                mapGrid.SetTile(new Vector3Int (i,j,1), tilesByBiomes[(int)levels[i][j].Biome]);
         mapGrid.transform.position = new Vector3(-tileSide * width / 2, tileSide * height / 2);
     }
 
-    public void GenerateMap(int Width = 10, int Height = 10, int LevelWidth = 500, int LevelHeight = 500, int TunnelWidth = 5, int AmountOfTurns = 0)
+    public void GenerateMap(int playerWidth)
     {
-        width = Width;
-        height = Height;
-        GenerateEmptyMap();
+        levelWidth = levelToPlayerWidth * playerWidth;
+        levelHeight = levelWidth;
         GenerateBiomes();
-
-        levelMap.GenerateLevel(Biome.Cave, LevelWidth, LevelHeight, new Vector2Int(LevelWidth/2, 0));
+        GenerateEmptyMap();
+        levels[0][width / 2].InstantiateLevel(levelCollidersGrid, levelBackGround);
+        //levelMap = new LevelMap(Biome.Cave, levelWidth, levelHeight, new Vector2Int(levelWidth/2, 0));
+        //levelMap.GenerateLevel();
         //levelMap.DigCave(new Vector2Int(LevelWidth / 2, LevelHeight / 2), 100, 50, 100);
         //levelMap.InsertRandomDirectionTunnel(new Vector2Int(LevelWidth/2, 0), new Vector2Int(LevelWidth/2, LevelHeight), TunnelWidth, AmountOfTurns);
     }
 
     private void GenerateEmptyMap()
     {
-        levels = new List<List<Biome>>();
-        levels.Add(new List<Biome>());
+        levels = new List<List<LevelMap>>();
+        levels.Add(new List<LevelMap>());
         for (int j = 0; j < width; j++)
         {
-            levels[0].Add(Biome.None);
+            levels[0].Add(new LevelMap(Biome.None, levelWidth, levelHeight, new Vector2Int(0, 0)));
         }
-        levels[0][width / 2] = Biome.Surface;
+        levels[0][width / 2].GenerateLevelFromPrefab(startLevelprefab);
         for (int i = 1; i < height; i++)
         {
-            levels.Add(new List<Biome>());
+            levels.Add(new List<LevelMap>());
             for (int j = 0; j < width; j++)
             {
-                levels[i].Add(Biome.Cave);
+                levels[i].Add(new LevelMap(Biome.Cave, levelWidth, levelHeight, levels[i-1][j].Exit));
             }
         }
     }
@@ -83,5 +94,25 @@ public class MapManager
                 mapGrid.SetTile(new Vector3Int (i,j,1), tilesByBiomes[(int)Biome.None]);
         }
         mapGrid.transform.position = new Vector3(-tileSide * levelMap.Width / 2, tileSide * levelMap.Height / 2);
+    }
+
+    public void LoadLevel(int x, int y)
+    {
+        currentLevelX = x;
+        currentLevelY = y;
+        levels[y][x].InstantiateLevel(levelCollidersGrid, levelBackGround);
+    }
+    public void LoadLevel(Vector2 direction)
+    {
+        if(direction.x + currentLevelX > -1 &&
+           direction.x + currentLevelX < levelWidth &&
+           currentLevelY - direction.y > -1 &&
+           currentLevelY - direction.y < levelHeight)
+        levels[currentLevelY - (int)direction.y][currentLevelX + (int)direction.x].InstantiateLevel(levelCollidersGrid, levelBackGround);
+    }
+
+    public void TransferTo(Vector2 direction, GameObject someObject)
+    {
+
     }
 }

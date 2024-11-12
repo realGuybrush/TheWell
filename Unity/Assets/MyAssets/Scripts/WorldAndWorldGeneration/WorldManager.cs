@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using RotaryHeart.Lib.SerializableDictionary;
 
 public class WorldManager : MonoBehaviour
 {
@@ -13,33 +15,16 @@ public class WorldManager : MonoBehaviour
     private List<Item> GiantItemList = new List<Item>();
 
     [SerializeField]
-    private int mapWidth = 10, mapHeight = 10;
-
-    [SerializeField]
     private int playerWidth = 2;
-
-    [SerializeField]
-    private int levelToPlayerWidth = 100;
-
-    private int levelWidth = 500, levelHeight = 500;
-
-    [SerializeField]
-    private int tunnelWidth = 5;
-
-    [SerializeField]
-    private int amountOfTunnelTurns = 0;
 
     [SerializeField]
     private MapManager mapManager = new MapManager();
 
     [SerializeField]
-    private float tileSide = 0.25f;
+    private SerializableDictionaryBase<Biome, TileDictionary> tileDictionary;
 
     [SerializeField]
-    private Tilemap mapGrid;
-
-    [SerializeField]
-    private List<Tile> tilesByBiomes;
+    private SerializableDictionaryBase<Biome, Tile> backgrounds;
 
 
     private void Awake()
@@ -47,7 +32,6 @@ public class WorldManager : MonoBehaviour
         if (Instance == null)
             Instance = this;
         GlobalFuncs.InitCamera();
-        mapManager.InitVisualisationParameters(mapGrid, tilesByBiomes, tileSide);
         GenerateMap();//todo: move call to NewGame in MainMenu, when it's added.
     }
 
@@ -65,9 +49,17 @@ public class WorldManager : MonoBehaviour
 
     public void GenerateMap()
     {
-        levelWidth = levelToPlayerWidth * playerWidth;
-        levelHeight = levelWidth;
-        mapManager.GenerateMap(mapWidth, mapHeight, levelWidth, levelHeight, tunnelWidth, amountOfTunnelTurns);
+        mapManager.GenerateMap(playerWidth);
+    }
+
+    public void LoadLevel(Vector2 direction)
+    {
+        mapManager.LoadLevel(direction);
+    }
+
+    public void TransferTo(Vector2 direction, GameObject someObject)
+    {
+        mapManager.TransferTo(direction, someObject);
     }
 
     public Item GetItemByHash(int hash)
@@ -78,8 +70,7 @@ public class WorldManager : MonoBehaviour
 
     public ControlKeys AllControlKeys => controlKeys;
 
-    public int MapWidth { set { mapWidth = value; } }
-    public int MapHeight { set { mapHeight = value; } }
-    public int LevelWidth { set { levelWidth = value; } }
-    public int LevelHeight { set { levelHeight = value; } }
+    public SerializableDictionaryBase<Biome, TileDictionary> TileDictionary => tileDictionary;
+
+    public SerializableDictionaryBase<Biome, Tile> Backgrounds => backgrounds;
 }
