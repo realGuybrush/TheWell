@@ -59,7 +59,7 @@ public class EnvInteractor : MonoBehaviour
 
     private void SetEnvironmentCheckers(Bounds bounds) {
         Vector2 size = bounds.size;
-        Vector2 center = bounds.center;
+        Vector2 center = bounds.center - thisObject.transform.position;
         Vector2 extents = bounds.extents;
         SetLandChecker(size, center, extents);
         SetStepChecker(size, center, extents);

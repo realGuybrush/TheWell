@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -8,17 +7,18 @@ public class WorldManager : MonoBehaviour
 {
     public static WorldManager Instance;
 
+    private readonly int playerTileWidth = 2;
+    private readonly int playerTileHeight = 6;
+    private readonly int halfPlayerTileWidth = 1;
+    private readonly int halfPlayerTileHeight = 3;
+    private float playerActualWidth = 0.5f;
+    private float playerActualHeight = 1.5f;
+
     [SerializeField]
     private ControlKeys controlKeys = new ControlKeys();
 
     [SerializeField]
     private List<Item> GiantItemList = new List<Item>();
-
-    [SerializeField]
-    private int playerWidth = 2;
-
-    [SerializeField]
-    private MapManager mapManager = new MapManager();
 
     [SerializeField]
     private SerializableDictionaryBase<Biome, TileDictionary> tileDictionary;
@@ -31,35 +31,13 @@ public class WorldManager : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
-        GlobalFuncs.InitCamera();
-        GenerateMap();//todo: move call to NewGame in MainMenu, when it's added.
+        GlobalFuncs.InitCamera();//todo: move call to NewGame in MainMenu, when it's added.
     }
 
-    private void Update()
+    public void SetActualPlayerSize(float newTileSide)
     {
-        if (Input.GetKey(KeyCode.M))
-        {
-            mapManager.VisualizeMap();
-        }
-        if (Input.GetKey(KeyCode.L))
-        {
-            mapManager.VisualizeLevelMap();
-        }
-    }
-
-    public void GenerateMap()
-    {
-        mapManager.GenerateMap(playerWidth);
-    }
-
-    public void LoadLevel(Vector2 direction)
-    {
-        mapManager.LoadLevel(direction);
-    }
-
-    public void TransferTo(Vector2 direction, GameObject someObject)
-    {
-        mapManager.TransferTo(direction, someObject);
+        playerActualWidth = newTileSide * playerTileWidth;
+        playerActualHeight = newTileSide * playerTileHeight;
     }
 
     public Item GetItemByHash(int hash)
@@ -73,4 +51,11 @@ public class WorldManager : MonoBehaviour
     public SerializableDictionaryBase<Biome, TileDictionary> TileDictionary => tileDictionary;
 
     public SerializableDictionaryBase<Biome, Tile> Backgrounds => backgrounds;
+
+    public int PlayerTileWidth => playerTileWidth;
+    public int PlayerTileHeight => playerTileHeight;
+    public int HalfPlayerTileWidth => halfPlayerTileWidth;
+    public int HalfPlayerTileHeight => halfPlayerTileHeight;
+    public float PlayerActualWidth => playerActualWidth;
+    public float PlayerActualHeight => playerActualHeight;
 }

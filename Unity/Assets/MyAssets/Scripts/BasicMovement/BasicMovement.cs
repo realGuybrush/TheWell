@@ -68,7 +68,7 @@ public class BasicMovement : EnvInteractor {
     private float climbingAnimationDelay = 0.6f;
     private bool grabbing;
     private float grabbingTime = 0.3f;
-    private bool holding;
+    private bool hanging;
     private bool climbing;
     [SerializeField]
     private int holdingMaximumTime = 10000;
@@ -117,7 +117,7 @@ public class BasicMovement : EnvInteractor {
         CheckIfOnSlope();
         if (onSlope)
             StayOnSlope();
-        UpdateHold();
+        UpdateHang();
         SlowDown();
         UpdateWeaponTimer();
     }
@@ -136,7 +136,7 @@ public class BasicMovement : EnvInteractor {
     }
 
     private void BasicHandleMidAir() {
-        if (!(IsLanded() || holding || IsAirborne))
+        if (!(IsLanded() || hanging || IsAirborne))
         {
             animations.SetVar("MidAir", true);
             UnCrawl();
@@ -152,15 +152,15 @@ public class BasicMovement : EnvInteractor {
         if (direction.x != 0 || direction.y != 0)
         {
             if (!IsLanded() && canClimb &&
-                (IsAgainstLedge() || IsOnLedge() && holding))
+                (IsAgainstLedge() || IsOnLedge() && hanging))
             {
                 if(!grabbing)
                 {
-                    if (holding)
+                    if (hanging)
                         Climb(direction.x);
                     else
                         if (DirectionMatchesFacing(direction.x))
-                            Hold();
+                            Hang();
                 }
             }
             else
@@ -194,7 +194,8 @@ public class BasicMovement : EnvInteractor {
         float walkSpeed = baseWalkSpeed * movementMultiplier;
         if (running) walkSpeed *= runMultiplier;
         if (crawling) walkSpeed *= crawlingMultiplier;
-        thisObject.velocity = new Vector2(walkSpeed * directionX * Math.Abs(parallelToSlope.x),
+        //todo:repair slopes
+        thisObject.velocity = new Vector2(walkSpeed * directionX,// * Math.Abs(parallelToSlope.x),
             thisObject.velocity.y);
         animations.SetVar("Moving", true);
         slowDownTimer = slowDownTime;
@@ -260,7 +261,7 @@ public class BasicMovement : EnvInteractor {
     {
         rayDown = Physics2D.Raycast(checkPos.position, Vector2.down, slopeCheckDistanceDown, WhatIsGround);
         onSlope = !GlobalFuncs.AroundZero(rayDown.normal.x);
-        if (onSlope)
+        //if (onSlope)
             parallelToSlope = Vector2.Perpendicular(rayDown.normal).normalized * -FacingRightFloat;
     }
 
@@ -294,7 +295,7 @@ public class BasicMovement : EnvInteractor {
     public void Crawl()
     {
         if (switchingCrawlStance) return;
-        if(!holding)
+        if(!hanging)
         {
             if (canCrawl && !running)
             {
@@ -304,7 +305,7 @@ public class BasicMovement : EnvInteractor {
             }
         }
         else
-            UnHold();
+            UnHang();
     }
 
     private void LedgeCrawl()
@@ -337,22 +338,22 @@ public class BasicMovement : EnvInteractor {
             UnCrawl();
             return;
         }
-        if (IsLanded() || IsOnLedge() && holding)
+        if (IsLanded() || IsOnLedge() && hanging)
         {
             onSlope = false;
             Vector2 jumpVector = new Vector2(thisObject.velocity.x, jumpSpeedY);
             thisObject.velocity = jumpVector;
             animations.SetVar("MidAir", true);
-            UnHold();
+            UnHang();
         }
     }
 
     ///////LEDGE GRAB & CLIMB///////
-    private void Hold()
+    private void Hang()
     {
         grabbing = true;
         landTimer = holdingMaximumTime;
-        holding = true;
+        hanging = true;
         SetKinematic(true);
         SetHangPosition();
         thisObject.velocity = new Vector2(0.0f, 0.0f);
@@ -393,27 +394,27 @@ public class BasicMovement : EnvInteractor {
 
     private void EndClimbing()
     {
-        UnHold();
+        UnHang();
         transform.position += new Vector3(FacingRightFloat * climbXChange, climbYChange);
         ProcessEnvCheckersCollisions();
         climbing = false;
     }
 
-    private void UnHold()
+    private void UnHang()
     {
         SetKinematic(false);
         landTimer = 0;
-        holding = false;
+        hanging = false;
         animations.SetVar("Grab", false);
     }
 
-    private void UpdateHold()
+    private void UpdateHang()
     {
-        if (holding)
+        if (hanging)
         {
             if (landTimer == 0)
             {
-                UnHold();
+                UnHang();
             }
             landTimer--;
             thisObject.transform.position = holdStartPosition;
@@ -470,9 +471,7 @@ public class BasicMovement : EnvInteractor {
     public void ExcludePickable(Item ExcP)
     {
         if (pickableItems.Contains(ExcP))
-        {
             pickableItems.Remove(ExcP);
-        }
     }
 
     public bool PickUp(Item specifiedItem = null)
@@ -528,7 +527,7 @@ public class BasicMovement : EnvInteractor {
 
     public void MeleeAtk(Vector2 center, Vector2 target)
     {
-        if (crawling || holding || climbing || !IsLanded()) return;
+        if (crawling || hanging || climbing || !IsLanded()) return;
         if (spawnedWeapon == null || spawnedWeapon.itemType == ItemType.rangedWeapon)
         {
             Item trySpawnWeapon = inventory.SelectedMelee;
@@ -544,7 +543,7 @@ public class BasicMovement : EnvInteractor {
 
     public void RangedAtk(Vector2 center, Vector2 target)
     {
-        if (crawling || holding || climbing || !IsLanded()) return;
+        if (crawling || hanging || climbing || !IsLanded()) return;
         if (spawnedWeapon == null || spawnedWeapon.itemType == ItemType.meleeWeapon)
         {
             Item trySpawnWeapon = inventory.SelectedRanged;
@@ -583,7 +582,7 @@ public class BasicMovement : EnvInteractor {
         {
             weaponDespawnTimer -= Time.deltaTime;
             animations.SetVar("Aim", GetMouseAngleWithFlip(shoulderJointPoint.position));
-            if (weaponDespawnTimer <= 0 || crawling || holding || climbing || !IsLanded())
+            if (weaponDespawnTimer <= 0 || crawling || hanging || climbing || !IsLanded())
             {
                 weaponDespawnTimer = 0;
                 Destroy(spawnedWeapon.gameObject);
@@ -597,7 +596,7 @@ public class BasicMovement : EnvInteractor {
     public float GetMouseAngleWithFlip(Vector2 center)
     {
         float returnAngle = GetMouseAngleRespToCenter(center);
-        if (FacingRightFloat == -1)
+        if (!FacingRight)
             returnAngle = 180.0f - returnAngle;
         if (returnAngle < 0)
             returnAngle += 360.0f;
