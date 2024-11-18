@@ -73,10 +73,10 @@ public class Inventory
     }
 
     public Item SelectedItem => WorldManager.Instance.
-        GetItemByHash(items[chosenSlotColumn].listInventorySlots[chosenSlotRow].itemHash);
+        GetItemByIndex(items[chosenSlotColumn].listInventorySlots[chosenSlotRow].itemHash);
 
     public Item SelectedMelee => chosenMelee == -1 ? null : WorldManager.Instance.
-        GetItemByHash(items[meleeWeaponTypeIndex].listInventorySlots[chosenMelee].itemHash);
+        GetItemByIndex(items[meleeWeaponTypeIndex].listInventorySlots[chosenMelee].itemHash);
 
     public Item SelectedRanged
     {
@@ -84,7 +84,7 @@ public class Inventory
         {
             if(chosenRanged == -1)
                 return null;
-            Item item = WorldManager.Instance.GetItemByHash(items[rangedWeaponTypeIndex]
+            Item item = WorldManager.Instance.GetItemByIndex(items[rangedWeaponTypeIndex]
                     .listInventorySlots[chosenRanged].itemHash);
             item.Amount = items[rangedWeaponTypeIndex].listInventorySlots[chosenRanged].amount;
             return item;
@@ -93,37 +93,34 @@ public class Inventory
 
     public bool TryToAddItem(Item item)
     {
-        int indexByType = (int) item.itemType;
-        int firstEmptySlot = -1;
+        int typeIndex = (int) item.itemType;
+        int firstSuitableSlot = FindSuitableSlot(typeIndex, item.Index);
+        if (firstSuitableSlot == -1) return false;
+        return TryStuffingItemsInSlot(firstSuitableSlot, typeIndex, item);
+    }
+
+    private int FindSuitableSlot(int typeIndex, int itemIndex)
+    {
         for (int i = amountOfRows - 1; i >= 0; i--)
         {
-            if (items[indexByType].listInventorySlots[i].itemHash == item.Hash)
-            {
-                return TryStuffingItemsInSlot(i, indexByType, item);
-            }
-            if (items[indexByType].listInventorySlots[i].itemHash == -1)
-                firstEmptySlot = i;
+            if (items[typeIndex].listInventorySlots[i].itemHash == itemIndex ||
+                items[typeIndex].listInventorySlots[i].itemHash == -1)
+                return i;
         }
-        if (firstEmptySlot != -1)
-        {
-            items[indexByType].listInventorySlots[firstEmptySlot].itemHash = item.Hash;
-            return TryStuffingItemsInSlot(firstEmptySlot, indexByType, item);
-        }
-        return false;
+        return -1;
     }
 
     private bool TryStuffingItemsInSlot(int row, int column, Item item)
     {
-        int newAmount = items[column].listInventorySlots[row].amount + item.Amount;
-        if (newAmount > item.MaxStack)
+        items[column].listInventorySlots[row].itemHash = item.Index;
+        items[column].listInventorySlots[row].amount = items[column].listInventorySlots[row].amount + item.Amount;
+        SearchForWeapons(item.itemType);
+        if (items[column].listInventorySlots[row].amount > item.MaxStack)
         {
             item.Amount -= item.MaxStack - items[column].listInventorySlots[row].amount;
             items[column].listInventorySlots[row].amount = item.MaxStack;
-            SearchForWeapons(item.itemType);
             return false;
         }
-        items[column].listInventorySlots[row].amount = newAmount;
-        SearchForWeapons(item.itemType);
         return true;
     }
 

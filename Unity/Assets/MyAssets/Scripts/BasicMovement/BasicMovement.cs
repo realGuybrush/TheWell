@@ -53,7 +53,6 @@ public class BasicMovement : EnvInteractor {
     private Transform checkPos;
     private float slopeCheckDistanceDown = 0.3f;
     private RaycastHit2D rayDown;
-    private Vector2 parallelToSlope = Vector2.right;
     private bool onSlope;
     [SerializeField]
     private float addedForceDefault = 5f;
@@ -73,7 +72,6 @@ public class BasicMovement : EnvInteractor {
     [SerializeField]
     private int holdingMaximumTime = 10000;
     private int landTimer;
-    private Vector3 holdStartPosition;
     public event Action<float, float, float, float> Climbing = delegate {  };
 
     private int onThisManyClimbableObjects = 0;
@@ -167,11 +165,6 @@ public class BasicMovement : EnvInteractor {
             {
                 MoveInDirection(direction);
             }
-            //if (envInteractor.IsAgainstStep())
-            //{
-                //hit a step
-                //climb step somehow
-            //}
         }
     }
 
@@ -194,8 +187,7 @@ public class BasicMovement : EnvInteractor {
         float walkSpeed = baseWalkSpeed * movementMultiplier;
         if (running) walkSpeed *= runMultiplier;
         if (crawling) walkSpeed *= crawlingMultiplier;
-        //todo:repair slopes
-        thisObject.velocity = new Vector2(walkSpeed * directionX,// * Math.Abs(parallelToSlope.x),
+        thisObject.velocity = new Vector2(walkSpeed * directionX,
             thisObject.velocity.y);
         animations.SetVar("Moving", true);
         slowDownTimer = slowDownTime;
@@ -261,8 +253,6 @@ public class BasicMovement : EnvInteractor {
     {
         rayDown = Physics2D.Raycast(checkPos.position, Vector2.down, slopeCheckDistanceDown, WhatIsGround);
         onSlope = !GlobalFuncs.AroundZero(rayDown.normal.x);
-        //if (onSlope)
-            parallelToSlope = Vector2.Perpendicular(rayDown.normal).normalized * -FacingRightFloat;
     }
 
     private void StayOnSlope()
@@ -355,16 +345,10 @@ public class BasicMovement : EnvInteractor {
         landTimer = holdingMaximumTime;
         hanging = true;
         SetKinematic(true);
-        SetHangPosition();
-        thisObject.velocity = new Vector2(0.0f, 0.0f);
+        thisObject.transform.position += CalculateHangingPosY();
+        thisObject.velocity = Vector2.zero;
         animations.SetVar("Grab", true);
         StartCoroutine("GrabbingCoroutine");
-    }
-
-    private void SetHangPosition()
-    {
-        thisObject.transform.position += CalculateHangingPosY();
-        holdStartPosition = thisObject.transform.position;
     }
 
     public IEnumerator GrabbingCoroutine()
@@ -417,7 +401,6 @@ public class BasicMovement : EnvInteractor {
                 UnHang();
             }
             landTimer--;
-            thisObject.transform.position = holdStartPosition;
         }
     }
 
@@ -476,16 +459,9 @@ public class BasicMovement : EnvInteractor {
 
     public bool PickUp(Item specifiedItem = null)
     {
+        ClearEmptyItems();
         if (pickableItems.Count == 0)
             return false;
-        //absolutely needed: without it item[0] will sometimes be null after picking up previous item, and won't be deleted for some reason
-        //if you simply put item.RemoveAt(0) after deletion of item, however, two items will be removed from List! magic
-        while (pickableItems[0] == null)
-        {
-            pickableItems.RemoveAt(0);
-            if (pickableItems.Count == 0)
-                return false;
-        }
         int itemIndex = ChooseItemIndex(specifiedItem);
         if (itemIndex == -1) return false;
         //anim.SetVar("PickUp", true);
@@ -495,15 +471,21 @@ public class BasicMovement : EnvInteractor {
         return true;
     }
 
+    private void ClearEmptyItems()
+    {
+        //absolutely needed: without it item[0] will sometimes be null after picking up previous item, and won't be deleted for some reason
+        //if you simply put item.RemoveAt(0) after deletion of item, however, two items will be removed from List! magic
+        while (pickableItems[0] == null)
+            pickableItems.RemoveAt(0);
+    }
+
     private int ChooseItemIndex(Item specifiedItem)
     {
         if (specifiedItem != null)
         {
             for (int i=0; i<pickableItems.Count; i++)
-                if (specifiedItem.Hash == pickableItems[i].Hash)
-                {
+                if (specifiedItem.Index == pickableItems[i].Index)
                     return i;
-                }
         }
         else
             return 0;
@@ -518,10 +500,10 @@ public class BasicMovement : EnvInteractor {
 
     public void AttackWithWhateverType(Vector2 center, Vector2 target)
     {
-        if(inventory.SelectedRanged.Hash != -1)
+        if(inventory.SelectedRanged.Index != -1)
             RangedAtk(center, target);
         else
-            if(inventory.SelectedMelee.Hash != -1)
+            if(inventory.SelectedMelee.Index != -1)
                 MeleeAtk(center, target);
     }
 
@@ -533,12 +515,17 @@ public class BasicMovement : EnvInteractor {
             Item trySpawnWeapon = inventory.SelectedMelee;
             if (trySpawnWeapon == null) return;
             spawnedWeapon = trySpawnWeapon.GetComponent<Weapon>();
-            spawnedWeapon.transform.parent = weaponHolder;
-            spawnedWeapon.transform.localPosition = Vector3.zero;
         }
-        weaponDespawnTimer = weaponDespawnTime;
-        spawnedWeapon.Attack(gameObject, spawnedWeapon.transform.position, GetAttackingDirection(center, target));
+        Strike(center, target);
+    }
+
+    private void Strike(Vector2 center, Vector2 target)
+    {
         animations.SetVar("Melee", true);
+        spawnedWeapon.transform.parent = weaponHolder;
+        spawnedWeapon.transform.localPosition = Vector3.zero;
+        weaponDespawnTimer = weaponDespawnTime;
+        spawnedWeapon.Attack(gameObject, GetAttackingDirection(center, target));
     }
 
     public void RangedAtk(Vector2 center, Vector2 target)
@@ -554,21 +541,24 @@ public class BasicMovement : EnvInteractor {
         }
         //bullets in this game are in weapon amount, change for other games, if you like
         if (spawnedWeapon.Amount > 0)
-        {
-            animations.SetVar("Ranged", true);
-            animations.SetVar("Aim", GetMouseAngleWithFlip(shoulderJointPoint.position));
-            weaponDespawnTimer = weaponDespawnTime;
-            spawnedWeapon.transform.parent = weaponHolder;
-            spawnedWeapon.transform.localPosition = Vector3.zero;
-            StartCoroutine("ShootingCoroutine", GetAttackingDirection(center, target));
-            inventory.RemoveOneBullet();
-        }
+            Shoot(center, target);
+    }
+
+    private void Shoot(Vector2 center, Vector2 target)
+    {
+        animations.SetVar("Ranged", true);
+        animations.SetVar("Aim", GetMouseAngleWithFlip(shoulderJointPoint.position));
+        weaponDespawnTimer = weaponDespawnTime;
+        spawnedWeapon.transform.parent = weaponHolder;
+        spawnedWeapon.transform.localPosition = Vector3.zero;
+        StartCoroutine("ShootingCoroutine", GetAttackingDirection(center, target));
+        inventory.RemoveOneBullet();
     }
 
     private IEnumerator ShootingCoroutine(Vector3 attackingDirection)
     {
         yield return new WaitForSeconds(0.05f);
-        spawnedWeapon.Attack(gameObject, spawnedWeapon.transform.position, attackingDirection);
+        spawnedWeapon.Attack(gameObject, attackingDirection);
     }
 
     private Vector3 GetAttackingDirection(Vector2 centerPos, Vector2 targetPos)
@@ -582,14 +572,7 @@ public class BasicMovement : EnvInteractor {
         {
             weaponDespawnTimer -= Time.deltaTime;
             animations.SetVar("Aim", GetMouseAngleWithFlip(shoulderJointPoint.position));
-            if (weaponDespawnTimer <= 0 || crawling || hanging || climbing || !IsLanded())
-            {
-                weaponDespawnTimer = 0;
-                Destroy(spawnedWeapon.gameObject);
-                spawnedWeapon = null;
-                animations.SetVar("Melee", false);
-                animations.SetVar("Ranged", false);
-            }
+            RemoveWeaponAtTimerEnd();
         }
     }
 
@@ -603,12 +586,23 @@ public class BasicMovement : EnvInteractor {
         return returnAngle;
     }
 
+    private void RemoveWeaponAtTimerEnd()
+    {
+        if (weaponDespawnTimer <= 0 || crawling || hanging || climbing || !IsLanded())
+        {
+            weaponDespawnTimer = 0;
+            Destroy(spawnedWeapon.gameObject);
+            spawnedWeapon = null;
+            animations.SetVar("Melee", false);
+            animations.SetVar("Ranged", false);
+        }
+    }
+
     public float GetMouseAngleRespToCenter(Vector2 center)
     {
         float distance = GlobalFuncs.Distance2D(center, targetPoint);
         float lowerPart = (targetPoint.y - center.y) < 0.0f?1.0f:0.0f;
         float arccos = Mathf.Rad2Deg* Mathf.Acos((targetPoint.x - center.x) / distance);
-        Debug.Log(arccos);
         return (targetPoint.y - center.y) < 0.0f ? 180.0f + (180.0f - arccos):arccos;
     }
 

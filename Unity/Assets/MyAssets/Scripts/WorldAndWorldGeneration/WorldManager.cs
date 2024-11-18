@@ -40,7 +40,7 @@ public class WorldManager : MonoBehaviour
         playerActualHeight = newTileSide * playerTileHeight;
     }
 
-    public Item GetItemByHash(int hash)
+    public Item GetItemByIndex(int hash)
     {
         if (hash == -1) return null;
         return Instantiate(GiantItemList[hash]);

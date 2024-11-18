@@ -13,7 +13,6 @@ public class EnvInteractor : MonoBehaviour
     private LayerMask whatIsGround;
 
     private Vector3 ledgeStart, ledgeSize, wallStart, wallSize, stepStart, stepSize, landStart, landSize, upperStart, upperSize;
-    public float magicNumber1 = 10f, magicNumber2 = 0.2f, magicNumber3 = 1.3f;
     protected Vector3 rotateAroundY = new Vector3(0.0f, 180.0f, 0.0f);
 
     [SerializeField]
@@ -102,11 +101,7 @@ public class EnvInteractor : MonoBehaviour
 
     protected void ProcessEnvCheckersCollisions()
     {
-        land.CheckForCollision();
-        ledge.CheckForCollision();
-        wall.CheckForCollision();
-        step.CheckForCollision();
-        upperPassage.CheckForCollision();
+        CheckAllForCollision();
         if (land.landed && isAirborne)
         {
             isAirborne = false;
@@ -115,9 +110,18 @@ public class EnvInteractor : MonoBehaviour
         }
     }
 
-    protected void SetKinematic(bool val)
+    private void CheckAllForCollision()
     {
-        thisObject.isKinematic = val;
+        land.CheckForCollision();
+        ledge.CheckForCollision();
+        wall.CheckForCollision();
+        step.CheckForCollision();
+        upperPassage.CheckForCollision();
+    }
+
+    protected void SetKinematic(bool value)
+    {
+        thisObject.isKinematic = value;
     }
 
     protected bool IsItPlatform(Collision2D collider)
@@ -137,21 +141,21 @@ public class EnvInteractor : MonoBehaviour
 
     protected bool CanClimbInStanding()
     {
-        upperPassage.YStart += thisCollider.bounds.size.y;
-        upperPassage.CheckForCollision();
-        bool canQue = !upperPassage.landed;
-        upperPassage.YStart -= thisCollider.bounds.size.y;
-        return canQue;
+        return IsObstacleAtThisHeight(thisCollider.bounds.size.y);
     }
 
     protected bool CanClimbInCrawling()
     {
-        float deltaY = thisCollider.bounds.size.y / 2;
+        return IsObstacleAtThisHeight(thisCollider.bounds.size.y / 2);
+    }
+
+    private bool IsObstacleAtThisHeight(float deltaY)
+    {
         upperPassage.YStart += deltaY;
         upperPassage.CheckForCollision();
-        bool canQue = !upperPassage.landed;
+        bool canClimb = !upperPassage.landed;
         upperPassage.YStart -= deltaY;
-        return canQue;
+        return canClimb;
     }
 
     protected bool IsAgainstStep()
