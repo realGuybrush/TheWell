@@ -72,7 +72,7 @@ public class BasicMovement : EnvInteractor {
     [SerializeField]
     private int holdingMaximumTime = 10000;
     private int landTimer;
-    public event Action<float, float, float, float> Climbing = delegate {  };
+    public event Action<Vector2, float, float> Climbing = delegate {  };
 
     private int onThisManyClimbableObjects = 0;
     [SerializeField]
@@ -372,7 +372,7 @@ public class BasicMovement : EnvInteractor {
             }
             climbing = true;
             animations.SetVar("Climb", true);
-            Climbing?.Invoke(climbXChange * FacingRightFloat, climbYChange, climbingTime, climbingAnimationDelay);
+            Climbing?.Invoke(new Vector2(climbXChange * FacingRightFloat, climbYChange), climbingTime, climbingAnimationDelay);
         }
     }
 

@@ -3,7 +3,8 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     private Vector3 cameraStart;
-    private float smoothXOffset, smoothYOffset, smoothTimer, smoothTimerDelay, smoothMovementTime;
+    private Vector3 smoothOffset;
+    private float  smoothTimer, smoothMovementDelay, smoothMovementTime;
 
     [SerializeField]
     private Camera myCamera;
@@ -18,26 +19,35 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
-        if (smoothTimerDelay <= 0)
-        {
-            if (smoothTimer <= 0)
-            {
-                transform.position = new Vector3(player.position.x + cameraStart.x,
-                    player.position.y + cameraStart.y, transform.position.z);
-            } else
-            {
-                smoothTimer -= Time.deltaTime;
-                transform.position += new Vector3(smoothXOffset, smoothYOffset) * (Time.deltaTime / smoothMovementTime);
-            }
-        } else
-            smoothTimerDelay -= Time.deltaTime;
+        UpdateSmoothMovementDelayTimer();
     }
 
-    public void StartSmoothMovement(float x, float y, float time, float delay)
+    private void UpdateSmoothMovementDelayTimer()
     {
-        smoothXOffset = x;
-        smoothYOffset = y;
-        smoothTimerDelay = delay;
+        if (smoothMovementDelay <= 0)
+        {
+            UpdateSmoothMovementTimer();
+        } else
+            smoothMovementDelay -= Time.deltaTime;
+    }
+
+    private void UpdateSmoothMovementTimer()
+    {
+        if (smoothTimer <= 0)
+            transform.position = new Vector3(player.position.x + cameraStart.x,
+                                             player.position.y + cameraStart.y,
+                                             transform.position.z);
+        else
+        {
+            smoothTimer -= Time.deltaTime;
+            transform.position += smoothOffset * (Time.deltaTime / smoothMovementTime);
+        }
+    }
+
+    public void StartSmoothMovement(Vector2 moveOffset, float time, float delay)
+    {
+        smoothOffset = moveOffset;
+        smoothMovementDelay = delay;
         smoothMovementTime = time - delay;
         smoothTimer = smoothMovementTime;
     }

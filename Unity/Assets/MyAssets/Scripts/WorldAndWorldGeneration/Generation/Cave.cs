@@ -19,17 +19,6 @@ public class Cave
         DigCave(center, ellipseWidthHalf, ellipseHeightHalf, centerWidth, tiles);
     }
 
-
-    private void DigCaveFromTunnelExit(Vector2Int start, Vector2Int direction, int ellipseWidthHalf, int ellipseHeightHalf, int centerWidthHalf, List<List<TileType>> tiles)
-    {
-        Vector2Int center = start;
-        if(direction == Vector2Int.down)
-            center += new Vector2Int (0, -ellipseHeightHalf);
-        if (direction == Vector2Int.left || direction == Vector2Int.right)
-            center += new Vector2Int((ellipseWidthHalf + centerWidthHalf) * direction.x, 0);
-        DigCave(center, ellipseWidthHalf, ellipseHeightHalf, centerWidthHalf, tiles);
-    }
-
     private void DigCave(Vector2Int center, int ellipseWidthHalf, int ellipseHeightHalf, int centerWidthHalf, List<List<TileType>> tiles)
     {
         int minY = center.y - ellipseHeightHalf;

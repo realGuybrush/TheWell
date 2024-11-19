@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class LevelMap
 {
     private Biome biome;
-    private int width, height;
+    private int width, height, halfWidth;
     private List<List<Biome>> backgroundTiles;
     private List<List<TileType>> tiles;
     private List<Tunnel> tunnels = new List<Tunnel>();
@@ -19,6 +19,7 @@ public class LevelMap
     {
         biome = Biome;
         width = Width;
+        halfWidth = width / 2;
         height = Height;
         mainEntrance = MainEntrance;
         GenerateEmptyLevel();
@@ -29,7 +30,7 @@ public class LevelMap
     public void GenerateLevel()
     {
         //todo: maybe make it into abstract method and make it different for every biome?
-        GenerateCaveSystem();
+        GenerateCaveSystem(WorldManager.Instance.PlayerTileSize);
     }
 
     private void GenerateEmptyLevel()
@@ -48,59 +49,35 @@ public class LevelMap
         }
     }
 
-    private void GenerateCaveSystem()
+    private void GenerateCaveSystem(Vector2Int playerTileSize)
     {
-        int playerHeight = WorldManager.Instance.PlayerTileHeight;
-        GenerateCaves();
+        GenerateCaves(playerTileSize);
         foreach (var cave in caves)
         {
-            GenerateRadProtrusions(cave);
-            int closestIndex = FindIndexOfNearestCaveBelow(cave.Center);
-            if (closestIndex != -1)
-            {
-                int tunnelWidth = Math.Max((cave.EllipseWidthHalf + cave.CenterWidth) / 5, playerHeight);
-                DigTunnelFromAToB(cave.Center, caves[closestIndex].Center - new Vector2Int(0, tunnelWidth/2), tunnelWidth);
-                cave.NextCaveIndex = closestIndex;
-            }
+            GenerateErosionProtrusions(cave);
+            ConnectToCaveByIndex(cave, playerTileSize.y, FindIndexOfNearestCaveBelow(cave.Center));
         }
-        DigHole(mainEntrance, playerHeight);
+        DigHole(mainEntrance, playerTileSize.y);
         //todo: add ladders in first and last tunnels
-        int indexOfNearestCave = FindIndexOfNearestCaveBelow(mainEntrance);
-        if (indexOfNearestCave != -1)
-        {
-            DigTunnelFromAToB(mainEntrance, caves[indexOfNearestCave].Center, playerHeight);
-            Vector2 centerOfLowestCave = FindCenterOfLowestCave(indexOfNearestCave);
-            mainExit = new Vector2Int((int)FindCenterOfLowestCave(indexOfNearestCave).x, height - 1);
-            DigTunnelFromAToB(centerOfLowestCave, mainExit, playerHeight);
-        } else
-        {
-            mainExit = new Vector2Int(Random.Range(0, width), height - 1);
-            DigTunnelFromAToB(mainEntrance, mainExit, playerHeight);
-        }
+        ConnectEntranceToExit(playerTileSize.y);
     }
 
-    private void GenerateCaves()
+    private void GenerateCaves(Vector2Int playerTileSize)
     {
-        WorldManager wm = WorldManager.Instance;
-        for(int i = wm.PlayerTileWidth; i < width - wm.PlayerTileWidth; i++)
-            for (int j = wm.PlayerTileHeight; j < height; j++)
-            {
+        for(int i = playerTileSize.x; i < width - playerTileSize.x; i++)
+            for (int j = playerTileSize.y; j < height; j++)
                 if (Random.Range(0, 200) == 0)
-                {
-                    GenerateCave(new Vector2Int(i, j));
-                }
-            }
+                    GenerateCave(new Vector2Int(i, j), playerTileSize.x);
     }
 
-    private void GenerateCave(Vector2Int center)
+    private void GenerateCave(Vector2Int center, int minWidth)
     {
-        int halfWidth = width / 2;
-        int caveWidth = Random.Range(2, center.x < halfWidth ? center.x : width - center.x);
+        int caveWidth = Random.Range(minWidth, center.x < halfWidth ? center.x : width - center.x);
         int fifthOfCaveWidth = caveWidth / 5;
         int caveHeight = Random.Range(center.y < fifthOfCaveWidth ? center.y : fifthOfCaveWidth,
             center.y < caveWidth ? center.y : caveWidth);
         if (NoCavesAround(center, caveWidth))
-            caves.Add(new Cave(new Vector2Int(center.x, center.y), caveWidth, caveHeight, 0, tiles));
+            caves.Add(new Cave(center, caveWidth, caveHeight, 0, tiles));
     }
 
     private bool NoCavesAround(Vector2Int center, int caveWidth)
@@ -114,14 +91,11 @@ public class LevelMap
         return true;
     }
 
-    private void GenerateRadProtrusions(Cave cave)
+    private void GenerateErosionProtrusions(Cave cave)
     {
         int amountOfProtrusions = Random.Range(0, cave.EllipseWidthHalf / 5);
         for (int j = 0; j < amountOfProtrusions; j++)
-        {
-            GenerateOneProtrusion(cave.EllipseWidthHalf + cave.CenterWidth / 2,
-                cave.Center, cave.EllipseHeightHalf);
-        }
+            GenerateOneProtrusion(cave.EllipseWidthHalf + cave.CenterWidth / 2, cave.Center, cave.EllipseHeightHalf);
     }
 
     private void GenerateOneProtrusion(int actualCaveWidth, Vector2 center, int ellipseHeightHalf)
@@ -129,9 +103,17 @@ public class LevelMap
         int tunnelWidth = actualCaveWidth / 10;
         Vector2 start = new Vector2(Random.Range(center.x - actualCaveWidth, center.x + actualCaveWidth), center.y);
         Vector2 end = new Vector2(start.x + Random.Range(0, tunnelWidth),
-            center.y + Random.Range(-ellipseHeightHalf, ellipseHeightHalf));
+                                  center.y + Random.Range(-ellipseHeightHalf, ellipseHeightHalf));
         if (tunnelWidth == 0) tunnelWidth = Random.Range(1, 4);
         DigTunnelFromAToB(start, end, tunnelWidth, true);
+    }
+
+    private void ConnectToCaveByIndex(Cave cave, int playerHeight, int otherCaveIndex)
+    {
+        if (otherCaveIndex == -1) return;
+        int tunnelWidth = Math.Max((cave.EllipseWidthHalf + cave.CenterWidth) / 5, playerHeight);
+        DigTunnelFromAToB(cave.Center, caves[otherCaveIndex].Center - new Vector2Int(0, tunnelWidth/2), tunnelWidth);
+        cave.NextCaveIndex = otherCaveIndex;
     }
 
     private void DigTunnelFromAToB(Vector2 start, Vector2 end, int tunnelWidth, bool getNarrower = false)
@@ -142,9 +124,9 @@ public class LevelMap
     private int FindIndexOfNearestCaveBelow(Vector2Int center)
     {
         int closestIndex = -1;
-        float shortestDistance = width, distanceToOtherCave;
+        float shortestDistance = width;
+        float distanceToOtherCave;
         for (int i = 0; i < caves.Count; i++)
-        {
             if (caves[i].Center.y > center.y + caves[i].EllipseHeightHalf)
             {
                 distanceToOtherCave = GlobalFuncs.Distance2D(caves[i].Center, center);
@@ -154,11 +136,10 @@ public class LevelMap
                     closestIndex = i;
                 }
             }
-        }
         return closestIndex;
     }
 
-    private Vector2 FindCenterOfLowestCave(int index)
+    private Vector2Int FindCenterOfLowestCave(int index)
     {
         int nextIndex = index;
         while (caves[nextIndex].NextCaveIndex != -1)
@@ -168,14 +149,27 @@ public class LevelMap
 
     private void DigHole(Vector2Int center, int radius)
     {
-        int newX, newY;
-        for(int i= -radius; i < radius; i++)
-        for (int j = -radius; j < radius; j++)
+        int endX = center.x + radius;
+        int endY = center.y + radius;
+        for(int x = center.x -radius; x < endX; x++)
+        for (int y = center.y -radius; y < endY; y++)
+            if (x > -1 && x < width && y > -1 && y < height)
+                tiles[y][x] = TileType.Empty;
+    }
+
+    private void ConnectEntranceToExit(int playerHeight)
+    {
+        int indexOfNearestCave = FindIndexOfNearestCaveBelow(mainEntrance);
+        if (indexOfNearestCave != -1)
         {
-            newX = i + center.x;
-            newY = j + center.y;
-            if (newX > -1 && newX < width && newY > -1 && newY < height)
-                tiles[newY][newX] = TileType.Empty;
+            DigTunnelFromAToB(mainEntrance, caves[indexOfNearestCave].Center, playerHeight);
+            Vector2Int centerOfLowestCave = FindCenterOfLowestCave(indexOfNearestCave);
+            mainExit = new Vector2Int(centerOfLowestCave.x, height - 1);
+            DigTunnelFromAToB(centerOfLowestCave, mainExit, playerHeight);
+        } else
+        {
+            mainExit = new Vector2Int(Random.Range(0, width), height - 1);
+            DigTunnelFromAToB(mainEntrance, mainExit, playerHeight);
         }
     }
 

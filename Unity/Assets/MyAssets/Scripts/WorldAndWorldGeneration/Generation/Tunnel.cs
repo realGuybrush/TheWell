@@ -19,30 +19,31 @@ public class Tunnel
     {
         int distance = (int) GlobalFuncs.Distance2D(start, end);
         if (distance == 0) return;
-        int indexX, indexY;
-        int width = tiles[0].Count;
-        int height = tiles.Count;
         float stepX = (end.x - start.x) / distance;
         float stepY = (end.y - start.y) / distance;
-        float currentStepX = -stepX;
-        float currentStepY = -stepY;
+        float currentShiftX = -stepX;
+        float currentShiftY = -stepY;
         int halfWidth = tunnelWidth / 2;
         for (int i = 0; i < distance; i++)
         {
-            currentStepX += stepX;
-            currentStepY += stepY;
+            currentShiftX += stepX;
+            currentShiftY += stepY;
             if(getNarrower)
                 halfWidth = tunnelWidth / 2 - (tunnelWidth * i) / (2 * distance);
-            for(int digY = -halfWidth; digY < halfWidth; digY++)
-            for(int digX = -halfWidth; digX < halfWidth; digX++)
-            {
-                indexX = (int)(start.x + currentStepX + digX);
-                indexY = (int)(start.y + currentStepY + digY);
-                if (GlobalFuncs.Distance2D(new Vector2Int(indexX, indexY),
-                    new Vector2(start.x + currentStepX, start.y + currentStepY)) < halfWidth)
-                    if(indexY >= 0 && indexY < height && indexX >= 0 && indexX < width)
-                        tiles[indexY][indexX] = TileType.Empty;
-            }
+            DigRoundHole(halfWidth, new Vector2Int((int)(start.x + currentShiftX), (int)(start.y + currentShiftY)) , tiles);
+        }
+    }
+
+    private void DigRoundHole(int halfWidth, Vector2Int center, List<List<TileType>> tiles)
+    {
+        int endY = center.y + halfWidth;
+        int endX = center.x + halfWidth;
+        for(int y = center.y - halfWidth; y < endY; y++)
+        for(int x = center.x - halfWidth; x < endX; x++)
+        {
+            if (GlobalFuncs.Distance2D(new Vector2Int(x, y), center) < halfWidth)
+                if(y >= 0 && y < tiles.Count && x >= 0 && x < tiles[0].Count)
+                    tiles[y][x] = TileType.Empty;
         }
     }
 }

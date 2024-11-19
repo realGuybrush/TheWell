@@ -49,6 +49,7 @@ public class MapManager: MonoBehaviour
 
     private void Update()
     {
+        //todo: remove after finish, or change to some sort of player's map
         if (Input.GetKey(KeyCode.M))
         {
             VisualizeMap();
@@ -71,6 +72,23 @@ public class MapManager: MonoBehaviour
         mapGrid.transform.position = new Vector3(-tileSide * width / 2, tileSide * height / 2);
     }
 
+    public void VisualizeLevelMap()
+    {
+        if (mapGrid == null || tilesByBiomes.Count < biomeAmount) return;
+        mapGrid.gameObject.SetActive(!mapGrid.gameObject.activeSelf);
+        mapGrid.size = new Vector3Int(levelMap.Width, levelMap.Height, 1);
+        mapGrid.ResizeBounds();
+        for(int i=0; i < levelMap.Width; i++)
+        for (int j = 0; j < levelMap.Height; j++)
+        {
+            if(levelMap.Tiles[i][j] != TileType.Empty)
+                mapGrid.SetTile(new Vector3Int (i,j,1), tilesByBiomes[(int)Biome.Cave]);
+            else
+                mapGrid.SetTile(new Vector3Int (i,j,1), tilesByBiomes[(int)Biome.None]);
+        }
+        mapGrid.transform.position = new Vector3(-tileSide * levelMap.Width / 2, tileSide * levelMap.Height / 2);
+    }
+
     public void GenerateMap()
     {
         levelWidth = levelSide;
@@ -86,12 +104,7 @@ public class MapManager: MonoBehaviour
     {
         levels = new List<List<LevelMap>>();
         levels.Add(new List<LevelMap>());
-        for (int j = 0; j < width; j++)
-        {
-            levels[0].Add(new LevelMap(Biome.None, levelWidth, levelHeight, new Vector2Int(0, 0)));
-        }
-        levels[0][width / 2].GenerateLevelFromPrefab(startLevelprefab);
-        levels[0][width / 2].OverrideMainExit(new Vector2Int(levelWidth / 2, levelHeight - 1));
+        GenerateSurfaceRow();
         for (int i = 1; i < height; i++)
         {
             levels.Add(new List<LevelMap>());
@@ -100,6 +113,14 @@ public class MapManager: MonoBehaviour
                 levels[i].Add(new LevelMap(Biome.Cave, levelWidth, levelHeight, OppositeOf(levels[i-1][j].Exit)));
             }
         }
+    }
+
+    private void GenerateSurfaceRow()
+    {
+        for (int j = 0; j < width; j++)
+            levels[0].Add(new LevelMap(Biome.None, levelWidth, levelHeight, Vector2Int.zero));
+        levels[0][width / 2].GenerateLevelFromPrefab(startLevelprefab);
+        levels[0][width / 2].OverrideMainExit(new Vector2Int(levelWidth / 2, levelHeight - 1));
     }
 
     private Vector2Int OppositeOf(Vector2Int exit)
@@ -122,35 +143,17 @@ public class MapManager: MonoBehaviour
 
     }
 
-    public void VisualizeLevelMap()
-    {
-        if (mapGrid == null || tilesByBiomes.Count < biomeAmount) return;
-        mapGrid.gameObject.SetActive(!mapGrid.gameObject.activeSelf);
-        mapGrid.size = new Vector3Int(levelMap.Width, levelMap.Height, 1);
-        mapGrid.ResizeBounds();
-        for(int i=0; i < levelMap.Width; i++)
-        for (int j = 0; j < levelMap.Height; j++)
-        {
-            if(levelMap.Tiles[i][j] != TileType.Empty)
-                mapGrid.SetTile(new Vector3Int (i,j,1), tilesByBiomes[(int)Biome.Cave]);
-            else
-                mapGrid.SetTile(new Vector3Int (i,j,1), tilesByBiomes[(int)Biome.None]);
-        }
-        mapGrid.transform.position = new Vector3(-tileSide * levelMap.Width / 2, tileSide * levelMap.Height / 2);
-    }
-
     public void LoadLevel(int x, int y)
     {
         currentLevelX = x;
         currentLevelY = y;
         levels[y][x].InstantiateLevel(levelCollidersGrid, levelBackGround);
+        SetNewPortalParameters();
     }
     public void LoadLevel(Vector2Int direction)
     {
-        if (direction.x + currentLevelX > -1 &&
-            direction.x + currentLevelX < levelWidth &&
-            currentLevelY - direction.y > -1 &&
-            currentLevelY - direction.y < levelHeight)
+        if (direction.x + currentLevelX > -1 && direction.x + currentLevelX < levelWidth &&
+            currentLevelY - direction.y > -1 && currentLevelY - direction.y < levelHeight)
         {
             levels[currentLevelY - direction.y][currentLevelX + direction.x].InstantiateLevel(levelCollidersGrid, levelBackGround);
             SetNewPortalParameters();
@@ -161,31 +164,30 @@ public class MapManager: MonoBehaviour
 
     private void SetNewPortalParameters()
     {
-        float gridHeight = levelCollidersGrid.size.y * tileSide;
-        float halfGridHeight = gridHeight / 2;
-        float gridWidth = levelCollidersGrid.size.x * tileSide;
-        float halfGridWidth = gridWidth / 2;
-        WorldManager wm = WorldManager.Instance;
-        Vector2 verticalPortalsSize = new Vector2(wm.PlayerActualWidth, gridHeight);
-        Vector2 horizontalPortalsSize = new Vector2(gridWidth, wm.PlayerActualHeight);
-        downPortal.SetScaleAndPosition(new Vector2(halfGridWidth, -wm.PlayerActualHeight), horizontalPortalsSize);
-        leftPortal.SetScaleAndPosition(new Vector2(-wm.PlayerActualWidth, halfGridHeight), verticalPortalsSize);
-        topPortal.SetScaleAndPosition(new Vector2(halfGridWidth, gridHeight + wm.PlayerActualHeight), horizontalPortalsSize);
-        rightPortal.SetScaleAndPosition(new Vector2(gridWidth + wm.PlayerActualWidth, halfGridHeight), verticalPortalsSize);
+        SetAllPortalsScaleAndPosition(levelCollidersGrid.localBounds.size, levelCollidersGrid.localBounds.size / 2,
+             WorldManager.Instance.PlayerActualSize);
+    }
+
+    private void SetAllPortalsScaleAndPosition(Vector3 gridSize, Vector3 halfGridSize, Vector2 playerSize)
+    {
+        Vector2 verticalPortalsSize = new Vector2(playerSize.x, gridSize.y);
+        Vector2 horizontalPortalsSize = new Vector2(gridSize.x, playerSize.y);
+        downPortal.SetScaleAndPosition(new Vector2(halfGridSize.x, -playerSize.y), horizontalPortalsSize);
+        leftPortal.SetScaleAndPosition(new Vector2(-playerSize.x, halfGridSize.y), verticalPortalsSize);
+        topPortal.SetScaleAndPosition(new Vector2(halfGridSize.x, gridSize.y + playerSize.y), horizontalPortalsSize);
+        rightPortal.SetScaleAndPosition(new Vector2(gridSize.x + playerSize.x, halfGridSize.y), verticalPortalsSize);
     }
 
     public void TransferToOtherLevelEntrance(Vector2 direction, GameObject someObject)
     {
-        if (direction.x + currentLevelX > -1 &&
-            direction.x + currentLevelX < levelWidth &&
-            currentLevelY - direction.y > -1 &&
-            currentLevelY - direction.y < levelHeight)
+        if (direction.x + currentLevelX > -1 && direction.x + currentLevelX < levelWidth &&
+            currentLevelY - direction.y > -1 && currentLevelY - direction.y < levelHeight)
         {
-            WorldManager wm = WorldManager.Instance;
+            Vector2 playerTileSize = WorldManager.Instance.PlayerTileSize;
             Vector2 entrance = levels[currentLevelY - (int) direction.y][currentLevelX + (int) direction.x].Entrance;
             Vector3 size = levelCollidersGrid.cellSize;
-            someObject.transform.position = new Vector3((entrance.x + direction.x * wm.PlayerTileWidth) * size.x,
-                                                        (levelHeight - entrance.y + direction.y * wm.PlayerTileHeight) * size.y, 0);
+            someObject.transform.position = new Vector3((entrance.x + direction.x * playerTileSize.x) * size.x,
+                                                        (levelHeight - entrance.y + direction.y * playerTileSize.y) * size.y, 0);
             var body = someObject.GetComponent<Rigidbody2D>();
             if(body != null)
                 body.velocity = Vector2.zero;

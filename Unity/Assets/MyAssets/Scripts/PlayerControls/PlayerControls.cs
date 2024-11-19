@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlayerControls : BasicMovement
@@ -6,7 +5,8 @@ public class PlayerControls : BasicMovement
     ControlKeys keys;
     [SerializeField]
     private CameraMovement myCamera;
-    protected override void Awaking() {
+    protected override void Awaking()
+    {
         base.Awaking();
         if(myCamera != null)
             Climbing += myCamera.StartSmoothMovement;
@@ -22,20 +22,13 @@ public class PlayerControls : BasicMovement
     {
         base.Updating();
         FollowCursor();
-        //UpdatePlacingObject();
         CheckNumbersInput();
         PlayerCheckMove();
-        //if (!IsClimbing())
-        {
-            CheckRotateInput();
-            CheckScrollInput();
-            CheckFallPlatformInput();
-            if (!IsFallingFromPlatform && !IsClimbing)
-                CheckJumpInput();
-            CheckAtkInput();
-            CheckActionInput();
-        }
-        CheckEsc();
+        CheckFallPlatformInput();
+        if (!IsFallingFromPlatform && !IsClimbing)
+            CheckJumpInput();
+        CheckAtkInput();
+        CheckActionInput();
     }
 
     private void PlayerCheckMove()
@@ -90,30 +83,6 @@ public class PlayerControls : BasicMovement
         targetPoint = myCamera.ScreenToWorldPoint(Input.mousePosition);
     }
 
-
-    private void CheckRotateInput()
-    {
-        //if (placing)
-        {
-            //if (Input.GetKeyDown(KeyCode.R))
-            {
-                //placedObject.transform.localEulerAngles += new Vector3(0.0f, 0.0f, -90.0f);
-            }
-        }
-    }
-
-    private void CheckScrollInput()
-    {
-        /*if (Input.mouseScrollDelta.y > 0.0f)
-        {
-            ProtrudeLadder();
-        }
-        if (Input.mouseScrollDelta.y < 0.0f)
-        {
-            RetrudeLadder();
-        }*/
-    }
-
     private void CheckCrawlInput()
     {
         if (Input.GetKeyDown(keys.Crawl))
@@ -121,7 +90,7 @@ public class PlayerControls : BasicMovement
             Crawl();
         }
     }
-    public void CheckAtkInput()
+    private void CheckAtkInput()
     {
         if (Input.GetButtonDown("Fire1"))
         {
@@ -134,50 +103,7 @@ public class PlayerControls : BasicMovement
         }
     }
 
-    public void CheckDirections()
-    {
-        if (Input.GetKeyDown(keys.MoveUp) || Input.GetKeyDown(keys.MoveUp2))
-        {
-            //BasicSetUp(true);
-        }
-
-        if (Input.GetKeyUp(keys.MoveUp) || Input.GetKeyUp(keys.MoveUp2))
-        {
-            //BasicSetUp(false);
-        }
-
-        if (Input.GetKeyDown(keys.MoveDown) || Input.GetKeyDown(keys.MoveDown2))
-        {
-            //BasicSetDown(true);
-        }
-
-        if (Input.GetKeyUp(keys.MoveDown) || Input.GetKeyUp(keys.MoveDown2))
-        {
-            //BasicSetDown(false);
-        }
-
-        if (Input.GetKeyDown(keys.MoveRight) || Input.GetKeyDown(keys.MoveRight2))
-        {
-            //BasicSetRight(true);
-        }
-
-        if (Input.GetKeyUp(keys.MoveRight) || Input.GetKeyUp(keys.MoveRight2))
-        {
-            //BasicSetRight(false);
-        }
-
-        if (Input.GetKeyDown(keys.MoveLeft) || Input.GetKeyDown(keys.MoveLeft2))
-        {
-            //BasicSetLeft(true);
-        }
-
-        if (Input.GetKeyUp(keys.MoveLeft) || Input.GetKeyUp(keys.MoveLeft2))
-        {
-            //BasicSetLeft(false);
-        }
-    }
-
-    void CheckNumbersInput()
+    private void CheckNumbersInput()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -196,24 +122,4 @@ public class PlayerControls : BasicMovement
             inventory.SelectItem(3);
         }
     }
-    void CheckEsc()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-
-        }
-    }
-
-    protected void Shoot()
-    {
-        StartCoroutine("StopAiming");
-        //anim.SetVar("Aiming", true);
-        //base.Shoot();
-    }
-    public IEnumerator StopAiming()
-    {
-        yield return new WaitForSeconds(2.5f);
-        //anim.SetVar("Aiming", false);
-    }
-
 }

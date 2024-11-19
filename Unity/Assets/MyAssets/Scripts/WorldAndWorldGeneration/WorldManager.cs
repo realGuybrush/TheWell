@@ -1,18 +1,17 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using RotaryHeart.Lib.SerializableDictionary;
+using Debug = UnityEngine.Debug;
 
 public class WorldManager : MonoBehaviour
 {
     public static WorldManager Instance;
 
-    private readonly int playerTileWidth = 2;
-    private readonly int playerTileHeight = 6;
-    private readonly int halfPlayerTileWidth = 1;
-    private readonly int halfPlayerTileHeight = 3;
-    private float playerActualWidth = 0.5f;
-    private float playerActualHeight = 1.5f;
+    private Vector2Int playerTileSize = new Vector2Int(2, 6);
+    private Vector2Int halfPlayerTileSize = new Vector2Int(1, 3);
+    private Vector2 playerActualSize = new Vector2(0.5f, 1.5f);
 
     [SerializeField]
     private ControlKeys controlKeys = new ControlKeys();
@@ -36,8 +35,7 @@ public class WorldManager : MonoBehaviour
 
     public void SetActualPlayerSize(float newTileSide)
     {
-        playerActualWidth = newTileSide * playerTileWidth;
-        playerActualHeight = newTileSide * playerTileHeight;
+        playerActualSize = newTileSide * (Vector2)playerTileSize;
     }
 
     public Item GetItemByIndex(int hash)
@@ -52,10 +50,7 @@ public class WorldManager : MonoBehaviour
 
     public SerializableDictionaryBase<Biome, Tile> Backgrounds => backgrounds;
 
-    public int PlayerTileWidth => playerTileWidth;
-    public int PlayerTileHeight => playerTileHeight;
-    public int HalfPlayerTileWidth => halfPlayerTileWidth;
-    public int HalfPlayerTileHeight => halfPlayerTileHeight;
-    public float PlayerActualWidth => playerActualWidth;
-    public float PlayerActualHeight => playerActualHeight;
+    public Vector2Int PlayerTileSize => playerTileSize;
+    public Vector2Int HalfPlayerTileSize => halfPlayerTileSize;
+    public Vector2 PlayerActualSize => playerActualSize;
 }
