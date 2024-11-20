@@ -7,23 +7,20 @@ using Random = UnityEngine.Random;
 public class LevelMap
 {
     private Biome biome;
-    private int width, height, halfWidth;
+    private static int width, height, halfWidth;
     private List<List<Biome>> backgroundTiles;
-    private List<List<TileType>> tiles;
+    private List<List<TileShape>> tiles;
     private List<Tunnel> tunnels = new List<Tunnel>();
     private List<Cave> caves = new List<Cave>();
     private Vector2Int mainEntrance, mainExit;
     private LevelPrefab prefab;
 
-    public LevelMap(Biome Biome, int Width, int Height, Vector2Int MainEntrance)
+    public LevelMap(Biome Biome, Vector2Int MainEntrance)
     {
         biome = Biome;
-        width = Width;
-        halfWidth = width / 2;
-        height = Height;
         mainEntrance = MainEntrance;
         GenerateEmptyLevel();
-        if(biome != Biome.None)
+        if(biome == Biome.Cave)
             GenerateLevel();
     }
 
@@ -31,20 +28,21 @@ public class LevelMap
     {
         //todo: maybe make it into abstract method and make it different for every biome?
         GenerateCaveSystem(WorldManager.Instance.PlayerTileSize);
+        SmoothenAllEdges();
     }
 
     private void GenerateEmptyLevel()
     {
         backgroundTiles = new List<List<Biome>>();
-        tiles = new List<List<TileType>>();
+        tiles = new List<List<TileShape>>();
         for (int i = 0; i < height; i++)
         {
             backgroundTiles.Add(new List<Biome>());
-            tiles.Add(new List<TileType>());
+            tiles.Add(new List<TileShape>());
             for (int j = 0; j < width; j++)
             {
                 backgroundTiles[i].Add(biome);
-                tiles[i].Add(TileType.AllNeighboured);
+                tiles[i].Add(TileShape.AllNeighboured);
             }
         }
     }
@@ -154,7 +152,7 @@ public class LevelMap
         for(int x = center.x -radius; x < endX; x++)
         for (int y = center.y -radius; y < endY; y++)
             if (x > -1 && x < width && y > -1 && y < height)
-                tiles[y][x] = TileType.Empty;
+                tiles[y][x] = TileShape.Empty;
     }
 
     private void ConnectEntranceToExit(int playerHeight)
@@ -207,6 +205,119 @@ public class LevelMap
         mainExit = prefab.Exit;
     }
 
+    public static void SetSize(int Width, int Height)
+    {
+        width = Width;
+        halfWidth = width / 2;
+        height = Height;
+    }
+
+    public void LoadEdge(Vector2Int direction, Tilemap collisions, Tilemap background)
+    {
+        Vector2Int startPoint = CalcStartPoint(direction);
+        Vector2Int endPoint = CalcEndPoint(direction);
+        Vector2Int offset = new Vector2Int(-direction.x * width, -direction.y * height);
+        Vector3Int position;
+        for (int x = startPoint.x; x < endPoint.x; x++)
+        for (int y = startPoint.y; y < endPoint.y; y++)
+        {
+            position = new Vector3Int(y, width - x, 0);
+            collisions.SetTile(position, WorldManager.Instance.TileDictionary[biome].tiles[tiles[x + offset.x][y + offset.y]]);
+            background.SetTile(position, WorldManager.Instance.Backgrounds[biome]);
+        }
+    }
+
+    public static void LoadStoneEdge(Vector2Int direction, Tilemap collisions, Tilemap background)
+    {
+        Vector2Int startPoint = CalcStartPoint(direction);
+        Vector2Int endPoint = CalcEndPoint(direction);
+        Vector3Int position;
+        for (int x = startPoint.x; x < endPoint.x; x++)
+        for (int y = startPoint.y; y < endPoint.y; y++)
+        {
+            position = new Vector3Int(y, width - x, 0);
+            collisions.SetTile(position, WorldManager.Instance.TileDictionary[Biome.Cave].tiles[TileShape.Unbreakable]);
+            background.SetTile(position, WorldManager.Instance.Backgrounds[Biome.Cave]);
+        }
+    }
+
+    private static Vector2Int CalcStartPoint(Vector2Int direction)
+    {
+        // x: -PY -> 0| 0->W | W -> W + PY
+        // y: -PY -> 0| 0->H | H -> H + PY
+        return new Vector2Int(direction.x == -1 ? -WorldManager.Instance.PlayerTileSize.y : 0 +
+            direction.x > 0 ? width : 0,
+            direction.y == -1 ? -WorldManager.Instance.PlayerTileSize.y : 0 +
+            direction.y > 0 ? height : 0);
+    }
+
+    private static Vector2Int CalcEndPoint(Vector2Int direction)
+    {
+        int endX = direction.x == 1 ? WorldManager.Instance.PlayerTileSize.y : 0;
+        endX += direction.x > -1 ? width : 0;
+        int endY = direction.y == 1 ? WorldManager.Instance.PlayerTileSize.y : 0;
+        endY += direction.y > -1 ? height : 0;
+        return new Vector2Int(endX, endY);
+    }
+
+    private void SmoothenAllEdges()
+    {
+        for(int x=1; x < width-1; x++)
+            for(int y=1; y < height-1; y++)
+                if (tiles[y][x] != TileShape.Empty)
+                    SmoothenTileEdges(x, y);
+    }
+
+    private void SmoothenTileEdges(int x, int y)
+    {
+        if(tiles[y+1][x] == TileShape.Empty)
+            if(tiles[y][x+1] == TileShape.Empty)
+                if(tiles[y-1][x] == TileShape.Empty)
+                    if (tiles[y][x - 1] == TileShape.Empty)
+                        tiles[y][x] = TileShape.NotNeighboured;
+                    else
+                        tiles[y][x] = TileShape.LeftNeighboured;
+                else
+                    if (tiles[y][x - 1] == TileShape.Empty)
+                        tiles[y][x] = TileShape.TopNeighboured;
+                    else
+                        tiles[y][x] = TileShape.LeftTopNeighboured;
+            else
+                if(tiles[y-1][x] == TileShape.Empty)
+                    if (tiles[y][x - 1] == TileShape.Empty)
+                        tiles[y][x] = TileShape.RightNeighboured;
+                    else
+                        tiles[y][x] = TileShape.HorizontalNeighboured;
+                else
+                    if (tiles[y][x - 1] == TileShape.Empty)
+                        tiles[y][x] = TileShape.TopRightNeighboured;
+                    else
+                        tiles[y][x] = TileShape.RightTopLeftNeighboured;
+        else
+            if(tiles[y][x+1] == TileShape.Empty)
+                if(tiles[y-1][x] == TileShape.Empty)
+                    if (tiles[y][x - 1] == TileShape.Empty)
+                        tiles[y][x] = TileShape.BotNeighboured;
+                    else
+                        tiles[y][x] = TileShape.BotLeftNeighboured;
+                else
+                    if (tiles[y][x - 1] == TileShape.Empty)
+                        tiles[y][x] = TileShape.VerticalNeighboured;
+                    else
+                        tiles[y][x] = TileShape.TopLeftBotNeighboured;
+            else
+                if(tiles[y-1][x] == TileShape.Empty)
+                    if (tiles[y][x - 1] == TileShape.Empty)
+                        tiles[y][x] = TileShape.RightBotNeighboured;
+                    else
+                        tiles[y][x] = TileShape.LeftBotRightNeighboured;
+                else
+                    if (tiles[y][x - 1] == TileShape.Empty)
+                        tiles[y][x] = TileShape.BotRightTopNeighboured;
+                    else
+                        tiles[y][x] = TileShape.AllNeighboured;
+    }
+
     public void OverrideMainExit(Vector2Int newMainExit)
     {
         mainExit = newMainExit;
@@ -217,5 +328,5 @@ public class LevelMap
     public Biome Biome => biome;
     public Vector2Int Entrance => mainEntrance;
     public Vector2Int Exit => mainExit;
-    public List<List<TileType>> Tiles => tiles;
+    public List<List<TileShape>> Tiles => tiles;
 }

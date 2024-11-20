@@ -81,7 +81,7 @@ public class MapManager: MonoBehaviour
         for(int i=0; i < levelMap.Width; i++)
         for (int j = 0; j < levelMap.Height; j++)
         {
-            if(levelMap.Tiles[i][j] != TileType.Empty)
+            if(levelMap.Tiles[i][j] != TileShape.Empty)
                 mapGrid.SetTile(new Vector3Int (i,j,1), tilesByBiomes[(int)Biome.Cave]);
             else
                 mapGrid.SetTile(new Vector3Int (i,j,1), tilesByBiomes[(int)Biome.None]);
@@ -102,6 +102,7 @@ public class MapManager: MonoBehaviour
 
     private void GenerateEmptyMap()
     {
+        LevelMap.SetSize(levelWidth, levelHeight);
         levels = new List<List<LevelMap>>();
         levels.Add(new List<LevelMap>());
         GenerateSurfaceRow();
@@ -110,7 +111,7 @@ public class MapManager: MonoBehaviour
             levels.Add(new List<LevelMap>());
             for (int j = 0; j < width; j++)
             {
-                levels[i].Add(new LevelMap(Biome.Cave, levelWidth, levelHeight, OppositeOf(levels[i-1][j].Exit)));
+                levels[i].Add(new LevelMap(Biome.Cave, OppositeOf(levels[i-1][j].Exit)));
             }
         }
     }
@@ -118,7 +119,7 @@ public class MapManager: MonoBehaviour
     private void GenerateSurfaceRow()
     {
         for (int j = 0; j < width; j++)
-            levels[0].Add(new LevelMap(Biome.None, levelWidth, levelHeight, Vector2Int.zero));
+            levels[0].Add(new LevelMap(Biome.None, Vector2Int.zero));
         levels[0][width / 2].GenerateLevelFromPrefab(startLevelprefab);
         levels[0][width / 2].OverrideMainExit(new Vector2Int(levelWidth / 2, levelHeight - 1));
     }
@@ -159,23 +160,41 @@ public class MapManager: MonoBehaviour
             SetNewPortalParameters();
             currentLevelY -= direction.y;
             currentLevelX += direction.x;
+            LoadEdgesFromSurroundingLevels();
         }
     }
 
     private void SetNewPortalParameters()
     {
-        SetAllPortalsScaleAndPosition(levelCollidersGrid.localBounds.size, levelCollidersGrid.localBounds.size / 2,
-             WorldManager.Instance.PlayerActualSize);
+        Vector2 verticalPortalsSize = new Vector2(WorldManager.Instance.PlayerActualSize.y, levelCollidersGrid.localBounds.size.y);
+        Vector2 horizontalPortalsSize = new Vector2(levelCollidersGrid.localBounds.size.x, WorldManager.Instance.PlayerActualSize.y);
+        SetAllPortalsScaleAndPosition(horizontalPortalsSize, horizontalPortalsSize / 2, verticalPortalsSize, verticalPortalsSize / 2);
     }
 
-    private void SetAllPortalsScaleAndPosition(Vector3 gridSize, Vector3 halfGridSize, Vector2 playerSize)
+    private void SetAllPortalsScaleAndPosition(Vector2 horizSize, Vector2 halfHorizSize, Vector2 vertSize, Vector2 halfVertSize)
     {
-        Vector2 verticalPortalsSize = new Vector2(playerSize.x, gridSize.y);
-        Vector2 horizontalPortalsSize = new Vector2(gridSize.x, playerSize.y);
-        downPortal.SetScaleAndPosition(new Vector2(halfGridSize.x, -playerSize.y), horizontalPortalsSize);
-        leftPortal.SetScaleAndPosition(new Vector2(-playerSize.x, halfGridSize.y), verticalPortalsSize);
-        topPortal.SetScaleAndPosition(new Vector2(halfGridSize.x, gridSize.y + playerSize.y), horizontalPortalsSize);
-        rightPortal.SetScaleAndPosition(new Vector2(gridSize.x + playerSize.x, halfGridSize.y), verticalPortalsSize);
+        downPortal.SetScaleAndPosition(new Vector2(halfHorizSize.x, -halfHorizSize.y), horizSize);
+        leftPortal.SetScaleAndPosition(new Vector2(-halfVertSize.x, halfVertSize.y), vertSize);
+        topPortal.SetScaleAndPosition(new Vector2(halfHorizSize.x, vertSize.y + halfHorizSize.y), horizSize);
+        rightPortal.SetScaleAndPosition(new Vector2(horizSize.x + halfVertSize.x, halfVertSize.y), vertSize);
+    }
+
+    private void LoadEdgesFromSurroundingLevels()
+    {
+        for(int i = -1; i < 2; i++)
+        for(int j = -1; j < 2; j++)
+            if (i != 0 || j != 0)
+              LoadEdgeFromLevel(new Vector2Int(i, j));
+    }
+
+    private void LoadEdgeFromLevel(Vector2Int direction)
+    {
+        int newX = currentLevelX + direction.y;
+        int newY = currentLevelY + direction.x;
+        if (newX > -1 && newX < width && newY > -1 && newY < height)
+            levels[newY][newX].LoadEdge(direction, levelCollidersGrid, levelBackGround);
+        else
+            LevelMap.LoadStoneEdge(direction, levelCollidersGrid, levelBackGround);
     }
 
     public void TransferToOtherLevelEntrance(Vector2 direction, GameObject someObject)

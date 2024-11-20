@@ -7,7 +7,7 @@ public class Tunnel
     public Vector2 end;
     public int tunnelWidth;
 
-    public Tunnel(Vector2 Start, Vector2 End, int TunnelWidth, List<List<TileType>> tiles, bool getNarrower = false)
+    public Tunnel(Vector2 Start, Vector2 End, int TunnelWidth, List<List<TileShape>> tiles, bool getNarrower = false)
     {
         start = Start;
         end = End;
@@ -15,7 +15,7 @@ public class Tunnel
         DigTunnel(tiles, getNarrower);
     }
 
-    private void DigTunnel(List<List<TileType>> tiles, bool getNarrower)
+    private void DigTunnel(List<List<TileShape>> tiles, bool getNarrower)
     {
         int distance = (int) GlobalFuncs.Distance2D(start, end);
         if (distance == 0) return;
@@ -34,7 +34,7 @@ public class Tunnel
         }
     }
 
-    private void DigRoundHole(int halfWidth, Vector2Int center, List<List<TileType>> tiles)
+    private void DigRoundHole(int halfWidth, Vector2Int center, List<List<TileShape>> tiles)
     {
         int endY = center.y + halfWidth;
         int endX = center.x + halfWidth;
@@ -43,7 +43,7 @@ public class Tunnel
         {
             if (GlobalFuncs.Distance2D(new Vector2Int(x, y), center) < halfWidth)
                 if(y >= 0 && y < tiles.Count && x >= 0 && x < tiles[0].Count)
-                    tiles[y][x] = TileType.Empty;
+                    tiles[y][x] = TileShape.Empty;
         }
     }
 }

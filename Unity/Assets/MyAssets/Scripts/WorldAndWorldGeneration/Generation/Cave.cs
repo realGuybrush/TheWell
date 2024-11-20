@@ -10,7 +10,7 @@ public class Cave
     private int centerWidth;
     private int nextCaveIndex = -1;
 
-    public Cave(Vector2Int Center, int EllipseWidthHalf, int EllipseHeightHalf, int CenterWidth, List<List<TileType>> tiles)
+    public Cave(Vector2Int Center, int EllipseWidthHalf, int EllipseHeightHalf, int CenterWidth, List<List<TileShape>> tiles)
     {
         center = Center;
         ellipseWidthHalf = EllipseWidthHalf;
@@ -19,7 +19,7 @@ public class Cave
         DigCave(center, ellipseWidthHalf, ellipseHeightHalf, centerWidth, tiles);
     }
 
-    private void DigCave(Vector2Int center, int ellipseWidthHalf, int ellipseHeightHalf, int centerWidthHalf, List<List<TileType>> tiles)
+    private void DigCave(Vector2Int center, int ellipseWidthHalf, int ellipseHeightHalf, int centerWidthHalf, List<List<TileShape>> tiles)
     {
         int minY = center.y - ellipseHeightHalf;
         Vector2Int pointB = new Vector2Int(center.x - centerWidthHalf, center.y);
@@ -29,7 +29,7 @@ public class Cave
             {
                 if(GlobalFuncs.Distance2D(pointB, new Vector2(i, j)) <=
                    CalculateDistanceToEllipseByX(i, pointB, ellipseWidthHalf, ellipseHeightHalf, centerWidthHalf))
-                    tiles[j][i] = TileType.Empty;
+                    tiles[j][i] = TileShape.Empty;
             }
         }
         pointB = new Vector2Int(center.x + centerWidthHalf, center.y);
@@ -37,7 +37,7 @@ public class Cave
         {
             for(int j = center.y; j > minY; j--)
             {
-                tiles[j][i] = TileType.Empty;
+                tiles[j][i] = TileShape.Empty;
             }
         }
         for (int i = center.x + centerWidthHalf + ellipseWidthHalf; i >= pointB.x; i--)
@@ -46,7 +46,7 @@ public class Cave
             {
                 if(GlobalFuncs.Distance2D(pointB, new Vector2(i, j)) <=
                    CalculateDistanceToEllipseByX(i, pointB, ellipseWidthHalf, ellipseHeightHalf, centerWidthHalf))
-                    tiles[j][i] = TileType.Empty;
+                    tiles[j][i] = TileShape.Empty;
             }
         }
     }
