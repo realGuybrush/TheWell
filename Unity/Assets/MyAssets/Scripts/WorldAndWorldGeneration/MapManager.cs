@@ -12,6 +12,9 @@ public class MapManager: MonoBehaviour
     private LevelPrefab startLevelprefab;
 
     [SerializeField]
+    private LevelPrefab endLevelprefab;
+
+    [SerializeField]
     private Tilemap mapGrid, levelCollidersGrid, levelBackGround;
 
     [SerializeField]
@@ -114,6 +117,7 @@ public class MapManager: MonoBehaviour
                 levels[i].Add(new LevelMap(Biome.Cave, OppositeOf(levels[i-1][j].Exit)));
             }
         }
+        GenerateMainLevel();
     }
 
     private void GenerateSurfaceRow()
@@ -122,6 +126,12 @@ public class MapManager: MonoBehaviour
             levels[0].Add(new LevelMap(Biome.None, Vector2Int.zero));
         levels[0][width / 2].GenerateLevelFromPrefab(startLevelprefab);
         levels[0][width / 2].OverrideMainExit(new Vector2Int(levelWidth / 2, levelHeight - 1));
+    }
+
+    private void GenerateMainLevel()
+    {
+        levels[1][width / 2].GenerateLevelFromPrefab(endLevelprefab);
+        levels[1][width / 2].OverrideMainExit(new Vector2Int(levelWidth / 2, levelHeight - 1));
     }
 
     private Vector2Int OppositeOf(Vector2Int exit)
@@ -203,14 +213,24 @@ public class MapManager: MonoBehaviour
             currentLevelY - direction.y > -1 && currentLevelY - direction.y < levelHeight)
         {
             Vector2 playerTileSize = WorldManager.Instance.PlayerTileSize;
-            Vector2 entrance = levels[currentLevelY - (int) direction.y][currentLevelX + (int) direction.x].Entrance;
+            Vector2 entrance = CalculateObjectEnterCoords(direction, someObject.transform.position);//levels[currentLevelY - (int) direction.y][currentLevelX + (int) direction.x].Entrance;//
+            int newLevelHeight = levels[currentLevelY - (int)direction.y][currentLevelX + (int)direction.x].Height;
             Vector3 size = levelCollidersGrid.cellSize;
             someObject.transform.position = new Vector3((entrance.x + direction.x * playerTileSize.x) * size.x,
-                                                        (levelHeight - entrance.y + direction.y * playerTileSize.y) * size.y, 0);
+                                                        (newLevelHeight - entrance.y + direction.y * playerTileSize.y) * size.y, 0);
             var body = someObject.GetComponent<Rigidbody2D>();
             if(body != null)
                 body.velocity = Vector2.zero;
             //todo: if not player, delete object and add it in list of objects in other level;
         }
+    }
+
+    private Vector2Int CalculateObjectEnterCoords(Vector2 direction, Vector3 position)
+    {
+        var playerFromZeroOffset = (position - levelCollidersGrid.transform.position) / levelCollidersGrid.cellSize.x;
+        var directionOffset = levels[ currentLevelY - (int)direction.y][(int)direction.x + currentLevelX].Size;
+        directionOffset = new Vector2Int(direction.x < 0? directionOffset.x:0,
+                                         direction.y > 0? directionOffset.y:0);
+        return new Vector2Int((int)playerFromZeroOffset.x + directionOffset.x, (int)playerFromZeroOffset.y + directionOffset.y);
     }
 }

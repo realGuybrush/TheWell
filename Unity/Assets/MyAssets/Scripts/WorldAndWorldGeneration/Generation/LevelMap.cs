@@ -218,12 +218,18 @@ public class LevelMap
         Vector2Int endPoint = CalcEndPoint(direction);
         Vector2Int offset = new Vector2Int(-direction.x * width, -direction.y * height);
         Vector3Int position;
-        for (int x = startPoint.x; x < endPoint.x; x++)
-        for (int y = startPoint.y; y < endPoint.y; y++)
+        var tileprefabs = WorldManager.Instance.TileDictionary[biome].tiles;
+        var bgTile = WorldManager.Instance.Backgrounds[biome];
+        int levelX = startPoint.x + offset.x;
+        for (int tileMapX = startPoint.x; tileMapX < endPoint.x; tileMapX++, levelX++)
         {
-            position = new Vector3Int(y, width - x, 0);
-            collisions.SetTile(position, WorldManager.Instance.TileDictionary[biome].tiles[tiles[x + offset.x][y + offset.y]]);
-            background.SetTile(position, WorldManager.Instance.Backgrounds[biome]);
+            int levelY = startPoint.y + offset.y;
+            for (int tileMapY = startPoint.y; tileMapY < endPoint.y; tileMapY++, levelY++)
+            {
+                position = new Vector3Int(tileMapY, width - tileMapX, 0);
+                collisions.SetTile(position, tileprefabs[tiles[levelX][levelY]]);
+                background.SetTile(position, bgTile);
+            }
         }
     }
 
@@ -232,12 +238,14 @@ public class LevelMap
         Vector2Int startPoint = CalcStartPoint(direction);
         Vector2Int endPoint = CalcEndPoint(direction);
         Vector3Int position;
+        var unbreakable = WorldManager.Instance.TileDictionary[Biome.Cave].tiles[TileShape.Unbreakable];
+        var bgTile = WorldManager.Instance.Backgrounds[Biome.Cave];
         for (int x = startPoint.x; x < endPoint.x; x++)
         for (int y = startPoint.y; y < endPoint.y; y++)
         {
             position = new Vector3Int(y, width - x, 0);
-            collisions.SetTile(position, WorldManager.Instance.TileDictionary[Biome.Cave].tiles[TileShape.Unbreakable]);
-            background.SetTile(position, WorldManager.Instance.Backgrounds[Biome.Cave]);
+            collisions.SetTile(position, unbreakable);
+            background.SetTile(position, bgTile);
         }
     }
 
@@ -323,8 +331,10 @@ public class LevelMap
         mainExit = newMainExit;
     }
 
-    public int Width => width;
-    public int Height => height;
+    public int Width => prefab == null ? width : prefab.Size.x;
+    public int Height => prefab == null ? height : prefab.Size.y;
+
+    public Vector2Int Size => prefab == null ? new Vector2Int(width, height) : prefab.Size;
     public Biome Biome => biome;
     public Vector2Int Entrance => mainEntrance;
     public Vector2Int Exit => mainExit;
